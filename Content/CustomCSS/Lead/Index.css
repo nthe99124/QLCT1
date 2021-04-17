@@ -1,0 +1,238 @@
+﻿.title-ol, .title-ul {
+    margin: 0;
+    padding: 0
+}
+
+.title-ol, .title-ul {
+    list-style: none
+}
+
+.title-icon {
+    vertical-align: middle;
+    background-color: #A094ED;
+}
+
+.title-icon {
+    max-width: 100%;
+    height: auto
+}
+
+.title-name {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    background: transparent;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    line-height: 15px;
+    text-decoration: none;
+    color: rgba(27, 82, 151, 1);
+    -webkit-appearance: none;
+    white-space: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.title-button {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    background: transparent;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    /*border-radius: 4px;*/
+    line-height: 25px;
+    text-decoration: none;
+    color: rgba(27, 82, 151, 1);
+    -webkit-appearance: none;
+    white-space: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.title-button--neutral {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: -4px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid rgb(221, 219, 218);
+    transition: border .15s linear;
+    border-color: rgb(221, 219, 218);
+    background-color: rgb(255, 255, 255)
+}
+
+    .title-button--neutral:hover, .title-button--neutral:focus {
+        background-color: rgb(244, 246, 249)
+    }
+
+    .title-button--neutral:active {
+        background-color: rgb(238, 241, 246)
+    }
+
+    .title-button--neutral:disabled {
+        background-color: rgb(255, 255, 255);
+        cursor: default
+    }
+
+
+.title-icon {
+    width: 30px;
+    height: 30px;
+    fill: rgb(255, 255, 255)
+}
+
+.title-header {
+    padding: 5px 10px;
+    border-bottom: 1px solid rgb(221, 219, 218);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background: rgb(243, 242, 242);
+    background-clip: padding-box;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);
+    border: 1px solid rgb(221, 219, 218)
+}
+
+.title-header__title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    display: block
+}
+
+.title-grid {
+    display: flex
+}
+
+.title-flexi-truncate {
+    flex: 1 1 0%;
+    min-width: 0
+}
+
+.title-media {
+    display: flex;
+    align-items: flex-start
+}
+
+.title-media__figure {
+    flex-shrink: 0;
+    margin-right: .75rem
+}
+
+.title-assistive-text {
+    position: absolute !important;
+    margin: -1px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    text-transform: none !important;
+    white-space: nowrap !important
+}
+
+.data-content {
+    background: #f3f2f2;
+    min-height: calc(100vh - 170px);
+}
+
+
+/*Custom*/
+
+.checkbox-area {
+    margin-left: 5px;
+    margin-bottom: -30px;
+    position: absolute;
+    z-index: 9999;
+}
+
+/*Dashboard*/
+.Dashboard {
+    margin-top:10px !important;
+}
+
+h4 {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 20px !important;
+}
+
+.blue-square-container {
+    text-align: center;
+}
+
+.blue-square {
+    color: #FFFFFF;
+    font-size: 50px !important;
+    border-style: solid;
+    border-color: #FE6F18 !important;
+    border-radius: 15px 15px 15px;
+    width: 120px;
+    height: 70px;
+    display: inline-block;
+    border-width: 5px;
+}
+.chart-responsive {
+    height: 200px;
+}
+.indexDashboard {
+    height: 200px;
+    margin-bottom: 10px;
+}
+/**/
+.advancesearch-area {
+    margin-left: 1625px;
+    position: absolute;
+    z-index: 999;
+    float: right;
+    margin-top: 10px;
+}
+.advancesearch {
+    border-radius: 3px;
+}
+
+#exploitedOpp {
+    padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 1680px) {
+    .advancesearch-area {
+        margin-left: 1380px !important;
+    }
+}
+
+@media only screen and (max-width: 1600px) {
+    .advancesearch-area {
+        margin-left: 1300px !important;
+    }
+}
+
+@media only screen and (max-width: 1440px) {
+    .advancesearch-area {
+        margin-left: 1140px !important
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .advancesearch-area {
+        margin-left: 1100px !important
+    }
+}
+
+@media only screen and (max-width: 1366px) {
+    .advancesearch-area {
+        margin-left: 1070px !important;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .advancesearch-area {
+        margin-left: 980px !important;
+    }
+}

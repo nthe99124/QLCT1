@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>file scan</title>
+    <link rel="stylesheet" href="css/dataTables.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="base">
+        <div class="controler_paner ax_default">
+            <a class="addDocument">Thêm tài liệu</a>
+            <div class="delete_paner">
+                <div class="delete_icon">
+                    <a href="#"><i class="fa fa-trash" style="font-size:x-large" aria-hidden="true"></i>Xóa </a>
+                </div>
+                <lable>Tổng:100</lable>
+            </div>
+        </div>
+        <table class="table table-hover" id="myTable">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <input class="check_All" type="checkbox" onclick="javascript:checkAll(this)">
+                    </th>
+                    <th class="sort_col_table" scope="col">STT</th>
+                    <th class="sort_col_table" scope="col">Mã tài liệu
+                        <i class="fa fa-exchange" aria-hidden="true"></i>
+                    </th>
+                    <th class="sort_col_table" scope="col">Thời gian
+                        <i class="fa fa-exchange" aria-hidden="true"></i>
+                    </th>
+                    <th scope="col">Hành động</th>
+                </tr>
+                <tr>
+                    <th class="search_col_table"></th>
+                    <th class="search_col_table"></th>
+                    <th class="search_col_table">
+                        <input type="text" name="" id="myInputFile" onkeyup="myFunctionSearchFileTable()">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </th>
+                    <th class="search_col_table">
+                        <input type="text" name="" id="myInputTime" onkeyup="myFunctionSearchTimeTable()">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </th>
+                    <th class="search_col_table"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        <input class="check_row" type="checkbox">
+                    </th>
+                    <td>1</td>
+                    <td><a href="#">590b9d9f-d0cc-4902-88a5-ab40b500758b</a></td>
+                    <td>Đã xuất bản 2 phút trước</td>
+                    <td>
+                        <a href="#">Tài liệu mới</a>
+                        <a href="#">Tài liệu chuyển tiếp</a>
+                        <a href="#">Tài liệu bổ sung</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <input class="check_row" type="checkbox">
+                    </th>
+                    <td>2</td>
+                    <td><a href="#">0add6932-1190-4de6-88b9-a27b83dd22e6</a></td>
+                    <td>Đã xuất bản 12 phút trước</td>
+                    <td>
+                        <a href="#">Tài liệu mới</a>
+                        <a href="#">Tài liệu chuyển tiếp</a>
+                        <a href="#">Tài liệu bổ sung</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <input class="check_row" type="checkbox">
+                    </th>
+                    <td>3</td>
+                    <td><a href="#">f48feb40-3399-4bd1-8fe5-3b145ded55bb</a></td>
+                    <td>Đã xuất bản 5 phút trước</td>
+                    <td>
+                        <a href="#">Tài liệu mới</a>
+                        <a href="#">Tài liệu chuyển tiếp</a>
+                        <a href="#">Tài liệu bổ sung</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <input class="check_row" type="checkbox">
+                    </th>
+                    <td>4</td>
+                    <td><a href="#">f48feb40-3399-4bd1-8fe5-3b145ded55bb</a></td>
+                    <td>abc</td>
+                    <td>
+                        <a href="#">Tài liệu mới</a>
+                        <a href="#">Tài liệu chuyển tiếp</a>
+                        <a href="#">Tài liệu bổ sung</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="num_page">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-2">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a class="btn_page active" href="#">1</a></li>
+                    <li><a class="btn_page" href="#">2</a></li>
+                    <li><a class="btn_page" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-1.4.2.min.js"></script>
+    <script src="/js/document.js"></script>
+    <script src="/js/dataTables.min.js"></script>
+    <script src="/js/site.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>
+
+</html>

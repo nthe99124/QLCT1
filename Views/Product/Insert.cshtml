@@ -1,0 +1,688 @@
+﻿
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Thêm sản phẩm</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="~/favicon.ico">
+    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/icons/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
+
+
+    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+
+    <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
+    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
+    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
+    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container content" id="content-layout">
+
+        <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
+        <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
+        <form method="post" action="/Product/Insert">
+            <div class="title-header">
+                <div class="title-grid">
+                    <div class="title-flexi-truncate">
+                        <div class="title-media">
+                            <div class="title-media__figure">
+                                <div>
+                                    <div class="title-icon" style="background-color: #A094ED">
+                                        <span>
+                                            <img src="~/Content/CustomCSS/Image/contact_120.png" class="title-icon" alt="Contacts" title="Contacts">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <nav>
+                                    <ol class="title-ol">
+                                        <li class="title-li">
+                                            <span>Sản phẩm</span>
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <div class="title-grid">
+                                    <div class="title-header__title">
+                                        <div class="title-name">
+                                            <div>
+                                                <span>Thêm sản phẩm</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data-content row">
+                <div class="col-md-9">
+                    <div class="col-md-12">
+                        <div class="general-infor margin-top-15">
+                            <div class="col-md-12 infor-title">
+                                Th&#244;ng tin cơ bản
+                            </div>
+
+                            <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
+
+                                <div class="form-group col-md-6 padding-top-10" id="T&#234;n viết tắt">
+                                    <label class='col-md-4 control-label'>Tên sản phẩm</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Name'></div>
+                                </div>
+
+                                <div class="form-group col-md-6 padding-top-10" id="M&#227; bưu ch&#237;nh">
+                                    <label class='col-md-4 control-label'>SL còn</label><div class='col-md-8'><input required="" type="text" class="form-control"  name='NumberRemain'></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="Số fax">
+                                    <label class='col-md-4 control-label'>Mô tả</label><div class='col-md-8'><input required="" type="text" class="form-control"  name='Description'></div>
+                                </div>
+
+                                <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
+                                    <label class='col-md-4 control-label'>Giá</label><div class='col-md-8'><input required="" type="text" class="form-control"  name='Price'></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                    <label class='col-md-4 control-label'>Giảm giá(%)</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Discount'></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                    <label class='col-md-4 control-label'>Đơn vị tính</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 " style="padding-left: 200px">
+                        <div class="margin-top-30">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-success">
+                                    Thêm sản phẩm
+                                </button>
+                                <a href="~/Product/Index" class="btn grey-salt gray" type="button">
+                                    <i></i> Hủy
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <input type="hidden" id="urlSearchUserInSso" value="~/Home/SearchUserInSso" />
+        <input type="hidden" id="urlCheckCoincident" value="~/Accounts/AjaxCheckCoincident" />
+        <input type="hidden" id="urlAddMembers" value="~/RequestTicket/_AjaxAddMembers" />
+        <input type="hidden" id="urlAddRegisterReasonToSesion" value="~/Accounts/_AjaxAddRegisterReasonToSesion" />
+        <input type="hidden" id="msgRequired" value="Trường n&#224;y kh&#244;ng được để trống!" />
+        <input type="hidden" id="urlHostAddressRequestTicket" value="http://10.15.168.163:7990~//RequestTicket" />
+        <input type="hidden" value="http://10.15.168.163:7990~/" id="hostAddress" />
+
+
+
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer no-margin">
+        <div class="text-center"> 2021 © Bản quyền thuộc về Công ty Hệ Thống Thông tin FPT.</div>
+    </footer>
+
+    <input type="hidden" id="hiddenUrlCommon" value="" />
+    <input type="hidden" id="hostAddress" value="http://10.15.168.163:7990~//" />
+
+    <input type="hidden" value="~/Comment/AjaxGetCommentList" id="urlGetCommentList" />
+    <input type="hidden" value="~/Comment/AjaxDeleteComment" id="urlDeleteComment" />
+    <input type="hidden" value="~/Comment/AjaxCreateComment" id="urlAjaxCreateComment" />
+    <input type="hidden" value="~/Comment/AjaxGetComment" id="urlGetComment" />
+    <input type="hidden" value="~/Comment/AjaxUpdateComment" id="urlAjaxUpdateComment" />
+
+    <img style="display: none;" src="~/Content/Image/avatar.png" id="imageAvatarSrc" />
+
+    <input type="hidden" id="session_uid" value="100332" />
+
+    <input type="hidden" value="l&#250;c" id="lblAtTime" />
+    <input type="hidden" value="Bạn chắc chắn muốn x&#243;a b&#236;nh luận n&#224;y?" id="msgConfirmDeleteComment" />
+    <input type="hidden" value="X&#243;a bản ghi kh&#244;ng th&#224;nh c&#244;ng, vui l&#242;ng tải lại trang." id="msgDeleteCommentError" />
+    <input type="hidden" value="Tạo bản ghi kh&#244;ng th&#224;nh c&#244;ng, vui l&#242;ng tải lại trang." id="msgCreateCommentError" />
+    <input type="hidden" value="(B&#236;nh luận đ&#227; bị x&#243;a)" id="lblCommentIsDeleted" />
+
+
+
+    <input type="hidden" value="~/FileUpload/AjaxGetFileUploadList" id="urlGetFileUploadList" />
+    <input type="hidden" value="~/FileUpload/AjaxDeleteFileUpload" id="urlDeleteFileUpload" />
+    <input id="msgFileUploadError" name="msgFileUploadError" type="hidden" value="Tệp tin được chọn không đúng định dạng!" />
+
+    <input type="hidden" id="urlAjaxUploadDocumentFileUpload" value="~/FileUpload/AjaxUploadDocumentFileUpload" />
+    <input type="hidden" id="urlAjaxCreateFileUpload" value="~/FileUpload/AjaxCreateFileUpload" />
+
+    <input type="hidden" id="urlDownloadDocumentFileUpload" value="~/FileUpload/DownloadFileAttached" />
+    <input type="hidden" id="urlAjaxGetPermissionForFile" value="~/FileUpload/AjaxGetPermissionForFile" />
+
+
+    <input type="hidden" id="urlAjaxUploadFileAndCreateFileUpload" value="~/FileUpload/AjaxUploadFileAndCreateFileUpload" />
+
+    <input type="hidden" id="session_username" value="thent10" />
+    <input type="hidden" id="isNoPermissionFileUpload" value="0" />
+    <input type="hidden" id="isViewFileUpload" value="1" />
+    <input type="hidden" id="isEditFileUpload" value="2" />
+    <input type="hidden" id="isFullPermissionFileUpload" value="3" />
+
+    <script src="~/Content/theme/plugins/jquery-migrate-1.4.1.min.js"></script>
+    <script src="~/Content/theme/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <script src="~/Content/theme/plugins/jquery-file-upload/js/jquery.ui.widget.js"></script>
+    <script src="~/Content/theme/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+    <script src="~/Content/theme/bootstrap/js/bootstrap.js"></script>
+    <script src="~/Content/theme/plugins/moment/moment.js"></script>
+    <script src="~/Content/theme/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Content/theme/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Content/theme/dist/js/app.min.js"></script>
+    <script src="~/Content/theme/dist/js/demo.js"></script>
+    <script src="~/Content/theme/plugins/select2-4.0.3/js/select2.js"></script>
+    <script src="~/Content/theme/plugins/jquery-file-upload/js/jquery.fileupload.js"></script>
+    <script src="~/Content/theme/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Content/theme/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="~/Content/theme/plugins/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/theme/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="~/Content/theme/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="~/Content/theme/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/CustomJS/Utility.js"></script>
+    <script src="~/Content/CustomJS/LTECustom.js"></script>
+    <script src="~/Content/CustomJS/CommonModule.js"></script>
+    <script src="~/Content/CustomJS/Notification/Notification.js"></script>
+
+
+
+    <link href="~/Content/CustomCSS/Tasks/Detail.css" rel="stylesheet" />
+    <div class="modal fade" id="modal-task-detail" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <div class="">
+                        <div class="title-grid">
+                            <div class="title-flexi-truncate">
+                                <div class="title-media">
+                                    <div class="title-media__figure">
+                                        <div>
+                                            <div class="title-icon">
+                                                <span>
+                                                    <img src="~/Content/CustomCSS/Image/task_120.png" class="title-icon" alt="Contacts" title="Contacts">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <nav>
+                                            <ol class="title-ol">
+                                                <li class="title-li">
+                                                    <span>Tasks</span>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                        <div class="title-grid">
+                                            <div class="title-header__title">
+                                                <div class="title-name">
+                                                    <div>
+                                                        <span id="lblTask-Title"> ? </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="title-grid">
+
+                                <ul class="">
+                                    <li id="btnCreateSub" class="title-button title-button--neutral">
+                                        <a href="javascript:;">
+                                            <i class="fa fa-edit"></i> <span> Tạo sub-task </span>
+                                        </a>
+                                    </li>
+                                    <li id="btnEditTask" class="title-button title-button--neutral">
+                                        <a href="javascript:;">
+                                            <i class="fa fa-edit"></i> <span> Sửa</span>
+                                        </a>
+                                    </li>
+                                    <li id="btnUnfollowTask" class="title-button title-button--neutral">
+                                        <a href="javascript:;">
+                                            <i class="fa "></i> <span> Theo dõi</span>
+                                        </a>
+                                    </li>
+                                    <li id="btnAssignTask" class="title-button title-button--neutral">
+                                        <a href="javascript:;">
+                                            <i class="fa fa-user"></i> <span> Gán</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="title-grid padding-left-5" id="target-dropdown-container">
+                                <button type="button" data-target="#target-dropdown-container" class="btn dropdown-toggle title-button title-button--neutral pull-right" data-toggle="dropdown" data-hover="dropdown"
+                                        data-delay="1000" data-close-others="true" style="margin-bottom:10px; height:unset !important; color: #3c8dbc;">
+                                    &nbsp;  Trạng thái &nbsp;<i class="fa fa-angle-down"></i>
+                                </button>
+                                <ul id="task-transitions" class="dropdown-menu pull-right" style="top: 40px;">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-body no-padding" style="min-height:60vh;">
+                    <div class="col-md-12" id="collapse-task-detail-info-parent">
+                        <div class="" id="headingThree">
+                            <button class="btn btn-link infor-collapsed collapsed" type="button" data-toggle="collapse" data-target="#collapse-task-detail-info" aria-expanded="true" aria-controls="collapseThree">
+                                <i class="fa fa-chevron-right padding-right-15"></i>
+                                <i class="fa fa-chevron-down padding-right-15"></i>
+                                Thông tin task
+                            </button>
+                        </div>
+                        <div id="collapse-task-detail-info" class="collapse in" aria-labelledby="headingThree" data-parent="#collapse-task-detail-info-parent" aria-expanded="true" style="padding-top:10px;">
+                            <div class="col-md-12 form-group no-padding lblTask-Title-ParentTask">
+                                <label class="col-md-2 "> Task cha</label>
+                                <div class="col-md-10">
+                                    <span type="text" class="form-control" id="lblTask-Title-ParentTask"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group no-padding task-detail-item">
+                                <label class="col-md-2 ">Tiêu đề</label>
+                                <span class="col-md-10" id="lblTask-Title-detail"> ? </span>
+                            </div>
+                            <div class="col-md-12 form-group no-padding task-detail-item">
+                                <label class="col-md-2">Trạng thái</label>
+                                <span class="col-md-4" id="lblTask-Title-Status"> ?</span>
+                                <label class="col-md-2">Loại task</label>
+                                <select class="col-md-4" disabled id="lblTask-TaskType">
+                                    <option value="0"> Public </option>
+                                    <option value="1"> Private </option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group no-padding task-detail-item">
+                                <label class="col-md-2 lbl-Account">Khách hàng</label>
+                                <span class="col-md-4 lbl-Account" id="lblTask-Account"> ? </span>
+                                <label class="col-md-2 lbl-Opp">Cơ hội</label>
+                                <span class="col-md-4 lbl-Opp" id="lblTask-Opp"> ? </span>
+                            </div>
+
+                            <div class="col-md-12 form-group no-padding task-detail-item">
+                                <label class="col-md-2">Người tạo</label>
+                                <span class="col-md-4" id="lblTask-Reporter"> ? </span>
+                                <label class="col-md-2">Người thực hiện</label>
+                                <span class="col-md-4" id="lblTask-Assignee"> ? </span>
+                            </div>
+
+                            <div class="col-md-12 form-group no-padding task-detail-item">
+                                <label class="col-md-2"> Người theo dõi </label>
+                                <span class="col-md-4" id="lblTask-Viewer"> ? </span>
+                            </div>
+                            <div class="col-md-12 form-group no-padding task-detail-item">
+                                <label class="col-md-2"> Mô tả </label>
+                                <span class="col-md-10" id="lblTask-Desc"> ? </span>
+                            </div>
+                            <div class="col-md-12 form-group no-padding task-detail-item">
+                                <label class="col-md-2"> Độ ưu tiên </label>
+                                <span class="col-md-4" id="lblTask-Priority"> ? </span>
+                            </div>
+                            <div class="col-md-12 form-group no-padding ">
+                                <label class="col-md-2"> Ngày đến hạn </label>
+                                <span class="col-md-4" id="lblTask-DueDate"> ? </span>
+                            </div>
+
+                            <div class="col-md-12 form-group no-padding sub-tasks " style="display:none">
+                                <label class="col-md-2">Sub-task </label>
+                                <div class="col-md-10 ">
+                                    <table class="table " id="tblTask-SubTasks">
+                                        <thead style="background-color: none !important">
+                                            <tr>
+                                                <td>Tên</td>
+                                                <td>Trạng thái</td>
+                                                <td>Người thực hiện</td>
+                                                <td>Ngày đến hạn</td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12  margin-top-15 border-radius-4  task-file-wraper">
+
+                            </div>
+
+                            <div class="col-md-12  margin-top-15 border-radius-4  task-comment-wraper">
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Đóng</button>
+
+                </div>
+            </div>
+            <div id="taskdetailblock" class="modal-blocker" style="display:none">
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-task-edit" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <div class="">
+                        <div class="title-grid">
+                            <div class="title-flexi-truncate">
+                                <div class="title-media">
+                                    <div class="title-media__figure">
+                                        <div>
+                                            <div class="title-icon">
+                                                <span>
+                                                    <img src="~/Content/CustomCSS/Image/task_120.png" class="title-icon" alt="Contacts" title="Contacts">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <nav>
+                                            <ol class="title-ol">
+                                                <li class="title-li">
+                                                    <span>Tasks</span>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                        <div class="title-grid">
+                                            <div class="title-header__title">
+                                                <div class="title-name">
+                                                    <div>
+                                                        <span id="editTask-Title"> Thêm mới task </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-body no-padding" style="min-height:60vh;">
+                    <div class="col-md-12" id="group-edit-task">
+                        <div class="" id="headingThree">
+                            <button class="btn btn-link infor-collapsed collapsed" type="button" data-toggle="collapse" data-target="#collapse-task-edit-info" aria-expanded="true" aria-controls="collapseThree">
+                                <i class="fa fa-chevron-right padding-right-15"></i>
+                                <i class="fa fa-chevron-down padding-right-15"></i>
+                                Thêm/Sửa task
+                            </button>
+                        </div>
+                        <div id="collapse-task-edit-info" class="collapse in" aria-labelledby="headingThree" data-parent="#group-edit-task" aria-expanded="true" style="padding-top:10px;">
+                            <div class="col-md-12 form-group no-padding editTask-Title-ParentTask">
+                                <label class="col-md-2 "> Task cha</label>
+                                <div class="col-md-10">
+                                    <span type="text" class="form-control" id="editTask-Title-ParentTask"></span>
+                                    <input type="hidden" class="" id="editTask-DueDate-ParentTask" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-group no-padding ">
+                                <label class="col-md-2 ">Tiêu đề <span class="required red" aria-required="true">*</span> </label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="editTask-Title-detail" required />
+                                    <span class="help-block" style="display:none"> Trường bắt buộc</span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 form-group no-padding ">
+                                <label class="col-md-2">Loại task</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="editTask-Type" onchange="OnchangeTaskType()">
+                                        <option value="0"> Public </option>
+                                        <option value="1"> Private </option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 form-group no-padding editTask-TaskModule">
+                                <label class="col-md-2 "> Gắn với</label>
+                                <div class="col-md-4 ">
+                                    <select class="form-control" id="editTask-TaskModule" onchange="OnchangeTaskModule()">
+                                        <option value="None"> Tự do </option>
+                                        <option value="Account"> Kh&#225;ch h&#224;ng </option>
+                                        <option value="Opportunity"> Cơ hội </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 editTask-ObjectId">
+                                    <select type="text" class="form-control hasselect2" id="editTask-ObjectId" required></select>
+                                    <span class="help-block" style="display:none">Trường bắt buộc</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-group no-padding editTask-Assignee">
+                                <label class="col-md-2">Người thực hiện <span class="required red" aria-required="true">*</span></label>
+                                <div class="col-md-4">
+                                    <select class="form-control hasselect2" id="editTask-Assignee" required onchange="ShowIsCompleted()"></select>
+                                    <span class="help-block" style="display:none">Trường bắt buộc</span>
+                                </div>
+                                <div class="col-md-4 hidden" id="editTask-isCompleted">
+                                    <input type="checkbox" value="3" id="isCompleted" checked /> <span class="margin-left-5">Đã hoàn thành</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-group no-padding ">
+                                <label class="col-md-2"> Người theo dõi </label>
+                                <div class="col-md-10">
+                                    <select multiple class="form-control" id="editTask-Viewer"></select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 form-group no-padding ">
+                                <label class="col-md-2"> Mô tả </label>
+                                <div class="col-md-10">
+                                    <textarea type="text" rows="4" cols="70" class="" id="editTask-Desc" style="border:1px solid #d2d6de;"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group no-padding ">
+                                <label class="col-md-2"> Độ ưu tiên </label>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="editTask-Priority">
+                                        <option value="0"> Thấp </option>
+                                        <option value="1"> Trung b&#236;nh </option>
+                                        <option value="2"> Cao </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-group no-padding ">
+                                <label class="col-md-2"> Ngày đến hạn <span class="required red" aria-required="true">*</span></label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control datetime duedate" required readonly id="editTask-DueDate" />
+                                    <span class="help-block" style="display:none">Trường bắt buộc</span>
+                                    <span class="help-block-date" style="display:none"> </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-group no-padding  Attachments">
+                                <label class="col-md-2"> Files </label>
+                                <div class="col-md-10">
+                                    <button type="button" class="btn btn-default green " style="float:left" onclick="$('#fileInputTask').click()"> Upload files </button>
+                                    <input id="fileInputTask" type="file" class="hidden" multiple> <div class="col-md-6">  </div>
+                                </div>
+                                <label class="col-md-2">  </label>
+                                <div class="col-md-10">
+                                    <table class="table" id="FilesListTask" style="visibility:hidden">
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal"> Hủy </button>
+                    <button type="button" id="btn-save-task" class="btn btn-primary"> Lưu </button>
+                </div>
+            </div>
+            <div id="taskeditblock" class="modal-blocker" style="display:none">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-task-assign" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4>
+                        Chuyển giao task
+                    </h4>
+
+                </div>
+                <div class="modal-body no-padding">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="hidden" id="assignTask-TaskId" value="" />
+                            <input type="hidden" id="assignTask-UserId-old" value="" />
+                            <label class="col-md-2">Chuyển giao cho: </label>
+                            <div class="col-md-4">
+                                <select class="form-control" id="assignTask-UserId"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal"> Hủy </button>
+                    <button type="button" id="btn-assign-task" class="btn btn-primary" onclick="AssignTask()"> Gán </button>
+                </div>
+            </div>
+            <div id="taskassignblock" class="modal-blocker" style="display:none">
+            </div>
+        </div>
+    </div>
+    <footer class="main-footer no-margin">
+        <div class="text-center">  Công ty TNHH thương mại và dịch vụ Vũ Hà.</div>
+    </footer>
+
+    <input type="hidden" id="urlDetailTask" value="~/Tasks/AjaxGetDetailTask" />
+
+    <input type="hidden" id="msgInputTooShort" value="Nhập &#237;t nhất 2 k&#253; tự!" />
+    <input type="hidden" id="msgInputTooLong" value="Kh&#244;ng được nhập qu&#225; 100 k&#253; tự!" />
+    <input type="hidden" id="msgAjaxError" value="Kh&#244;ng thể load dữ liệu!" />
+    <input type="hidden" id="msgSearching" value="Đang tải..." />
+    <input type="hidden" id="msgNoMatches" value="Kh&#244;ng t&#236;m thấy!" />
+    <input type="hidden" id="msgLoadMore" value="Tải th&#234;m..." />
+    <input type="hidden" id="urlSearchUserForTask" value="http://10.15.168.163:7990~//Tasks/SearchUserForTask" />
+    <input type="hidden" id="urlSearchObjectForTask" value="http://10.15.168.163:7990~//Tasks/AjaxGetListRefObject" />
+
+    <input type="hidden" id="urlAjaxCreateTask" value="http://10.15.168.163:7990~//Tasks/AjaxCreateTask" />
+    <input type="hidden" id="urlAjaxChangeStatus" value="http://10.15.168.163:7990~//Tasks/AjaxChangeStatus" />
+    <input type="hidden" id="urlAjaxAssignTask" value="http://10.15.168.163:7990~//Tasks/AjaxAssignTask" />
+
+    <input type="hidden" id="urlAjaxUnfollow" value="http://10.15.168.163:7990~//Tasks/AjaxUnfollow" />
+    <input type="hidden" id="urlLoadCommentIndexForTask" value="http://10.15.168.163:7990~//Comment/PartialComment" />
+
+    <input type="hidden" id="urlLoadFileIndexForTask" value="http://10.15.168.163:7990~//FileUpload/GetPartialFileUpload" />
+    <input type="hidden" id="currentUserId" value="100332" />
+    <input type="hidden" class="Task-Status" data-id="1" value="Đang thực hiện" />
+    <input type="hidden" class="Task-Status" data-id="2" value="Chờ xem x&#233;t" />
+    <input type="hidden" class="Task-Status" data-id="3" value="Đ&#227; ho&#224;n th&#224;nh" />
+    <input type="hidden" class="Task-Status" data-id="-1" value="Huỷ" />
+    <input type="hidden" class="Task-Status" data-id="0" value="Chờ" />
+
+    <script src="~/Content/CustomJS/Tasks/TaskPartial.js"></script>
+</body>
+</html>
+
+
+
+<script src="~/Content/theme/plugins/DataTables/datatables.js"></script>
+<script src="~/Content/CustomJS/Account/Edit.js"></script>
+
+
+<!-- Matomo -->
+<script type="text/javascript">
+    var _paq = _paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    var u = "//insight.fis.com.vn/piwik/";
+    _paq.push(['setTrackerUrl', u + 'piwik.php']);
+    _paq.push(['setSiteId', '14']);
+    _paq.push(['setUserId', 'thent10']);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function () {
+
+        var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+        g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
+    })();
+
+    function clickFunction(id) {
+        console.log('ok');
+    }
+
+    $('.datetime').datepicker({
+        format: "dd/mm/yyyy",
+        viewMode: "",
+        minViewMode: "",
+        autoclose: true,
+        showClear: true
+    });
+
+    $('.select2').select2();
+    //$('.select2').on('select2:select', function (e) {
+    //    $(e.currentTarget).valid();
+    //});
+
+    function isNumber(evt) {
+        debugger;
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            if (charCode === 45) {
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+</script>
+<!-- End Matomo Code -->
+
+<noscript>
+    <p>
+        <img src="//insight.fis.com.vn/piwik/piwik.php?idsite=14" style="border: 0;" alt="" />
+    </p>
+</noscript>
+<!-- End Piwik Code -->

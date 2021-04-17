@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dashboard</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="~/Content/Image/favicon.ico">
+    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/icons/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
+
+
+    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+
+    <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
+    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
+    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
+    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
+
+</head>
+<body>
+    <header class="main-header">
+
+        <div class="layout">
+
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Logo -->
+                <div class="Logo-containner pull-left hidden-md hidden-sm hidden-xs">
+                    <a href="" class="margin-left-5 margin-top-5" style="display: inline-block;">
+                        <img class="img-responsive logo-custom" height="100" width="250" src="~/Content/Logo/logo_vuha.jpg" alt="" />
+                    </a>
+                </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse no-padding" id="navbar-collapse-1">
+                    <div class="layout">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs main-menu-wraper">
+                                <li class="">
+                                    <div class="btn-group btn-layout">
+                                        <a href="~/html/DASHBOARD/dashboardcanhan.html" aria-expanded="false" data-type="dashboard" class="">
+                                            <i class="fa fa-home"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <div class="btn-group btn-layout">
+                                        <a href="~/User/Index" aria-expanded="false" data-type="user" class="">
+                                            Quản trị
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <div class="btn-group btn-layout">
+
+
+                                        <a href="~/html/KHACHHANG/khachhang.html" aria-expanded="false" data-type="Opportunities" class="">
+                                            Khách hàng
+                                        </a>
+                                        <a href="~/html/KHACHHANG/khachhang.html" class="dropdown-toggle padding-right-0 padding-left-0" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="~/Customer/Index1">
+                                                    <i></i> Khách hàng tiềm năng
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Customer/Index2">
+                                                    <i></i> KH nợ ngắn hạn
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Customer/Index3">
+                                                    <i></i> KH nợ dài hạn
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="">
+                                    <div class="btn-group btn-layout">
+                                        <a href="~/Opportunities" aria-expanded="false" data-type="Opportunities" class="">
+                                            Hợp đồng
+                                        </a>
+                                        <a href="#" class="dropdown-toggle padding-right-0 padding-left-0" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="~/Bill/IndexPersional">
+                                                    Hợp đồng bán hàng cá nhân
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Bill/IndexDivision">
+                                                    Hợp đồng bán hàng đơn vị
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="">
+                                    <div class="btn-group btn-layout">
+                                        <a href="/Product/Index" aria-expanded="false" data-type="Tasks" class="">
+                                            Sản phẩm
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <div class="btn-group btn-layout">
+                                        <a href="#" aria-expanded="false" data-type="Tasks" class="">
+                                            Kế hoạch
+                                        </a>
+                                        <a href="#" class="dropdown-toggle padding-right-0 padding-left-0" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu">
+
+                                            <li>
+                                                <a href="~/Plan/IndexPersional">
+                                                    Kế hoạch cá nhân
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Plan/IndexDivision">
+                                                    Kế hoạch đơn vị
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <div class="btn-group btn-layout">
+
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
+                                            Báo cáo  <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li class="disabled">
+                                                <p>  Báo cáo doanh số cá nhân </p>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Báo cáo doanh số cá nhân theo tháng
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Báo cáo doanh số cá nhân theo khách hàng</a>
+                                            </li>
+
+                                            <li class="disabled">
+                                                <p>  Báo cáo doanh số đơn vị </p>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Báo cáo doanh số đơn vị theo tháng
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Báo cáo doanh số đơn vị theo khách hàng
+                                                </a>
+                                            </li>
+
+                                            <li class="disabled">
+                                                <p>  Báo cáo nợ khách hàng </p>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Báo cáo nợ khách hàng ngắn hạn
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Báo cáo nợ khách hàng dài hạn
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Báo cáo nợ khách hàng quá hạn
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="hidden ">
+                                    <div class="btn-group btn-layout">
+                                        <a href="#" aria-expanded="false" data-type="Tasks" class="">
+                                            BCC
+                                        </a>
+                                        <a href="#" class="dropdown-toggle padding-right-0 padding-left-0" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#">
+                                                    Khách hàng
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="pull-right">
+                                    <div class="menu-top-wraper">
+                                        <ul class=" nav navbar-nav" id="personal-zone">
+                                            <li>
+                                                <div class="btn-group btn-layout">
+                                                    <a title="HDSD">
+                                                        <i class="fa fa-question-circle"></i>
+                                                        <span class="label label-warning"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a href="~/File/Template/Salesman_HDSD.pdf" download>
+                                                                HDSD Salesman
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="~/File/Template/Manager_HDSD.pdf" download>
+                                                                HDSD Manager
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+
+
+                                            <li id="noti-containner" class="dropdown notifications-menu">
+                                                <a href="#" id="btn-toggle-noti" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-bell-o"></i>
+                                                    <span id="span-count-noti" class="label label-warning"></span>
+                                                </a>
+                                                <ul class="dropdown-menu" style="left: -2vw;">
+
+                                                    <li class="header"></li>
+                                                    <li class="noti-items">
+
+                                                    </li>
+                                                    <li class="footer">
+
+                                                        <a href="#" style="display: inline-block; width: 49%;" id="mark-all-as-read">Đánh dấu là đã đọc</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li class="dropdown dropdown-user padding-right-15">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
+                                                    <img alt="" class="img-circle avarta-custom" src="~/Content/CustomCSS/Image/avatar-c.png">
+                                                    <span class="username username-hide-on-mobile">
+                                                    </span>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a href="~/Log/SignOut">
+                                                            <i class="fa fa-power-off"></i> Đăng xuất
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+    <footer class="main-footer no-margin">
+        <div class="text-center"> 2021 © Bản quyền thuộc về Công ty TNHH Thương mại và Dịch vụ Vũ Hà</div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+

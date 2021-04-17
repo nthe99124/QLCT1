@@ -1,0 +1,47 @@
+﻿td.open-detail {
+    position: relative;
+    cursor: pointer;
+}
+
+    td.open-detail:before {
+        content: "\f055";
+        font-family: FontAwesome;
+        font-size: 30px;
+        top: 0;
+    }
+
+td.close-detail {
+    position: relative;
+    cursor: pointer;
+}
+
+    td.close-detail:before {
+        content: "\f056";
+        font-family: FontAwesome;
+        font-size: 30px;
+        top: 0;
+    }
+
+td.history-action {
+    position: relative;
+    cursor: pointer;
+}
+
+    td.history-action:before {
+        content: "\f1da";
+        font-family: FontAwesome;
+        font-size: 30px;
+        top: 0;
+    }
+
+@media (min-width: 768px) {
+    .modal-xl {
+        width: 90%;
+        max-width:1200px;
+    }
+}
+
+.modal-body {
+    overflow: auto;
+    height: 500px
+}

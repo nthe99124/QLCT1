@@ -1,0 +1,26 @@
+﻿.checkbox-area {
+    margin-left: 15px;
+    /*margin-bottom: -30px;*/
+    position: absolute;
+    z-index: 999;
+}
+
+.advancesearch-area {
+    right: 220px;
+    position: absolute;
+    z-index: 999;
+    margin-top: 10px;
+}
+
+
+.search-header th {
+    padding-left: 6px !important;
+}
+
+table.dataTable{
+    width:100% !important;
+}
+
+.task-index-dashboard{
+    min-height: 50px;
+}

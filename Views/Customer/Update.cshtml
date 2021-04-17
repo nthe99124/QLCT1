@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sửa khách hàng</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="~/favicon.ico">
+    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/icons/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
+
+
+    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+
+    <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
+    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
+    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
+    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container content" id="content-layout">
+
+        <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
+        <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
+        <form method="post" action="/Product/Insert">
+            <div class="title-header">
+                <div class="title-grid">
+                    <div class="title-flexi-truncate">
+                        <div class="title-media">
+                            <div class="title-media__figure">
+                                <div>
+                                    <div class="title-icon" style="background-color: #A094ED">
+                                        <span>
+                                            <img src="~/Content/CustomCSS/Image/contact_120.png" class="title-icon" alt="Contacts" title="Contacts">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <nav>
+                                    <ol class="title-ol">
+                                        <li class="title-li">
+                                            <span>Khách hàng</span>
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <div class="title-grid">
+                                    <div class="title-header__title">
+                                        <div class="title-name">
+                                            <div>
+                                                <span>Sửa khách hàng</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data-content row">
+                <div class="col-md-9">
+                    <div class="col-md-12">
+                        <div class="general-infor margin-top-15">
+                            <div class="col-md-12 infor-title">
+                                Th&#244;ng tin cơ bản
+                            </div>
+
+                            <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
+                                <div class="form-group col-md-6 padding-top-10" id="T&#234;n viết tắt">
+                                    <label class='col-md-4 control-label'>Mã khách hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Name' readonly></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="T&#234;n viết tắt">
+                                    <label class='col-md-4 control-label'>Tên khách hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Name'></div>
+                                </div>
+
+                                <div class="form-group col-md-6 padding-top-10" id="M&#227; bưu ch&#237;nh">
+                                    <label class='col-md-4 control-label'>Số điện thoại</label><div class='col-md-8'><input required="" type="text" class="form-control" name='NumberRemain'></div>
+                                </div>
+
+                                <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
+                                    <label class='col-md-4 control-label'>Địa chỉ</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Price'></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="Số fax">
+                                    <label class='col-md-4 control-label'>Ngày bắt đầu</label><div class='col-md-8'><input type="date" class="form-control" name='Description'></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="Số fax">
+                                    <label class='col-md-4 control-label'>Ngày kết thúc</label><div class='col-md-8'><input type="date" class="form-control" name='Description'></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="nv">
+                                    <label class='col-md-4 control-label'>Nhân viên</label>
+                                    <div class='col-md-8'>
+                                        <input type='hidden' name='LstAccPropertyValues[8].PropertyId' value='45'>
+                                        <select id='AccInvestorCountry' type='number' name='LstAccPropertyValues[8].Value' value='' class='select2custom form-control '>
+                                            <option value='' selected='selected'> -- Chọn Nhân viên</option>
+                                            <option value='phongban1'> Nhân viên 1</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                    <label class='col-md-4 control-label'>Mã số thuế</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Discount'></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                    <label class='col-md-4 control-label'>Số tài khoản</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                    <label class='col-md-4 control-label'>Tên ngân hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                    <label class='col-md-4 control-label'>Địa chỉ ngân hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                    <label class='col-md-4 control-label'>Trạng thái</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                    <label class='col-md-4 control-label'>Số tài khoản</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 " style="padding-left: 200px">
+                        <div class="margin-top-30">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-success">
+                                    Sửa khách hàng
+                                </button>
+                                <a href="~/Customer/Index" class="btn grey-salt gray" type="button">
+                                    <i></i> Hủy
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

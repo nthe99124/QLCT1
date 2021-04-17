@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "IndexDevisionLeader";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Kế hoạch đang quản l&#253;</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="~/favicon.ico">
+    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/icons/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
+
+
+    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+
+    <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
+    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
+    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
+    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
+
+
+    <script src="~/Content/filescan/js/dataTables.min.js"></script>
+    <script src="~/Content/filescan/js/document.js"></script>
+    <script src="~/Content/filescan/js/jquery-1.4.2.min.js"></script>
+    <script src="~/Content/filescan/js/jquery-3.5.1.js"></script>
+    <script src="~/Content/filescan/js/site.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="~/Content/filescan/css/dataTables.min.css">
+    <link rel="stylesheet" href="~/Content/filescan/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <div class="container content" id="content-layout">
+        <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
+        <link href="~/Content/theme/plugins/DataTables/jquery.dataTables.css" rel="stylesheet" />
+        <link href="~/Content/theme/plugins/DataTables/RowGroup-1.0.2/css/rowGroup.dataTables.css" rel="stylesheet" />
+        <link href="~/Content/CustomCSS/Common/LoadingMask.css" rel="stylesheet" />
+        <link href="~/Content/CustomCSS/Plan/Index.css" rel="stylesheet" />
+        <div class="title-header">
+            <div class="title-grid">
+                <div class="title-flexi-truncate">
+                    <div class="title-media">
+                        <div class="title-media__figure">
+                            <div>
+                                <div class="title-icon">
+                                    <span>
+                                        <img src="~/Content/CustomCSS/Image/contact_120.png" class="title-icon" alt="Contacts" title="Contacts">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <nav>
+                                <ol class="title-ol">
+                                    <li class="title-li">
+                                        <span>Kế hoạch</span>
+                                    </li>
+                                </ol>
+                            </nav>
+                            <div class="title-grid">
+                                <div class="title-header__title">
+                                    <div class="title-name">
+                                        <div>
+                                            <span>Kế hoạch đang quản lý</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="data-content">
+            <div class="backgroud-white">
+                <div class="nav-tabs-custom margin-bottom-none">
+                    <ul class="nav nav-tabs">
+                    </ul>
+                </div>
+                <form method="post" action="~/Plan/IndexPersionalPGD">
+                    <div class="tab-content">
+                        <div id="personalPlan" class="tab-pane fade in active">
+                            <div class="margin-top-20">
+                                <div class="col-md-12" style="display: flex; flex-direction: row">
+
+
+                                    
+                                    <div class="col-md-3" style="display: flex; flex-direction: row">
+                                        <div style="padding-top: 5px">
+                                            <label>From</label>
+                                        </div>
+                                        <div style="padding-left: 10px; padding-top: 2px">
+                                            <input type="date" id="from" name="from" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" style="display: flex; flex-direction: row">
+                                        <div style="padding-top: 5px">
+                                            <label>To</label>
+                                        </div>
+                                        <div style="padding-left: 10px; padding-top: 2px">
+                                            <input type="date" id="to" name="to" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5" style="display: flex; padding-left: 30px; flex-direction: row">
+                                        <button type="submit" id="search" class="btn btn title-button title-button--neutral">
+                                            Tìm kiếm
+                                        </button>
+                                        <button type="submit" class="btn btn title-button title-button--neutral" style="margin-left: 10px">
+                                            <a href="~/Plan/InsertPGD">Thêm</a>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div style="padding-top: 50px">
+                <div style="padding-top: 20px">
+                    <table id="myTable" class="table table-bordered" style="background-color: white;">
+                        <thead>
+                            <tr align="center">
+                                <th class="sort_col_table" scope="col">
+                                    Mã kế hoạch
+                                    <i class="fa fa-exchange" aria-hidden="true"></i>
+                                </th>
+                                <th class="sort_col_table" scope="col">Tên kế hoạch <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                <th class="sort_col_table" scope="col">Phòng ban <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                <th class="sort_col_table" scope="col">Nhân viên <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                <th class="sort_col_table" scope="col">File kế hoạch <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                <th class="sort_col_table" scope="col">Ngày BĐ <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                <th class="sort_col_table" scope="col">Ngày KT <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                <th class="sort_col_table" scope="col">Trạng thái <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                <th class="sort_col_table" scope="col">Active</th>
+                            </tr>
+                            <tr align="center">
+                                <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
+                                    <input type="text" name="" id="Search1" onkeyup="Search1()" />
+                                    <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
+                                </th>
+                                <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
+                                    <input type="text" name="" id="search2" onkeyup="search2()" />
+                                    <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
+                                </th>
+                                <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
+                                    <input type="text" name="" id="search3" onkeyup="search3()" />
+                                    <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
+                                </th>
+                                <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
+                                    <input type="text" name="" id="search4" onkeyup="search4()" />
+                                    <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
+                                </th>
+                                <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
+                                    <input type="text" name="" id="search5" onkeyup="search5()" />
+                                    <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
+                                </th>
+                                <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
+                                    <input type="text" name="" id="search6" onkeyup="search6()" />
+                                    <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
+                                </th>
+                                <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
+                                    <input type="text" name="" id="search7" onkeyup="search7()" />
+                                    <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
+                                </th>
+                                <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
+                                    <input type="text" name="" id="search8" onkeyup="search8()" />
+                                    <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
+                                </th>
+                                <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col" />
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="odd gradeX" align="center">
+                                    <td><a href="#">@item.IdPlan</a></td>
+                                    <td><a href="#">@item.NamePlan</a></td>
+                                    <td><a href="#">@item.NameDepart</a></td>
+                                    <td><a href="#">@item.NameUser</a></td>
+                                    <td><a href="#">@item.PlanContent</a></td>
+                                    <td><a href="#">@item.FromDate</a></td>
+                                    <td><a href="#">@item.ToDate</a></td>
+
+                                    @{
+                                        var st = "";
+                                        if (@item.Status == 1)
+                                        {
+                                            st = "Hoàn thành";
+                                        }
+                                        else
+                                        {
+                                            st = "Chưa hoàn thành";
+                                        }
+                                    }
+                                    <td><a href="#">@st</a></td>
+                                    <td>
+                                        <a href="@Url.Action("UpdateLead", "Plan", new {id = item.IdPlan })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+

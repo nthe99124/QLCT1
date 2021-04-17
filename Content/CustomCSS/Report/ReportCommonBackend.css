@@ -1,0 +1,12 @@
+﻿table.dataTable.no-footer {
+    border-bottom: 1px solid #ddd !important;
+}
+
+table.dataTable thead th {
+    border-bottom: 1px solid #ddd;
+}
+
+.green {
+    color: #30dc5f;
+}
+

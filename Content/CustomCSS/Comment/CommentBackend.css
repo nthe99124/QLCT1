@@ -1,0 +1,18 @@
+﻿#comment_table_wrapper > .dataTables_scroll > .dataTables_scrollBody {
+    /*border-bottom: none !important;*/
+    border-bottom: 1px solid #ddd;
+}
+
+.no-border {
+    /*border-bottom: none !important;*/
+    border-bottom: 1px solid #ddd;
+}
+
+.media, .media-body {
+    overflow: hidden;
+    zoom: 1;
+}
+
+.media {
+    margin-top: 15px;
+}

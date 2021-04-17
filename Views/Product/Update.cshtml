@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sửa sản phẩm</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="~/favicon.ico">
+    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/icons/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
+
+
+    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+
+    <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
+    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
+    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
+    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container content" id="content-layout">
+        <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
+        <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
+        <form role="form" method="post" action="/Product/Update/@Model.Id" enctype="multipart/form-data">
+            <div class="title-header">
+                <div class="title-grid">
+                    <div class="title-flexi-truncate">
+                        <div class="title-media">
+                            <div class="title-media__figure">
+                                <div>
+                                    <div class="title-icon" style="background-color: #A094ED">
+                                        <span>
+                                            <img src="~/Content/CustomCSS/Image/contact_120.png" class="title-icon" alt="Contacts" title="Contacts">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <nav>
+                                    <ol class="title-ol">
+                                        <li class="title-li">
+                                            <span>Sản phẩm</span>
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <div class="title-grid">
+                                    <div class="title-header__title">
+                                        <div class="title-name">
+                                            <div>
+                                                <span>Sửa sản phẩm</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data-content row">
+                <div class="col-md-9">
+                    <div class="col-md-12">
+                        <div class="general-infor margin-top-15">
+                            <div class="col-md-12 infor-title">
+                                Th&#244;ng tin sản phẩm
+                            </div>
+                            <div class="form-group col-md-6 padding-top-10">
+                                <label class='col-md-4 control-label'>Mã sản phẩm</label><div class='col-md-8'><input id='AccBasicShortName' type='text' value="@Model.Id" class='form-control ' name="Id" readonly/></div>
+                            </div>
+                            <div class="form-group col-md-6 padding-top-10">
+                                <label class='col-md-4 control-label'>Tên sản phẩm</label><div class='col-md-8'><input id='AccBasicShortName' type='text' value="@Model.Name" class='form-control ' name="Name" /></div>
+                            </div>
+
+
+                            <div class="form-group col-md-6 padding-top-10" >
+                                <label class='col-md-4 control-label'>SL còn</label><div class='col-md-8'><input id='AccBasicPostalCode' type='text' value="@Model.NumberRemain" class='form-control ' name="NumberRemain" /></div>
+                            </div>
+
+                            <div class="form-group col-md-6 padding-top-10">
+                                <label class='col-md-4 control-label'>Mô tả</label><div class='col-md-8'><input id='AccBasicTaxNumber' type='text' value="@Model.Description" class='form-control ' name="Description" /></div>
+                            </div>
+
+                            <div class="form-group col-md-6 padding-top-10">
+                                <label class='col-md-4 control-label'>Giá</label><div class='col-md-8'><input id='AccBasicAddress' type='text' value="@Model.Price" class='form-control input-icon  required' name="Price" /></div>
+                            </div>
+                            <div class="form-group col-md-6 padding-top-10">
+                                <label class='col-md-4 control-label'>Giảm giá(%)</label><div class='col-md-8'><input id='AccBasicTaxCode' type='text' value="@Model.Discount" class='form-control input-icon  required' name="Discount" /></div>
+                            </div>
+                            <div class="form-group col-md-6 padding-top-10">
+                                <label class='col-md-4 control-label'>Đơn vị tính</label><div class='col-md-8'><input id='AccBasicTaxCode' type='text' value="@Model.Unit" class='form-control input-icon  required' name="Unit" /></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 " style="padding-left: 200px">
+                        <div class="margin-top-30">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-success ">
+                                    Sửa sản phẩm
+                                </button>
+                                <a href="~/Product/Index" class="btn grey-salt gray" type="button">
+                                    <i></i> Hủy
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

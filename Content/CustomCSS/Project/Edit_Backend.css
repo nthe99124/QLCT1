@@ -1,0 +1,17 @@
+﻿
+
+div.has-error.form-group .help-block {
+    text-align: center;
+    margin-left: 30px;
+}
+
+
+#PdSelect-error {
+    width: 66.6667% !important;
+    float: right;
+}
+
+#EditModel_SourceProjectId-error {
+    float: left;
+    margin-left: -0.5%;
+}

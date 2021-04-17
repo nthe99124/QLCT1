@@ -1,0 +1,92 @@
+.title-header .title-grid .tags_container > span.tags, .tags_container .box-add-tag .list-tag > .tags {
+    padding: 5px 8px;
+    background-color: #3c8dbc;
+    border-color: #367fa9;
+    border-radius: 10px;
+    cursor: default;
+    float: left;
+    color: white;
+    margin: 4px;
+}
+
+.btn-add-tag.tags {
+    padding: 5px 8px;
+    background-color: #368e24;
+    border-color: #368e24;
+    border-radius: 10px;
+    float: left;
+    color: white;
+    margin: 4px;
+}
+
+.box-add-tag .list-tag .tags .active {
+    color: #368e24;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+}
+
+.box-add-tag {
+    position: absolute;
+    z-index: 100;
+    margin-top: 17px;
+}
+
+    .box-add-tag .box-list-tag {
+        height: auto;
+        width: 500px;
+        min-height: 112px;
+        max-height: 200px;
+        background-color: #fff;
+        border: solid 1px #d8d8d8;
+        z-index: 100;
+        border-radius: 5px;
+        overflow: auto;
+        padding: 10px;
+    }
+
+    .box-add-tag .point-found {
+        width: 15px;
+        height: 15px;
+        background-color: #fff;
+        transform: rotate(45deg);
+        position: absolute;
+        margin-top: -7px;
+        margin-left: 23px;
+        border: solid #d8d8d8;
+        border-width: 1px 0 0 1px;
+    }
+
+.box-list-tag::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.box-list-tag::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* Handle */
+.box-list-tag::-webkit-scrollbar-thumb {
+    background: #afafaf;
+    border-radius: 10px;
+    height: 20px;
+}
+
+    /* Handle on hover */
+    .box-list-tag::-webkit-scrollbar-thumb:hover {
+        background: #888;
+    }
+.tags_container .icon-ac-remove-tag {
+    border-radius: 50%;
+    background-color: #fff;
+    color: #5d5d5d;
+    padding: 1px 2px;
+    border: solid 1px #c5c5c5;
+    position: absolute;
+    top: 2px;
+    margin-left: -3px;
+}

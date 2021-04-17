@@ -1,0 +1,12 @@
+﻿body {
+}
+
+
+html{
+    background-color: white !important;
+}
+
+table thead {
+    position: sticky !important;
+    top: 0px;
+}
