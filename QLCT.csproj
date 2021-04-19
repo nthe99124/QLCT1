@@ -141,7 +141,6 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
-    <Compile Include="Controllers\PlanController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1561,9 +1560,6 @@
     <Content Include="Views\User\Update.cshtml" />
     <Content Include="Views\Log\Index.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\Plan\IndexPersional.cshtml" />
-    <Content Include="Views\Plan\IndexDivision.cshtml" />
-    <Content Include="Views\Plan\Insert.cshtml" />
     <Content Include="Views\Customer\Index2.cshtml" />
     <Content Include="Views\Customer\Index3.cshtml" />
     <Content Include="Views\Customer\Index4.cshtml" />
@@ -1572,26 +1568,13 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Insert.cshtml" />
     <Content Include="Views\Product\Update.cshtml" />
-    <Content Include="Views\Plan\Update.cshtml" />
     <Content Include="Views\Customer\Insert.cshtml" />
     <Content Include="Views\Customer\Update.cshtml" />
     <Content Include="Views\Dashboard\View.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
     <Content Include="Views\Log\SignOut.cshtml" />
-    <Content Include="Views\Plan\IndexDivisionLeader.cshtml" />
-    <Content Include="Views\Plan\IndexDivisionPGD.cshtml" />
-    <Content Include="Views\Plan\IndexDivisionNV.cshtml" />
-    <Content Include="Views\Plan\IndexPersionalLeader.cshtml" />
-    <Content Include="Views\Plan\IndexPersionalNV.cshtml" />
-    <Content Include="Views\Plan\IndexPersionalPGD.cshtml" />
-    <Content Include="Views\Plan\InsertLeader.cshtml" />
-    <Content Include="Views\Plan\InsertPGD.cshtml" />
-    <Content Include="Views\Plan\UpdateLeader.cshtml" />
-    <Content Include="Views\Plan\UpdatePGD.cshtml" />
-    <Content Include="Views\Plan\Delete.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
     <Content Include="Views\User\IndexDevision.cshtml" />
-    <Content Include="Views\Plan\IndexDevisionLeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
