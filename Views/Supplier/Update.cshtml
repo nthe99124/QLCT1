@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sửa sản phẩm</title>
+    <title>Sửa nhà cung cấp</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" href="~/favicon.ico">
@@ -59,7 +59,7 @@
                                 <nav>
                                     <ol class="title-ol">
                                         <li class="title-li">
-                                            <span>Sản phẩm</span>
+                                            <span>Nhà cung cấp</span>
                                         </li>
                                     </ol>
                                 </nav>
@@ -67,7 +67,7 @@
                                     <div class="title-header__title">
                                         <div class="title-name">
                                             <div>
-                                                <span>Sửa sản phẩm</span>
+                                                <span>Sửa nhà cung cấp</span>
                                             </div>
 
                                         </div>
@@ -83,24 +83,21 @@
                     <div class="col-md-12">
                         <div class="general-infor margin-top-15">
                             <div class="col-md-12 infor-title">
-                                Th&#244;ng tin sản phẩm
+                                Th&#244;ng tin nhà cung cấp
                             </div>
                             <div class="form-group col-md-6 padding-top-10">
-                                <label class='col-md-4 control-label'>Mã sản phẩm</label><div class='col-md-8'><input id='AccBasicShortName' type='text' value="@Model.Id" class='form-control ' name="Id" readonly/></div>
+                                <label class='col-md-4 control-label'>Mã nhà cung cấp</label><div class='col-md-8'><input id='AccBasicShortName' type='text' value="@Model.Id" class='form-control ' name="Id" readonly /></div>
                             </div>
                             <div class="form-group col-md-6 padding-top-10">
-                                <label class='col-md-4 control-label'>Tên sản phẩm</label><div class='col-md-8'><input id='AccBasicShortName' type='text' value="@Model.Name" class='form-control ' name="Name" /></div>
+                                <label class='col-md-4 control-label'>Tên nhà cung cấp</label><div class='col-md-8'><input id='AccBasicShortName' type='text' value="@Model.Name" class='form-control ' name="Name" /></div>
                             </div>
-
-
-                            <div class="form-group col-md-6 padding-top-10" >
-                                <label class='col-md-4 control-label'>SL còn</label><div class='col-md-8'><input id='AccBasicPostalCode' type='text' value="@Model.NumberRemain" class='form-control ' name="NumberRemain" /></div>
+                            <div class="form-group col-md-6 padding-top-10">
+                                <label class='col-md-4 control-label'>Số điện thoại</label><div class='col-md-8'><input id='AccBasicPostalCode' type='text' value="@Model.NumberRemain" class='form-control ' name="NumberRemain" /></div>
                             </div>
 
                             <div class="form-group col-md-6 padding-top-10">
-                                <label class='col-md-4 control-label'>Mô tả</label><div class='col-md-8'><input id='AccBasicTaxNumber' type='text' value="@Model.Description" class='form-control ' name="Description" /></div>
+                                <label class='col-md-4 control-label'>Địa chỉ</label><div class='col-md-8'><input id='AccBasicTaxNumber' type='text' value="@Model.Description" class='form-control ' name="Description" /></div>
                             </div>
-
                             <div class="form-group col-md-6 padding-top-10">
                                 <label class='col-md-4 control-label'>Giá</label><div class='col-md-8'><input id='AccBasicAddress' type='text' value="@Model.Price" class='form-control input-icon  required' name="Price" /></div>
                             </div>

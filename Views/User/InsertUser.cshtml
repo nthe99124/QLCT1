@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewBag.Title = "InsertUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Thêm người dùng</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="~/favicon.ico">
+    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/icons/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
+
+
+    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+
+    <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
+    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
+    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
+    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container content" id="content-layout">
+
+        <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
+        <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
+        <form action="~/Accounts/Edit" class="horizontal-form" id="form-request" method="post">
+            <input name="__RequestVerificationToken" type="hidden" value="H7D3h7BLtbbubACPyI2Ty5pHAiKN1XJZV5wxeUMw395Dc8-Af_Pv2XFUCAbR4ujDQ_nBkOMVQD2evJqmdEpXvGmCo6v53yxFUuyhWL39xX9AYVMSyTR68-vbPZ4dm2rlNXnYVw2" />
+            <input type="hidden" id="AccountId" name="AccountId" value="0" />
+            <input type="hidden" id="valueTextAcc" />
+            <input type="hidden" id="valueTextValue" />
+            <input type="hidden" id="Error" />
+            <input type="hidden" id="currentuser" value="thent10" />
+            <input type="hidden" id="DataSaveLead" name="SaveLead" />
+            <input type="hidden" id="boolConvert" name="Convert" value="False" />
+            <input type="hidden" id="OwnerOld" name="OwnerOld" />
+            <div class="title-header">
+                <div class="title-grid">
+                    <div class="title-flexi-truncate">
+                        <div class="title-media">
+                            <div class="title-media__figure">
+                                <div>
+                                    <div class="title-icon" style="background-color: #A094ED">
+                                        <span>
+                                            <img src="~/Content/CustomCSS/Image/contact_120.png" class="title-icon" alt="Contacts" title="Contacts">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <nav>
+                                    <ol class="title-ol">
+                                        <li class="title-li">
+                                            <span>Người dùng</span>
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <div class="title-grid">
+                                    <div class="title-header__title">
+                                        <div class="title-name">
+                                            <div>
+                                                <span>Thêm người dùng</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data-content row">
+                <div class="col-md-9">
+                    <div class="col-md-12">
+                        <div class="general-infor margin-top-15">
+                            <div class="col-md-12 infor-title">
+                                Th&#244;ng tin cơ bản
+                            </div>
+                            <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 300px">
+                                <div class="form-group col-md-12 padding-top-10" id="hoten">
+                                    <label class='col-md-5 control-label'>Họ và tên đầy đủ</label>
+                                    <div class='col-md-7'>
+                                        <input type='hidden' name='LstAccPropertyValues[1].PropertyId' value='3'>
+                                        <input id='AccBasicShortName' type='text' value='' class='form-control ' name='LstAccPropertyValues[1].Value' />
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12 padding-top-10" id="T&#234;n viết tắt">
+                                    <label class='col-md-5 control-label'>Tên người dùng</label>
+                                    <div class='col-md-7'>
+                                        <input type='hidden' name='LstAccPropertyValues[1].PropertyId' value='3'>
+                                        <input id='AccBasicShortName' type='text' value='' class='form-control ' name='LstAccPropertyValues[1].Value' />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 no-padding">
+                                    <div class="form-group col-md-12 padding-top-10 namecheck">
+                                        <label class="col-md-5 control-label">Mật khẩu</label>
+                                        <div class="col-md-7">
+                                            <input class="form-control input-icon required" id="Acc_AccountName" name="Acc.AccountName" type="text" value="" />
+                                            <span id="checkname" class="help-block-equalcheck" style="display:none"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12 padding-top-10" id="T&#234;n viết tắt">
+                                    <label class='col-md-5 control-label'>Giới tính</label>
+                                    <div class='col-md-7' style="display: flex; flex-direction: row">
+                                        <div>
+                                            Nam <input type='radio' name='LstAccPropertyValues[1].PropertyId' value='0'>
+                                        </div>
+                                        <div style="padding-left: 30px">
+                                            Nữ <input type='radio' name='LstAccPropertyValues[1].PropertyId' value='1'>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12 padding-top-10" id="Điện thoại VP">
+                                    <label class='col-md-5 control-label'>Số điện thoại</label><div class='col-md-7'><input type='hidden' name='LstAccPropertyValues[2].PropertyId' value='17'><input id='AccBasicPhone' type='text' value='' class='form-control ' name='LstAccPropertyValues[2].Value' /></div>
+                                </div>
+                                <div class="form-group col-md-12 padding-top-10" id="Điện thoại VP">
+                                    <label class='col-md-5 control-label'>NumberCus</label><div class='col-md-7'><input type='hidden' name='LstAccPropertyValues[2].PropertyId' value='17'><input id='AccBasicPhone' type='text' value='' class='form-control ' name='LstAccPropertyValues[2].Value' /></div>
+                                </div>
+                                <div class="form-group col-md-12 padding-top-10" id="Điện thoại VP">
+                                    <label class='col-md-5 control-label'>Status</label><div class='col-md-7'><input type='hidden' name='LstAccPropertyValues[2].PropertyId' value='17'><input id='AccBasicPhone' type='text' value='' class='form-control ' name='LstAccPropertyValues[2].Value' /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 " style="padding-left: 450px">
+                        <div class="margin-top-30">
+                            <div class="col-md-8 text-center">
+                                <button type="submit" class="btn btn-success ">
+                                    <i></i> Thêm người dùng
+                                </button>
+                                <a href="~/User/IndexUser" class="btn grey-salt gray" type="button">
+                                    <i></i> Hủy
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

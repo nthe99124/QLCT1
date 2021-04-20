@@ -8,7 +8,7 @@ using PagedList;
 
 namespace QLCT.Controllers
 {
-    public class ProductController : Controller
+    public class SupplierController : Controller
     {
         public QLCTDataContext db = new QLCTDataContext();
         // View

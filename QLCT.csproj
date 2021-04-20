@@ -16,7 +16,7 @@
     <AssemblyName>QLCT</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44353</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
@@ -141,6 +141,7 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1555,9 +1556,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\Index1.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\Insert.cshtml" />
-    <Content Include="Views\User\Update.cshtml" />
+    <Content Include="Views\User\IndexUser.cshtml" />
     <Content Include="Views\Log\Index.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Customer\Index2.cshtml" />
@@ -1575,6 +1574,14 @@
     <Content Include="Views\Log\SignOut.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
     <Content Include="Views\User\IndexDevision.cshtml" />
+    <Content Include="Views\User\InsertDevision.cshtml" />
+    <Content Include="Views\User\InsertUser.cshtml" />
+    <Content Include="Views\User\UpdateDevision.cshtml" />
+    <Content Include="Views\User\UpdateUser.cshtml" />
+    <Content Include="Views\Supplier\Index.cshtml" />
+    <Content Include="Views\Supplier\Insert.cshtml" />
+    <Content Include="Views\Supplier\Update.cshtml" />
+    <Content Include="Views\Supplier\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1611,7 +1618,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53204</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://vuha.local</IISUrl>
+          <IISUrl>http://localhost:53204/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

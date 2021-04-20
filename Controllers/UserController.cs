@@ -13,7 +13,7 @@ namespace QLCT.Controllers
         public QLCTDataContext db = new QLCTDataContext();
         // GET: User
         // View
-        public ActionResult Index()
+        public ActionResult IndexUser()
         {
             if (Session["user"] == null)
             {
@@ -70,14 +70,14 @@ namespace QLCT.Controllers
 
 
         //}
-        // Insert
-        public ActionResult Insert()
+        // InsertUser
+        public ActionResult InsertUser()
         {
             if (Session["user"] == null)
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["user"] != "PGD" && Session["user"] != "PNS")
+            if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
@@ -87,7 +87,7 @@ namespace QLCT.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Insert(User user)
+        public ActionResult InsertUser(User user)
         {
             if (Session["user"] == null)
             {
@@ -118,10 +118,62 @@ namespace QLCT.Controllers
             {
                 ViewBag.check = "Nhân sự đã tồn tại";
             }
-            return this.Insert();
+            return this.InsertUser();
         }
-        // Update
-        public ActionResult Update(int id)
+
+        // InsertUser
+        public ActionResult InsertDevision()
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Log");
+            }
+            if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
+            }
+            ViewBag.IdDepartment = from u in db.Users
+                                   join d in db.Departments on u.IdDepartment equals d.Id
+                                   select new { d.Name, u.IdDepartment };
+            return View();
+        }
+        [HttpPost]
+        public ActionResult InsertDevision(User user)
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Log");
+            }
+            if (Session["user"] != "PGD" && Session["user"] != "PNS")
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
+            }
+            var checkuser = db.Users.Where(u => u.Phone == Request["Phone"]).FirstOrDefault();
+            if (checkuser == null)
+            {
+                user.UserName = Request["UserName"];
+                user.PassWord = Request["PassWord"];
+                user.Sex = Convert.ToBoolean(Request["Sex"]);
+                user.Phone = Request["Phone"];
+                user.IdDepartment = Convert.ToInt32(Request["IdDepartment"]);
+                user.Status = Convert.ToInt32(Request["Status"]);
+                user.IsDeleted = false;
+                db.Users.InsertOnSubmit(user);
+                // tang sl nhan vien
+                var increaseDepart = db.Departments.Where(d => d.Id == Convert.ToInt32(Request["IdDepartment"])).FirstOrDefault();
+                increaseDepart.NumberStaff += 1;
+                UpdateModel(increaseDepart);
+                db.SubmitChanges();
+            }
+            else
+            {
+                ViewBag.check = "Nhân sự đã tồn tại";
+            }
+            return this.InsertDevision();
+        }
+
+        // UpdateUser
+        public ActionResult UpdateUser(int id)
         {
             if (Session["user"] == null)
             {
@@ -135,7 +187,7 @@ namespace QLCT.Controllers
             return View(user);
         }
         [HttpPost]
-        public ActionResult Update(int id, User user)
+        public ActionResult UpdateUser(int id, User user)
         {
             if (Session["user"] == null)
             {
@@ -155,8 +207,47 @@ namespace QLCT.Controllers
             user.Status = Convert.ToInt32(Request["Status"]);
             UpdateModel(user);
             db.SubmitChanges();
-            return this.Update(id);
+            return this.UpdateUser(id);
         }
+
+        // UpdateDevision
+        public ActionResult UpdateDevision(int id)
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Log");
+            }
+            if (Session["user"] != "PGD" && Session["user"] != "PNS")
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
+            }
+            var user = db.Users.First(u => u.Id == id);
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult UpdateDevision(int id, User user)
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Log");
+            }
+            if (Session["user"] != "PGD" && Session["user"] != "PNS")
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
+            }
+            user = db.Users.Where(u => u.Id == id).SingleOrDefault();
+            user.UserName = Request["UserName"];
+            user.PassWord = Request["PassWord"];
+            user.Name = Request["Name"];
+            user.Sex = Convert.ToBoolean(Request["Sex"]);
+            user.Phone = Request["Phone"];
+            user.IdDepartment = Convert.ToInt32(Request["IdDepartment"]);
+            user.Status = Convert.ToInt32(Request["Status"]);
+            UpdateModel(user);
+            db.SubmitChanges();
+            return this.UpdateDevision(id);
+        }
+
         // Delete -- Update IsDelete
         public ActionResult Delete(int id)
         {
