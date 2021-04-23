@@ -100,6 +100,9 @@
                                 <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
                                     <label class='col-md-4 control-label'>Địa chỉ</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Address"></div>
                                 </div>
+                                <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
+                                    <label class='col-md-4 control-label'>Số nợ</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Debt"></div>
+                                </div>
                                 <div class="form-group col-md-6 padding-top-10" id="Số fax">
                                     <label class='col-md-4 control-label'>Ngày bắt đầu nợ</label><div class='col-md-8'><input type="date" class="form-control" name="StartDate"></div>
                                 </div>
@@ -109,8 +112,7 @@
                                 <div class="form-group col-md-6 padding-top-10" id="nv">
                                     <label class='col-md-4 control-label'>Nhân viên</label>
                                     <div class='col-md-8'>
-                                        <input type='hidden' name='LstAccPropertyValues[8].PropertyId' value='45'>
-                                        <select id='AccInvestorCountry' type='number' name="IdStaff"  class='select2custom form-control '>
+                                        <select name="IdStaff" class='select2custom form-control '>
                                             <option value='' selected='selected'></option>
                                             @foreach (var item in @ViewBag.IdStaff)
                                             {
@@ -119,23 +121,31 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                <div class="form-group col-md-6 padding-top-10">
                                     <label class='col-md-4 control-label'>Mã số thuế</label><div class='col-md-8'><input required="" type="text" class="form-control" name="TIN"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                <div class="form-group col-md-6 padding-top-10">
                                     <label class='col-md-4 control-label'>Số tài khoản</label><div class='col-md-8'><input required="" type="text" class="form-control" name="BankNumber"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                <div class="form-group col-md-6 padding-top-10">
                                     <label class='col-md-4 control-label'>Tên ngân hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name="BankName"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                <div class="form-group col-md-6 padding-top-10">
                                     <label class='col-md-4 control-label'>Địa chỉ ngân hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name="BankAddress"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Trạng thái</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Status"></div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class='col-md-4 control-label'>Loại nợ</label>
+                                    <div class='col-md-8'>
+                                        <select name="TypeOfDate" class='select2custom form-control '>
+                                            <option value="1">Nợ ngắn hạn</option>
+                                            <option value="2">Nợ dài hạn</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Loại nợ</label><div class='col-md-8'><input required="" type="text" class="form-control" name="TypeOfDebt"></div>
+                                <div class="form-group col-md-12 padding-top-10">
+                                    <label class='col-md-4 control-label'>Là khách hàng tiềm năng</label>
+                                    <div class='col-md-4'><input type="radio" name="Status" value="1" checked> <label> Có</label></div>
+                                    <div class='col-md-4'><input type="radio" name="Status" value="2"> <label> Không</label></div>
                                 </div>
 
                             </div>

@@ -29,6 +29,7 @@ namespace QLCT.Controllers
                 ViewBag.list = from u in db.Users
                                join d in db.Departments on u.IdDepartment equals d.Id
                                where u.IsDeleted == false
+                               where u.Id != 0
                                where d.IsDeleted == false
                                orderby u.Name descending
                                select new UserDepart
@@ -107,6 +108,8 @@ namespace QLCT.Controllers
                 user.IdDepartment = Convert.ToInt32(Request["IdDepartment"]);
                 user.Status = Convert.ToInt32(Request["Status"]);
                 user.IsDeleted = false;
+                user.NumberSup = 0;
+                user.NumberCus = 0;
                 db.Users.InsertOnSubmit(user);
                 // tang sl nhan vien
                 var increaseDepart = db.Departments.Where(d => d.Id == Convert.ToInt32(Request["IdDepartment"])).FirstOrDefault();

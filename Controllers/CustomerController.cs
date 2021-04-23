@@ -22,7 +22,7 @@ namespace QLCT.Controllers
             }
             var viewcus = from c in db.Customers
                           where c.IsDeleted== false
-                          where c.TypeOfDebt == 0
+                          where c.TypeOfDebt != 0
                           where c.Status == 1
                           orderby c.Name descending
                           select c;
@@ -38,7 +38,8 @@ namespace QLCT.Controllers
                           select c;
             return View(viewpro.ToPagedList(page ?? 1, 20));
         }
-        // View KH dài hạn
+        // View KH ngắn hạn
+        
         public ActionResult Index2(int? page)
         {
 
@@ -71,7 +72,7 @@ namespace QLCT.Controllers
                           select c;
             return View(viewcus.ToPagedList(page ?? 1, 20));
         }
-        // View KH ngắn hạn
+        // View KH dài hạn
         public ActionResult Index3(int? page)
         {
 
@@ -145,7 +146,7 @@ namespace QLCT.Controllers
             }
             else
             {
-                ViewBag.check = "Mã số thuế này đã tồn tại!";
+                return Content("<script language='javascript' type='text/javascript'>var url = '/Customer/Insert';var result = confirm('Mã số thuế này đã tồn tại!');if (result) {window.location.href = url;}</script>");
             }
             return this.Insert();
         }
@@ -157,6 +158,10 @@ namespace QLCT.Controllers
                 return RedirectToAction("Index", "Log");
             }
             var cus = db.Customers.First(c => c.Id == id);
+            ViewBag.lstStaff = from u in db.Users
+                               where u.IsDeleted == false
+                               where u.Id != 0
+                               select new { u.Id, u.Name };
             return View(cus);
         }
         [HttpPost]

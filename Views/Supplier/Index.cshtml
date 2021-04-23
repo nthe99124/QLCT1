@@ -112,18 +112,20 @@
                         <table id="myTable" class="table table-bordered" style="background-color: white;">
                             <thead>
                                 <tr align="center">
-                                    <th class="sort_col_table" scope="col"> Mã nhà cung cấp <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col"> Tên nhà cung cấp <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col"> Địa chỉ <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col"> Số điện thoại <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col"> Giá <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col"> Giảm giá(%) <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col"> Đơn vị tính <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Active</th>
+                                    <th class="sort_col_table" scope="col">Mã NCC<i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col">Tên NCC <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col">SĐT<i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col">Địa chỉ<i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col">Số nợ<i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col">MS thuế<i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col">Số tài khoản <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col">Tên NH <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col">Địa chỉ NH<i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col">Active<i class="fa fa-exchange" aria-hidden="true"></i></th>
                                 </tr>
                                 <tr align="center">
                                     <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search1" onkeyup="search1()">
+                                        <input type="text" name="" id="search1" onkeyup="search1()" />
                                         <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
                                     </th>
                                     <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
@@ -150,26 +152,36 @@
                                         <input type="text" name="" id="search7" onkeyup="search7()">
                                         <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
                                     </th>
+                                    <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
+                                        <input type="text" name="" id="search8" onkeyup="search8()">
+                                        <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
+                                    </th>
+                                    <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
+                                        <input type="text" name="" id="search9" onkeyup="search9()">
+                                        <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
+                                    </th>
                                     <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr align="center">
-                                        <td>@item.Id</td>
-                                        <td>@item.Name</td>
-                                        <td>@item.NumberRemain</td>
-                                        <td>@item.Description</td>
-                                        <td>@item.Price</td>
-                                        <td>@item.Discount%</td>
-                                        <td>@item.Unit</td>
-                                        <td>
-                                            <a href="@Url.Action("Update", "Product", new {id = item.Id })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                            <input type="hidden" name="" id="idin" value="@item.Id" size="30" />
-                                        </td>
-                                    </tr>
+                                <tr align="center">
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Address</td>
+                                    <td>@item.Debt</td>
+                                    <td>@item.TIN</td>
+                                    <td>@item.BankNumber</td>
+                                    <td>@item.BankName</td>
+                                    <td>@item.BankAddress</td>
+                                    <td>
+                                        <a href="@Url.Action("Update", "Supplier", new {id = item.Id })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        <input type="hidden" name="" id="idin" value="@item.Id" size="30" />
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>
@@ -207,7 +219,7 @@
         var inputVal = $('input').val()
         var inputid = document.getElementById("idin").value;
         var result = confirm("Bạn có chắc chắn muốn xoá không ?");
-        var url = '/Product/Delete/' + inputid;
+        var url = '/Supplier/Delete/' + inputid;
 
         if (result) {
 

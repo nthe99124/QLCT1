@@ -33,9 +33,6 @@ namespace QLCT.Models
     partial void InsertBill(Bill instance);
     partial void UpdateBill(Bill instance);
     partial void DeleteBill(Bill instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
     partial void InsertCustomer(Customer instance);
     partial void UpdateCustomer(Customer instance);
     partial void DeleteCustomer(Customer instance);
@@ -57,6 +54,12 @@ namespace QLCT.Models
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
+    partial void InsertSupplier(Supplier instance);
+    partial void UpdateSupplier(Supplier instance);
+    partial void DeleteSupplier(Supplier instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public QLCTDataContext() : 
@@ -94,14 +97,6 @@ namespace QLCT.Models
 			get
 			{
 				return this.GetTable<Bill>();
-			}
-		}
-		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
 			}
 		}
 		
@@ -160,6 +155,22 @@ namespace QLCT.Models
 				return this.GetTable<Product>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Supplier> Suppliers
+		{
+			get
+			{
+				return this.GetTable<Supplier>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bill")]
@@ -188,9 +199,9 @@ namespace QLCT.Models
 		
 		private EntitySet<DetailsBill> _DetailsBills;
 		
-		private EntityRef<User> _User;
-		
 		private EntityRef<Customer> _Customer;
+		
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -219,8 +230,8 @@ namespace QLCT.Models
 		public Bill()
 		{
 			this._DetailsBills = new EntitySet<DetailsBill>(new Action<DetailsBill>(this.attach_DetailsBills), new Action<DetailsBill>(this.detach_DetailsBills));
-			this._User = default(EntityRef<User>);
 			this._Customer = default(EntityRef<Customer>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -425,40 +436,6 @@ namespace QLCT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Bill", Storage="_User", ThisKey="IdUser", OtherKey="Id", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Bills.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Bills.Add(this);
-						this._IdUser = value.Id;
-					}
-					else
-					{
-						this._IdUser = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Customer_Bill", Storage="_Customer", ThisKey="IdCustormer", OtherKey="Id", IsForeignKey=true)]
 		public Customer Customer
 		{
@@ -493,6 +470,40 @@ namespace QLCT.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Bill", Storage="_User", ThisKey="IdUser", OtherKey="Id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Bills.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Bills.Add(this);
+						this._IdUser = value.Id;
+					}
+					else
+					{
+						this._IdUser = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -523,437 +534,6 @@ namespace QLCT.Models
 		{
 			this.SendPropertyChanging();
 			entity.Bill = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _UserName;
-		
-		private string _PassWord;
-		
-		private string _Name;
-		
-		private System.Nullable<bool> _Sex;
-		
-		private string _Phone;
-		
-		private int _IdDepartment;
-		
-		private long _NumberCus;
-		
-		private int _Status;
-		
-		private System.Nullable<bool> _IsDeleted;
-		
-		private EntitySet<Bill> _Bills;
-		
-		private EntitySet<Customer> _Customers;
-		
-		private EntitySet<Department> _Departments;
-		
-		private EntitySet<Plan> _Plans;
-		
-		private EntityRef<Department> _Department;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnPassWordChanging(string value);
-    partial void OnPassWordChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnSexChanging(System.Nullable<bool> value);
-    partial void OnSexChanged();
-    partial void OnPhoneChanging(string value);
-    partial void OnPhoneChanged();
-    partial void OnIdDepartmentChanging(int value);
-    partial void OnIdDepartmentChanged();
-    partial void OnNumberCusChanging(long value);
-    partial void OnNumberCusChanged();
-    partial void OnStatusChanging(int value);
-    partial void OnStatusChanged();
-    partial void OnIsDeletedChanging(System.Nullable<bool> value);
-    partial void OnIsDeletedChanged();
-    #endregion
-		
-		public User()
-		{
-			this._Bills = new EntitySet<Bill>(new Action<Bill>(this.attach_Bills), new Action<Bill>(this.detach_Bills));
-			this._Customers = new EntitySet<Customer>(new Action<Customer>(this.attach_Customers), new Action<Customer>(this.detach_Customers));
-			this._Departments = new EntitySet<Department>(new Action<Department>(this.attach_Departments), new Action<Department>(this.detach_Departments));
-			this._Plans = new EntitySet<Plan>(new Action<Plan>(this.attach_Plans), new Action<Plan>(this.detach_Plans));
-			this._Department = default(EntityRef<Department>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(50)")]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PassWord", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string PassWord
-		{
-			get
-			{
-				return this._PassWord;
-			}
-			set
-			{
-				if ((this._PassWord != value))
-				{
-					this.OnPassWordChanging(value);
-					this.SendPropertyChanging();
-					this._PassWord = value;
-					this.SendPropertyChanged("PassWord");
-					this.OnPassWordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sex", DbType="Bit")]
-		public System.Nullable<bool> Sex
-		{
-			get
-			{
-				return this._Sex;
-			}
-			set
-			{
-				if ((this._Sex != value))
-				{
-					this.OnSexChanging(value);
-					this.SendPropertyChanging();
-					this._Sex = value;
-					this.SendPropertyChanged("Sex");
-					this.OnSexChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string Phone
-		{
-			get
-			{
-				return this._Phone;
-			}
-			set
-			{
-				if ((this._Phone != value))
-				{
-					this.OnPhoneChanging(value);
-					this.SendPropertyChanging();
-					this._Phone = value;
-					this.SendPropertyChanged("Phone");
-					this.OnPhoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDepartment", DbType="Int NOT NULL")]
-		public int IdDepartment
-		{
-			get
-			{
-				return this._IdDepartment;
-			}
-			set
-			{
-				if ((this._IdDepartment != value))
-				{
-					if (this._Department.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdDepartmentChanging(value);
-					this.SendPropertyChanging();
-					this._IdDepartment = value;
-					this.SendPropertyChanged("IdDepartment");
-					this.OnIdDepartmentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberCus", DbType="BigInt NOT NULL")]
-		public long NumberCus
-		{
-			get
-			{
-				return this._NumberCus;
-			}
-			set
-			{
-				if ((this._NumberCus != value))
-				{
-					this.OnNumberCusChanging(value);
-					this.SendPropertyChanging();
-					this._NumberCus = value;
-					this.SendPropertyChanged("NumberCus");
-					this.OnNumberCusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int NOT NULL")]
-		public int Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit")]
-		public System.Nullable<bool> IsDeleted
-		{
-			get
-			{
-				return this._IsDeleted;
-			}
-			set
-			{
-				if ((this._IsDeleted != value))
-				{
-					this.OnIsDeletedChanging(value);
-					this.SendPropertyChanging();
-					this._IsDeleted = value;
-					this.SendPropertyChanged("IsDeleted");
-					this.OnIsDeletedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Bill", Storage="_Bills", ThisKey="Id", OtherKey="IdUser")]
-		public EntitySet<Bill> Bills
-		{
-			get
-			{
-				return this._Bills;
-			}
-			set
-			{
-				this._Bills.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Customer", Storage="_Customers", ThisKey="Id", OtherKey="IdStaff")]
-		public EntitySet<Customer> Customers
-		{
-			get
-			{
-				return this._Customers;
-			}
-			set
-			{
-				this._Customers.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Department", Storage="_Departments", ThisKey="Id", OtherKey="IdHeader")]
-		public EntitySet<Department> Departments
-		{
-			get
-			{
-				return this._Departments;
-			}
-			set
-			{
-				this._Departments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Plan", Storage="_Plans", ThisKey="Id", OtherKey="IdStaff")]
-		public EntitySet<Plan> Plans
-		{
-			get
-			{
-				return this._Plans;
-			}
-			set
-			{
-				this._Plans.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Department_User", Storage="_Department", ThisKey="IdDepartment", OtherKey="Id", IsForeignKey=true)]
-		public Department Department
-		{
-			get
-			{
-				return this._Department.Entity;
-			}
-			set
-			{
-				Department previousValue = this._Department.Entity;
-				if (((previousValue != value) 
-							|| (this._Department.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Department.Entity = null;
-						previousValue.Users.Remove(this);
-					}
-					this._Department.Entity = value;
-					if ((value != null))
-					{
-						value.Users.Add(this);
-						this._IdDepartment = value.Id;
-					}
-					else
-					{
-						this._IdDepartment = default(int);
-					}
-					this.SendPropertyChanged("Department");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Bills(Bill entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Bills(Bill entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Customers(Customer entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Customers(Customer entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Departments(Department entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Departments(Department entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Plans(Plan entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Plans(Plan entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
 		}
 	}
 	
@@ -1440,9 +1020,9 @@ namespace QLCT.Models
 		
 		private System.Nullable<bool> _IsDeleted;
 		
-		private EntitySet<User> _Users;
-		
 		private EntitySet<Plan> _Plans;
+		
+		private EntitySet<User> _Users;
 		
 		private EntityRef<User> _User;
 		
@@ -1464,8 +1044,8 @@ namespace QLCT.Models
 		
 		public Department()
 		{
-			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
 			this._Plans = new EntitySet<Plan>(new Action<Plan>(this.attach_Plans), new Action<Plan>(this.detach_Plans));
+			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
 			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
@@ -1574,19 +1154,6 @@ namespace QLCT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Department_User", Storage="_Users", ThisKey="Id", OtherKey="IdDepartment")]
-		public EntitySet<User> Users
-		{
-			get
-			{
-				return this._Users;
-			}
-			set
-			{
-				this._Users.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Department_Plan", Storage="_Plans", ThisKey="Id", OtherKey="IdDeparterment")]
 		public EntitySet<Plan> Plans
 		{
@@ -1597,6 +1164,19 @@ namespace QLCT.Models
 			set
 			{
 				this._Plans.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Department_User", Storage="_Users", ThisKey="Id", OtherKey="IdDepartment")]
+		public EntitySet<User> Users
+		{
+			get
+			{
+				return this._Users;
+			}
+			set
+			{
+				this._Users.Assign(value);
 			}
 		}
 		
@@ -1654,18 +1234,6 @@ namespace QLCT.Models
 			}
 		}
 		
-		private void attach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.Department = this;
-		}
-		
-		private void detach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.Department = null;
-		}
-		
 		private void attach_Plans(Plan entity)
 		{
 			this.SendPropertyChanging();
@@ -1673,6 +1241,18 @@ namespace QLCT.Models
 		}
 		
 		private void detach_Plans(Plan entity)
+		{
+			this.SendPropertyChanging();
+			entity.Department = null;
+		}
+		
+		private void attach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.Department = this;
+		}
+		
+		private void detach_Users(User entity)
 		{
 			this.SendPropertyChanging();
 			entity.Department = null;
@@ -2280,8 +1860,6 @@ namespace QLCT.Models
 		
 		private EntityRef<Department> _Department;
 		
-		private EntityRef<User> _User;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2307,7 +1885,6 @@ namespace QLCT.Models
 		public Plan()
 		{
 			this._Department = default(EntityRef<Department>);
-			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -2386,10 +1963,6 @@ namespace QLCT.Models
 			{
 				if ((this._IdStaff != value))
 				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIdStaffChanging(value);
 					this.SendPropertyChanging();
 					this._IdStaff = value;
@@ -2509,40 +2082,6 @@ namespace QLCT.Models
 						this._IdDeparterment = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Department");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Plan", Storage="_User", ThisKey="IdStaff", OtherKey="Id", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Plans.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Plans.Add(this);
-						this._IdStaff = value.Id;
-					}
-					else
-					{
-						this._IdStaff = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("User");
 				}
 			}
 		}
@@ -2799,6 +2338,828 @@ namespace QLCT.Models
 		{
 			this.SendPropertyChanging();
 			entity.Product = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Supplier")]
+	public partial class Supplier : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _IdStaff;
+		
+		private string _Name;
+		
+		private string _Phone;
+		
+		private string _Address;
+		
+		private System.Nullable<decimal> _Debt;
+		
+		private string _TIN;
+		
+		private string _BankNumber;
+		
+		private string _BankName;
+		
+		private string _BankAddress;
+		
+		private System.Nullable<bool> _IsDeleted;
+		
+		private System.Nullable<int> _Status;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnIdStaffChanging(System.Nullable<int> value);
+    partial void OnIdStaffChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnPhoneChanging(string value);
+    partial void OnPhoneChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnDebtChanging(System.Nullable<decimal> value);
+    partial void OnDebtChanged();
+    partial void OnTINChanging(string value);
+    partial void OnTINChanged();
+    partial void OnBankNumberChanging(string value);
+    partial void OnBankNumberChanged();
+    partial void OnBankNameChanging(string value);
+    partial void OnBankNameChanged();
+    partial void OnBankAddressChanging(string value);
+    partial void OnBankAddressChanged();
+    partial void OnIsDeletedChanging(System.Nullable<bool> value);
+    partial void OnIsDeletedChanged();
+    partial void OnStatusChanging(System.Nullable<int> value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public Supplier()
+		{
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdStaff", DbType="Int")]
+		public System.Nullable<int> IdStaff
+		{
+			get
+			{
+				return this._IdStaff;
+			}
+			set
+			{
+				if ((this._IdStaff != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdStaffChanging(value);
+					this.SendPropertyChanging();
+					this._IdStaff = value;
+					this.SendPropertyChanged("IdStaff");
+					this.OnIdStaffChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(20)")]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this.OnPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._Phone = value;
+					this.SendPropertyChanged("Phone");
+					this.OnPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Debt", DbType="Money")]
+		public System.Nullable<decimal> Debt
+		{
+			get
+			{
+				return this._Debt;
+			}
+			set
+			{
+				if ((this._Debt != value))
+				{
+					this.OnDebtChanging(value);
+					this.SendPropertyChanging();
+					this._Debt = value;
+					this.SendPropertyChanged("Debt");
+					this.OnDebtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TIN", DbType="NVarChar(MAX)")]
+		public string TIN
+		{
+			get
+			{
+				return this._TIN;
+			}
+			set
+			{
+				if ((this._TIN != value))
+				{
+					this.OnTINChanging(value);
+					this.SendPropertyChanging();
+					this._TIN = value;
+					this.SendPropertyChanged("TIN");
+					this.OnTINChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BankNumber", DbType="NVarChar(MAX)")]
+		public string BankNumber
+		{
+			get
+			{
+				return this._BankNumber;
+			}
+			set
+			{
+				if ((this._BankNumber != value))
+				{
+					this.OnBankNumberChanging(value);
+					this.SendPropertyChanging();
+					this._BankNumber = value;
+					this.SendPropertyChanged("BankNumber");
+					this.OnBankNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BankName", DbType="NVarChar(MAX)")]
+		public string BankName
+		{
+			get
+			{
+				return this._BankName;
+			}
+			set
+			{
+				if ((this._BankName != value))
+				{
+					this.OnBankNameChanging(value);
+					this.SendPropertyChanging();
+					this._BankName = value;
+					this.SendPropertyChanged("BankName");
+					this.OnBankNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BankAddress", DbType="NVarChar(MAX)")]
+		public string BankAddress
+		{
+			get
+			{
+				return this._BankAddress;
+			}
+			set
+			{
+				if ((this._BankAddress != value))
+				{
+					this.OnBankAddressChanging(value);
+					this.SendPropertyChanging();
+					this._BankAddress = value;
+					this.SendPropertyChanged("BankAddress");
+					this.OnBankAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit")]
+		public System.Nullable<bool> IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this.OnIsDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeleted = value;
+					this.SendPropertyChanged("IsDeleted");
+					this.OnIsDeletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int")]
+		public System.Nullable<int> Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Supplier", Storage="_User", ThisKey="IdStaff", OtherKey="Id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Suppliers.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Suppliers.Add(this);
+						this._IdStaff = value.Id;
+					}
+					else
+					{
+						this._IdStaff = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _UserName;
+		
+		private string _PassWord;
+		
+		private string _Name;
+		
+		private System.Nullable<bool> _Sex;
+		
+		private string _Phone;
+		
+		private System.Nullable<long> _NumberSup;
+		
+		private int _IdDepartment;
+		
+		private long _NumberCus;
+		
+		private int _Status;
+		
+		private System.Nullable<bool> _IsDeleted;
+		
+		private EntitySet<Bill> _Bills;
+		
+		private EntitySet<Customer> _Customers;
+		
+		private EntitySet<Department> _Departments;
+		
+		private EntitySet<Supplier> _Suppliers;
+		
+		private EntityRef<Department> _Department;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnPassWordChanging(string value);
+    partial void OnPassWordChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnSexChanging(System.Nullable<bool> value);
+    partial void OnSexChanged();
+    partial void OnPhoneChanging(string value);
+    partial void OnPhoneChanged();
+    partial void OnNumberSupChanging(System.Nullable<long> value);
+    partial void OnNumberSupChanged();
+    partial void OnIdDepartmentChanging(int value);
+    partial void OnIdDepartmentChanged();
+    partial void OnNumberCusChanging(long value);
+    partial void OnNumberCusChanged();
+    partial void OnStatusChanging(int value);
+    partial void OnStatusChanged();
+    partial void OnIsDeletedChanging(System.Nullable<bool> value);
+    partial void OnIsDeletedChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Bills = new EntitySet<Bill>(new Action<Bill>(this.attach_Bills), new Action<Bill>(this.detach_Bills));
+			this._Customers = new EntitySet<Customer>(new Action<Customer>(this.attach_Customers), new Action<Customer>(this.detach_Customers));
+			this._Departments = new EntitySet<Department>(new Action<Department>(this.attach_Departments), new Action<Department>(this.detach_Departments));
+			this._Suppliers = new EntitySet<Supplier>(new Action<Supplier>(this.attach_Suppliers), new Action<Supplier>(this.detach_Suppliers));
+			this._Department = default(EntityRef<Department>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PassWord", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string PassWord
+		{
+			get
+			{
+				return this._PassWord;
+			}
+			set
+			{
+				if ((this._PassWord != value))
+				{
+					this.OnPassWordChanging(value);
+					this.SendPropertyChanging();
+					this._PassWord = value;
+					this.SendPropertyChanged("PassWord");
+					this.OnPassWordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sex", DbType="Bit")]
+		public System.Nullable<bool> Sex
+		{
+			get
+			{
+				return this._Sex;
+			}
+			set
+			{
+				if ((this._Sex != value))
+				{
+					this.OnSexChanging(value);
+					this.SendPropertyChanging();
+					this._Sex = value;
+					this.SendPropertyChanged("Sex");
+					this.OnSexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this.OnPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._Phone = value;
+					this.SendPropertyChanged("Phone");
+					this.OnPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberSup", DbType="BigInt")]
+		public System.Nullable<long> NumberSup
+		{
+			get
+			{
+				return this._NumberSup;
+			}
+			set
+			{
+				if ((this._NumberSup != value))
+				{
+					this.OnNumberSupChanging(value);
+					this.SendPropertyChanging();
+					this._NumberSup = value;
+					this.SendPropertyChanged("NumberSup");
+					this.OnNumberSupChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDepartment", DbType="Int NOT NULL")]
+		public int IdDepartment
+		{
+			get
+			{
+				return this._IdDepartment;
+			}
+			set
+			{
+				if ((this._IdDepartment != value))
+				{
+					if (this._Department.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdDepartmentChanging(value);
+					this.SendPropertyChanging();
+					this._IdDepartment = value;
+					this.SendPropertyChanged("IdDepartment");
+					this.OnIdDepartmentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberCus", DbType="BigInt NOT NULL")]
+		public long NumberCus
+		{
+			get
+			{
+				return this._NumberCus;
+			}
+			set
+			{
+				if ((this._NumberCus != value))
+				{
+					this.OnNumberCusChanging(value);
+					this.SendPropertyChanging();
+					this._NumberCus = value;
+					this.SendPropertyChanged("NumberCus");
+					this.OnNumberCusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int NOT NULL")]
+		public int Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit")]
+		public System.Nullable<bool> IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this.OnIsDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeleted = value;
+					this.SendPropertyChanged("IsDeleted");
+					this.OnIsDeletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Bill", Storage="_Bills", ThisKey="Id", OtherKey="IdUser")]
+		public EntitySet<Bill> Bills
+		{
+			get
+			{
+				return this._Bills;
+			}
+			set
+			{
+				this._Bills.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Customer", Storage="_Customers", ThisKey="Id", OtherKey="IdStaff")]
+		public EntitySet<Customer> Customers
+		{
+			get
+			{
+				return this._Customers;
+			}
+			set
+			{
+				this._Customers.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Department", Storage="_Departments", ThisKey="Id", OtherKey="IdHeader")]
+		public EntitySet<Department> Departments
+		{
+			get
+			{
+				return this._Departments;
+			}
+			set
+			{
+				this._Departments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Supplier", Storage="_Suppliers", ThisKey="Id", OtherKey="IdStaff")]
+		public EntitySet<Supplier> Suppliers
+		{
+			get
+			{
+				return this._Suppliers;
+			}
+			set
+			{
+				this._Suppliers.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Department_User", Storage="_Department", ThisKey="IdDepartment", OtherKey="Id", IsForeignKey=true)]
+		public Department Department
+		{
+			get
+			{
+				return this._Department.Entity;
+			}
+			set
+			{
+				Department previousValue = this._Department.Entity;
+				if (((previousValue != value) 
+							|| (this._Department.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Department.Entity = null;
+						previousValue.Users.Remove(this);
+					}
+					this._Department.Entity = value;
+					if ((value != null))
+					{
+						value.Users.Add(this);
+						this._IdDepartment = value.Id;
+					}
+					else
+					{
+						this._IdDepartment = default(int);
+					}
+					this.SendPropertyChanged("Department");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Bills(Bill entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Bills(Bill entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Customers(Customer entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Customers(Customer entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Departments(Department entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Departments(Department entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Suppliers(Supplier entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Suppliers(Supplier entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
 		}
 	}
 }

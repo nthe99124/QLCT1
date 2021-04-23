@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using QLCT.Models;
 using PagedList;
+using System.Threading.Tasks;
 
 namespace QLCT.Controllers
 {
@@ -14,24 +15,19 @@ namespace QLCT.Controllers
         // View
         public ActionResult Index(int? page)
         {
+            
 
             if (Session["user"] == null)
             {
                 return RedirectToAction("Index", "Log");
             }
-            var viewpro = from p in db.Products
-                          orderby p.Name descending
-                          select p;
-            return View(viewpro.ToPagedList(page ?? 1, 20));
+            var viewsup = from c in db.Suppliers
+                          where c.IsDeleted == false
+                          where c.Status == 1
+                          orderby c.Name descending
+                          select c;
+            return View(viewsup.ToPagedList(page ?? 1, 20));
         }
-        //[HttpPost]
-        //public ActionResult Index(int? page, FormCollection a)
-        //{
-        //    var viewpro = from p in db.Products
-        //                  where p.Name.Contains(Request["key"])
-        //                  select p;
-        //    return View(viewpro.ToPagedList(page ?? 1, 20));
-        //}
         // Insert
         public ActionResult Insert()
         {
@@ -43,35 +39,52 @@ namespace QLCT.Controllers
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
+            ViewBag.lstStaff = from u in db.Users
+                               where u.IsDeleted == false
+                               select new UserDepart
+                               { IdUser = u.Id, 
+                                 NameUser = u.Name };
             return View();
         }
         [HttpPost]
-        public ActionResult Insert(Product pro)
+        public ActionResult Insert(Supplier sup)
         {
             if (Session["user"] == null)
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["user"] != "PGD" && Session["user"] != "PKD")
+            if (Session["PB"] != "PGD" && Session["PB"] != "PKD")
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
-            Product checkpro = db.Products.Where(p => p.Name == Request["Name"]).FirstOrDefault();
-            if (checkpro != null)
+            Supplier checksup = db.Suppliers.Where(s => s.Name == Request["Name"]).FirstOrDefault();
+            if (checksup != null)
             {
-                ViewBag.check = "Mặt hàng này đã tồn tại!";
-                return RedirectToAction("Index", "Product");
+                ViewBag.check = "Khách hàng này đã tồn tại!";
+                return RedirectToAction("Index", "Supplier");
             }
+            
             else
             {
-                pro.Name = Request["Name"];
-                pro.NumberRemain = Convert.ToInt32(Request["NumberRemain"]);
-                pro.Description = Request["Description"];
-                pro.Price = Convert.ToInt32(Request["Price"]);
-                pro.Discount = Convert.ToInt32(Request["Discount"]);
-                pro.Unit = Request["Unit"];
-                db.Products.InsertOnSubmit(pro);
+                sup.IdStaff = Convert.ToInt32(Request["IdStaff"]);
+                sup.Name = Request["Name1"];
+                sup.Phone = Request["Phone1"];
+                sup.Address = Request["Address"];
+                sup.Debt = Decimal.Parse(Request["Debt"]);
+                sup.TIN = Request["TIN"];
+                sup.TIN = Request["TIN"];
+                sup.BankNumber = Request["BankNumber"];
+                sup.BankName = Request["BankName"];
+                sup.BankAddress = Request["BankAddress"];
+                sup.Status = 1;
+                sup.IsDeleted = false;
+                db.Suppliers.InsertOnSubmit(sup);
+                // tang so luong sup quan ly
+                var increaseSup = db.Users.Where(c => c.Id == Convert.ToInt32(Request["IdStaff"])).FirstOrDefault();
+                increaseSup.NumberSup += 1;
+                UpdateModel(increaseSup);
                 db.SubmitChanges();
+
             }
             return this.Insert();
         }
@@ -82,42 +95,61 @@ namespace QLCT.Controllers
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["PB"] != "PGD" && Session["PB"] != "PKD")
+            if (Session["PB"].ToString() != "PGD" && Session["PB"].ToString() != "PKD")
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
-            var pro = db.Products.First(p => p.Id == id);
+            var pro = db.Suppliers.First(p => p.Id == id);
+            ViewBag.lstStaff = from u in db.Users
+                           where u.IsDeleted == false
+                           select new { u.Id, u.Name };
             return View(pro);
         }
         [HttpPost]
-        public ActionResult Update(int id, Product pro)
+        public ActionResult Update(int id, Supplier sup)
         {
             if (Session["user"] == null)
             {
                 return RedirectToAction("Index", "Log");
             }
-            pro = db.Products.Where(c => c.Id == id).SingleOrDefault();
-            pro.Name = Request["Name"];
-            pro.NumberRemain = Convert.ToInt32(Request["NumberRemain"]);
-            pro.Description = Request["Description"];
-            pro.Price = Convert.ToInt32(Request["Price"]);
-            pro.Discount = Convert.ToInt32(Request["Discount"]);
-            pro.Unit = Request["Unit"];
-            UpdateModel(pro);
+            sup = db.Suppliers.Where(s => s.Id == id).SingleOrDefault();
+            int IdStaff = Convert.ToInt32(sup.IdStaff);
+            sup.IdStaff = Convert.ToInt32(Request["IdStaff"]);
+            sup.Name = Request["Name"];
+            sup.Phone = Request["Phone"];
+            sup.Address = Request["Address"];
+            sup.Debt = Decimal.Parse(Request["Debt"]);
+            sup.TIN = Request["TIN"];
+            sup.BankNumber = Request["BankNumber"]; 
+            sup.BankName = Request["BankName"];
+            sup.BankAddress = Request["BankAddress"];
+            UpdateModel(sup);
+
+            if (sup.IdStaff != IdStaff)
+            {
+                User increaseSupOld = db.Users.Where(c => c.Id == IdStaff).FirstOrDefault();
+                increaseSupOld.NumberSup -= 1;
+                TryUpdateModel(increaseSupOld); 
+                
+
+                User increaseSupNew = db.Users.Where(c => c.Id == Convert.ToInt32(Request["IdStaff"])).FirstOrDefault(); 
+                increaseSupNew.NumberSup += 1;
+            }
+            /// lỗi update ở tăng numbersup và giảm numbersup, tự nhảy lên id của sup
             db.SubmitChanges();
-            return RedirectToAction("Index", "Product");
+            return this.Update(id);
         }
         // Delete -- Not Update IsDelete
-        public ActionResult Delete(int id, Product pro)
+        public ActionResult Delete(int id, Supplier sup)
         {
             if (Session["user"] == null)
             {
                 return RedirectToAction("Index", "Log");
             }
-            pro = db.Products.Where(c => c.Id == id).SingleOrDefault();
-            db.Products.DeleteOnSubmit(pro);
+            sup = db.Suppliers.Where(s => s.Id == id).SingleOrDefault();
+            sup.IsDeleted = true;
             db.SubmitChanges();
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction("Index", "Supplier");
         }
     }
 }

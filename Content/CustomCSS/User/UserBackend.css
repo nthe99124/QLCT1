@@ -1,8 +1,0 @@
-﻿#userlist tbody tr>td>span>i
-{
-    width: 13px !important;
-}
-
-.input-group-addon:first-child {
-    border-right: 1px solid #ccc;
-}

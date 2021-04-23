@@ -52,7 +52,7 @@ namespace QLCT.Controllers
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["user"] != "PGD" && Session["user"] != "PKD")
+            if (Session["PB"] != "PGD" && Session["PB"] != "PKD")
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
@@ -100,7 +100,7 @@ namespace QLCT.Controllers
             pro.Name = Request["Name"];
             pro.NumberRemain = Convert.ToInt32(Request["NumberRemain"]);
             pro.Description = Request["Description"];
-            pro.Price = Convert.ToInt32(Request["Price"]);
+            pro.Price = Decimal.Parse(Request["Price"]);
             pro.Discount = Convert.ToInt32(Request["Discount"]);
             pro.Unit = Request["Unit"];
             UpdateModel(pro);

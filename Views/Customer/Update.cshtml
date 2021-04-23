@@ -3,6 +3,7 @@
     ViewBag.Title = "Update";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model QLCT.Models.Customer
 
 <!DOCTYPE html>
 <html>
@@ -42,7 +43,7 @@
 
         <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
         <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
-        <form method="post" action="/Product/Insert">
+        <form role="form" method="post" action="/Customer/Update/@Model.Id" enctype="multipart/form-data">
             <div class="title-header">
                 <div class="title-grid">
                     <div class="title-flexi-truncate">
@@ -79,6 +80,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="data-content row">
                 <div class="col-md-9">
                     <div class="col-md-12">
@@ -87,56 +89,61 @@
                                 Th&#244;ng tin cơ bản
                             </div>
 
-                            <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
-                                <div class="form-group col-md-6 padding-top-10" id="T&#234;n viết tắt">
-                                    <label class='col-md-4 control-label'>Mã khách hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Name' readonly></div>
+                            <div class="col-md-12" style="padding-top: 25px; padding-left: 50px">
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class='col-md-4 '>Mã khách hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Id" value="@Model.Id" readonly></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="T&#234;n viết tắt">
-                                    <label class='col-md-4 control-label'>Tên khách hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Name'></div>
+                                    <label class='col-md-4 control-label'>Tên khách hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Name" value="@Model.Name"></div>
                                 </div>
 
                                 <div class="form-group col-md-6 padding-top-10" id="M&#227; bưu ch&#237;nh">
-                                    <label class='col-md-4 control-label'>Số điện thoại</label><div class='col-md-8'><input required="" type="text" class="form-control" name='NumberRemain'></div>
+                                    <label class='col-md-4 control-label'>Số điện thoại</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Phone" value="@Model.Phone"></div>
                                 </div>
 
                                 <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
-                                    <label class='col-md-4 control-label'>Địa chỉ</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Price'></div>
+                                    <label class='col-md-4 control-label'>Địa chỉ</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Address" value="@Model.Address"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="Số fax">
-                                    <label class='col-md-4 control-label'>Ngày bắt đầu</label><div class='col-md-8'><input type="date" class="form-control" name='Description'></div>
+                                <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
+                                    <label class='col-md-4 control-label'>Số nợ</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Debt" value="@Model.Debt"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="Số fax">
-                                    <label class='col-md-4 control-label'>Ngày kết thúc</label><div class='col-md-8'><input type="date" class="form-control" name='Description'></div>
+                                <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
+                                    <label class='col-md-4 control-label'>Ngày BĐ nợ</label><div class='col-md-8'><input required="" type="datetime-local" class="form-control" name="StartDate" value="@Model.StartDate"></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
+                                    <label class='col-md-4 control-label'>Ngày KT nợ</label><div class='col-md-8'><input required="" type="datetime-local" class="form-control" name="EndDate" value="@Model.EndDate"></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="nv">
-                                    <label class='col-md-4 control-label'>Nhân viên</label>
+                                    <label class='col-md-4 control-label'>Nhân viên phụ trách</label>
                                     <div class='col-md-8'>
-                                        <input type='hidden' name='LstAccPropertyValues[8].PropertyId' value='45'>
-                                        <select id='AccInvestorCountry' type='number' name='LstAccPropertyValues[8].Value' value='' class='select2custom form-control '>
-                                            <option value='' selected='selected'> -- Chọn Nhân viên</option>
-                                            <option value='phongban1'> Nhân viên 1</option>
-                                        </select>
+                                        @Html.DropDownListFor(model => model.IdStaff, new SelectList(@ViewBag.lstStaff, "Id", "Name"))
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Mã số thuế</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Discount'></div>
+                                    <label class='col-md-4 control-label'>Mã số thuế</label><div class='col-md-8'><input required="" type="text" class="form-control" name="TIN" value="@Model.TIN"></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Số tài khoản</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
+                                    <label class='col-md-4 control-label'>Số tài khoản</label><div class='col-md-8'><input required="" type="text" class="form-control" name="BankNumber" value="@Model.BankNumber"></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Tên ngân hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
+                                    <label class='col-md-4 control-label'>Tên ngân hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name="BankName" value="@Model.BankName"></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Địa chỉ ngân hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
+                                    <label class='col-md-4 control-label'>Địa chỉ ngân hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name="BankAddress" value="@Model.BankAddress"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Trạng thái</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
+                                <div class="form-group col-md-12 padding-top-10">
+                                    <label class='col-md-4 control-label'>Là khách hàng tiềm năng</label>
+                                    @if (Model.Status == 1)
+                                    {
+                                        <div class='col-md-4'><input type="radio" name="Status" value="1" checked> <label> Có</label></div>
+                                        <div class='col-md-4'><input type="radio" name="Status" value="2"> <label> Không</label></div>
+                                    }
+                                    else
+                                    {
+                                        <div class='col-md-4'><input type="radio" name="Status" value="1" > <label> Có</label></div>
+                                        <div class='col-md-4'><input type="radio" name="Status" value="2" checked> <label> Không</label></div>
+                                    }
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Số tài khoản</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -146,9 +153,9 @@
                             </div>
                             <div class="col-md-6 text-center">
                                 <button type="submit" class="btn btn-success">
-                                    Sửa khách hàng
+                                    Sửa
                                 </button>
-                                <a href="~/Customer/Index" class="btn grey-salt gray" type="button">
+                                <a href="~/Supplier/Index1" class="btn grey-salt gray" type="button">
                                     <i></i> Hủy
                                 </a>
                             </div>
@@ -162,3 +169,16 @@
     </div>
 </body>
 </html>
+<script src="~/Content/CustomJS/Supplier/Update.js"></script>
+
+<script type="text/javascript">
+    (function () {
+        $('.datetime').datepicker({
+            format: "dd/mm/yyyy",
+            viewMode: "",
+            minViewMode: "",
+            autoclose: true,
+            showClear: true
+        });
+    }
+</script>
