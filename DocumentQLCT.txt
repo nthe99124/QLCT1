@@ -1,9 +1,5 @@
-lỗi update
-
-
-
 Customer
 Status :0 - Không là khách hàng tiềm năng
 		1 - Là khách hàng tiềm năng
 TypeOfDebt: 1 - Nợ ngắn hạn
-			2 - Nợ dài hạn
+	2 - Nợ dài hạn

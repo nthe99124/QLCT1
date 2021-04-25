@@ -58,7 +58,7 @@ namespace QLCT.Controllers
                     Session["user"] = "NV";
                 }
                 Session["id"] = us.Id;
-                return RedirectToAction("Index", "Dashboard");
+                return RedirectToAction("Index", "Product");
             }
             else
                 ViewBag.error = "Username hoặc Password sai!";

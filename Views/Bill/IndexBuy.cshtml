@@ -1,16 +1,14 @@
-﻿
-@{
-    ViewBag.Title = "IndexPersional";
+﻿@{
+    ViewBag.Title = "IndexBuy";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bills</title>
+    <title>Hợp đồng</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" href="~/favicon.ico">
@@ -26,30 +24,22 @@
     <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
     <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
     <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
+    <link href="~/Content/theme/bootstrap/css/bootstrap.min.css">
+    <link href="~/Content/theme/plugins/DataTables/datatables.min.css">
 
 
-    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
 
-
-    <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
-    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
-    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
     <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
     <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
 
-    <!--thu vien cua tim kiem-->
-    <link rel="stylesheet" href="~/Content/filescan/css/dataTables.min.css">
-    <link rel="stylesheet" href="~/Content/filescan/css/style.css">
-    <link rel="stylesheet" href="~/Content/filescan/css/bootstrap.css">
-    <link rel="stylesheet" href="~/Content/filescan/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script src="~/Content/filescan/js/dataTables.min.js"></script>
+    <!--thu vien cua tim kiem-->
+
+    <link rel="stylesheet" href="~/Content/filescan/css/style.css">
+
     <script src="~/Content/filescan/js/document.js"></script>
-    <script src="~/Content/filescan/js/jquery-1.4.2.min.js"></script>
-    <script src="~/Content/filescan/js/jquery-3.5.1.js"></script>
+
     <script src="~/Content/filescan/js/site.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -58,9 +48,6 @@
         <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
         <link href="~/Content/theme/plugins/DataTables/jquery.dataTables.css" rel="stylesheet" />
         <link href="~/Content/theme/plugins/DataTables/fixedHeader.dataTables.css" rel="stylesheet" />
-        <input type="hidden" id="sessionIsAdmin" value="True" />
-        <input type="hidden" id="sessionRole" value="DataManager;" />
-        <input type="hidden" value="http://10.15.168.163:7990~/" id="hostAddress" />
         <div class="title-header">
             <div class="title-grid">
                 <div class="title-flexi-truncate">
@@ -86,7 +73,7 @@
                                 <div class="title-header__title">
                                     <div class="title-name">
                                         <div>
-                                            <span>Danh sách hợp đồng</span>
+                                            <span>Danh sách hợp đồng mua hàng</span>
                                         </div>
                                     </div>
                                 </div>
@@ -95,42 +82,29 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="data-content" style="display: flex; flex-direction: column">
-            <form method="post" action="~/Bill/IndexPersional">
+            <div class="data-content" style="display: flex; flex-direction: column">
                 <div style="display: flex; flex-direction: row">
                     <div style="flex: 0.6">
-                        <div style="display: flex; padding-top: 20px; padding-left: 30px">
-                            <input style="width: 200px " type="text" name="key" placeholder="Gõ tìm kiếm">
-                            <button type="submit" class="btn btn title-button title-button--neutral" style="margin-left: 10px">
-                                <a>Tìm kiếm</a>
-                            </button>
-                        </div>
+                        <form method="post" action="~/Product/Index">
+                            <div style="display: flex; padding-top: 20px; padding-left: 30px">
+                                <input style="width: 200px " type="text" name="key" placeholder="Gõ tìm kiếm">
+                                <button type="submit" class="btn btn title-button title-button--neutral" style="margin-left: 10px">
+                                    Tìm kiếm
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div class="title-grid" style="flex: 0.4; justify-content: flex-end; padding-top: 20px; padding-right: 30px; ">
                         <ul>
                             <li class="btn btn title-button title-button--neutral" onclick="replaceEditAcc()">
-                                <a href="~/html/HOPDONG/laphopdong.html">
+                                <a href="~/Product/Insert">
                                     Th&#234;m mới
-                                </a>
-                            </li>
-                            <li class="bbtn btn title-button title-button--neutral">
-                                <a onclick="OpenModalImport()">
-                                    <div class=" padding-left-10 padding-right-10 text-center">Import</div>
-                                </a>
-                            </li>
-                            <li class="btn btn title-button title-button--neutral">
-                                <a onclick="Export()">
-                                    <div class=" padding-left-10 padding-right-10 text-center">Export</div>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div style="padding-top: 20px">
-                    <div style="text-align: center;">
-                        <span style="font-size: 20px">BẢNG HỢP ĐỒNG</span>
-                    </div>
                     <div style="padding-top: 20px">
                         <table id="example2" class="table table-bordered" style="background-color: white;">
                             <thead>
@@ -173,86 +147,36 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr class="odd gradeX" align="center">
-                                        <td><a href="#">@item.IdBill</a></td>
-                                        <td><a href="#">@item.NameBill</a></td>
-                                        <td><a href="#">@item.NameUser (@item.IdUser)</a></td>
-                                        <td><a href="#">@item.NameCus</a></td>
-                                        <td><a href="#">@item.FileHD</a></td>
-                                        <td><a href="#">@item.Date</a></td>
+                                        <td>@item.IdBill</td>
+                                        <td>@item.NameBill</td>
+                                        <td>@item.NameUser (@item.IdUser)</td>
+                                        <td>@item.NameCus</td>
+                                        <td><a href="~/Bill/ShowBill">@item.FileHD</a></td>
+                                        <td>@item.Date</td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-    <footer class="main-footer no-margin">
-        <div class="text-center">
-            Công ty TNHH thương mại và dịch vụ Vũ Hà.
-        </div>
-    </footer>
 </body>
 </html>
-<script src="~/Content/theme/plugins/canvasjs-2.3.2/canvasjs.min.js"></script>
-<script src="~/Content/CustomJS/NewFeed/NewFeed.js"></script>
-<script src="~/Content/CustomJS/Dashboard/Dashboard.js"></script>
-<script src="~/Content/theme/plugins/DataTables/jquery.dataTables.js"></script>
-<script src="~/Content/theme/plugins/DataTables/dataTables.fixedHeader.js"></script>
-<script src="~/Content/theme/plugins/DataTables/FixedColumns-3.2.4/js/dataTables.fixedColumns.min.js"></script>
 
-<!-- Matomo -->
 <script type="text/javascript">
-    var _paq = _paq || [];
-    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-    var u = "//insight.fis.com.vn/piwik/";
-    _paq.push(['setTrackerUrl', u + 'piwik.php']);
-    _paq.push(['setSiteId', '14']);
-    _paq.push(['setUserId', 'thent10']);
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function () {
 
-        var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-        g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
-    })();
-
-    function clickFunction(id) {
-        console.log('ok');
-    }
-
-    $('.datetime').datepicker({
-        format: "dd/mm/yyyy",
-        viewMode: "",
-        minViewMode: "",
-        autoclose: true,
-        showClear: true
-    });
-
-    $('.select2').select2();
-    //$('.select2').on('select2:select', function (e) {
-    //    $(e.currentTarget).valid();
-    //});
-
-    function isNumber(evt) {
-        debugger;
-        evt = (evt) ? evt : window.event;
-        var charCode = (evt.which) ? evt.which : evt.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-            if (charCode === 45) {
-                return true;
-            }
-            return false;
+    function isDelete() {
+        var inputVal = $('input').val()
+        var inputid = document.getElementById("idin").value;
+        var result = confirm("Bạn có chắc chắn muốn xoá không ?");
+        var url = '/Product/Delete/' + inputid;
+        if (result) {
+            window.location.href = url;
         }
-        return true;
     }
-</script>
-<!-- End Matomo Code -->
 
-<noscript>
-    <p>
-        <img src="//insight.fis.com.vn/piwik/piwik.php?idsite=14" style="border: 0;" alt="" />
-    </p>
-</noscript>
-<!-- End Piwik Code -->
+</script>
+
+

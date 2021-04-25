@@ -139,6 +139,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\GuaranteeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
@@ -160,6 +161,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\EntityFramework.dll" />
@@ -177,6 +180,7 @@
     <Content Include="bin\PagedList.xml" />
     <Content Include="bin\QLCT.dll" />
     <Content Include="bin\QLCT.pdb" />
+    <Content Include="bin\System.Net.Http.dll" />
     <Content Include="bin\System.Web.Helpers.dll" />
     <Content Include="bin\System.Web.Helpers.xml" />
     <Content Include="bin\System.Web.Mvc.dll" />
@@ -229,6 +233,7 @@
     <Content Include="Content\filescan\js\document.js" />
     <Content Include="Content\filescan\js\jquery-1.4.2.min.js" />
     <Content Include="Content\filescan\js\jquery-3.5.1.js" />
+    <Content Include="Content\filescan\js\site.js" />
     <Content Include="Content\filescan\test-search.html" />
     <Content Include="Content\Image\avatar.png" />
     <Content Include="Content\Image\contruction.PNG" />
@@ -1329,6 +1334,7 @@
     <Content Include="Content\theme\plugins\TriStateCheckbox\css\jquery.triSwitch.css" />
     <Content Include="Content\theme\plugins\TriStateCheckbox\js\jquery.triSwitch.js" />
     <Content Include="Content\theme\plugins\VivaGraphJS\vivagraph.js" />
+    <Content Include="DocumentQLCT.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1768,8 +1774,8 @@
     <Content Include="Views\Customer\Index2.cshtml" />
     <Content Include="Views\Customer\Index3.cshtml" />
     <Content Include="Views\Customer\Index4.cshtml" />
-    <Content Include="Views\Bill\IndexPersional.cshtml" />
-    <Content Include="Views\Bill\IndexDivision.cshtml" />
+    <Content Include="Views\Bill\IndexBuy.cshtml" />
+    <Content Include="Views\Bill\IndexSell.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Insert.cshtml" />
     <Content Include="Views\Product\Update.cshtml" />
@@ -1788,6 +1794,9 @@
     <Content Include="Views\Supplier\Insert.cshtml" />
     <Content Include="Views\Supplier\Update.cshtml" />
     <Content Include="Views\Supplier\Delete.cshtml" />
+    <Content Include="Views\Guarantee\Index.cshtml" />
+    <Content Include="Views\Bill\ShowBill.cshtml" />
+    <Content Include="Views\Bill\BaoCao_TKCSDL.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

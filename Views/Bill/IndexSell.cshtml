@@ -1,17 +1,14 @@
-﻿
-
-@{
-    ViewBag.Title = "Index4";
+﻿@{
+    ViewBag.Title = "IndexSell";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Khách hàng</title>
+    <title>Hợp đồng</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" href="~/favicon.ico">
@@ -68,7 +65,7 @@
                             <nav>
                                 <ol class="title-ol">
                                     <li class="title-li">
-                                        <span>Khách hàng</span>
+                                        <span>Hợp đồng</span>
                                     </li>
                                 </ol>
                             </nav>
@@ -76,7 +73,7 @@
                                 <div class="title-header__title">
                                     <div class="title-name">
                                         <div>
-                                            <span>Danh sách khách hàng nợ quá hạn</span>
+                                            <span>Danh sách hợp đồng bán hàng</span>
                                         </div>
                                     </div>
                                 </div>
@@ -85,22 +82,22 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="data-content" style="display: flex; flex-direction: column">
-            <form method="post" action="~/Customer/Index1">
+            <div class="data-content" style="display: flex; flex-direction: column">
                 <div style="display: flex; flex-direction: row">
                     <div style="flex: 0.6">
-                        <div style="display: flex; padding-top: 20px; padding-left: 30px">
-                            <input style="width: 200px " type="text" name="key" placeholder="Gõ tìm kiếm">
-                            <button type="submit" class="btn btn title-button title-button--neutral" style="margin-left: 10px">
-                                Tìm kiếm
-                            </button>
-                        </div>
+                        <form method="post" action="~/Product/Index">
+                            <div style="display: flex; padding-top: 20px; padding-left: 30px">
+                                <input style="width: 200px " type="text" name="key" placeholder="Gõ tìm kiếm">
+                                <button type="submit" class="btn btn title-button title-button--neutral" style="margin-left: 10px">
+                                    Tìm kiếm
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div class="title-grid" style="flex: 0.4; justify-content: flex-end; padding-top: 20px; padding-right: 30px; ">
                         <ul>
                             <li class="btn btn title-button title-button--neutral" onclick="replaceEditAcc()">
-                                <a href="~/Customer/Insert">
+                                <a href="~/Product/Insert">
                                     Th&#234;m mới
                                 </a>
                             </li>
@@ -109,25 +106,19 @@
                 </div>
                 <div style="padding-top: 20px">
                     <div style="padding-top: 20px">
-                        <table id="myTable" class="table table-bordered" style="background-color: white;">
+                        <table id="example2" class="table table-bordered" style="background-color: white;">
                             <thead>
                                 <tr align="center">
-                                    <th class="sort_col_table" scope="col">Mã KH<i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Tên KH <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">SĐT<i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Địa chỉ<i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Số nợ<i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Ngày BĐ nợ <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Ngày KT nợ <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">MS thuế<i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Số tài khoản <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Tên NH <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Địa chỉ NH<i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Active<i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Mã hợp đồng <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Tên hợp đồng <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> NV phụ trách  <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Tên khách hàng <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> File Hợp đồng <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Ngày lập <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                 </tr>
                                 <tr align="center">
                                     <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search1" onkeyup="search1()" />
+                                        <input type="text" name="" id="search1" onkeyup="search1()">
                                         <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
                                     </th>
                                     <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
@@ -150,78 +141,29 @@
                                         <input type="text" name="" id="search6" onkeyup="search6()">
                                         <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
                                     </th>
-                                    <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search7" onkeyup="search7()">
-                                        <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
-                                    </th>
-                                    <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search8" onkeyup="search8()">
-                                        <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
-                                    </th>
-                                    <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search9" onkeyup="search9()">
-                                        <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
-                                    </th>
-                                    <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search10" onkeyup="search10()">
-                                        <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
-                                    </th>
-                                    <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search11" onkeyup="search11()">
-                                        <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
-                                    </th>
-                                    <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col" />
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr align="center">
-                                        <td>@item.Id</td>
-                                        <td>@item.Name</td>
-                                        <td>@item.Phone</td>
-                                        <td>@item.Address</td>
-                                        <td>@item.Debt</td>
-                                        <td>@item.StartDate</td>
-                                        <td>@item.EndDate</td>
-                                        <td>@item.TIN</td>
-                                        <td>@item.BankNumber</td>
-                                        <td>@item.BankName</td>
-                                        <td>@item.BankAddress</td>
-                                        <td>
-                                            <a href="@Url.Action("Update", "Customer", new {id = item.Id })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                            <input type="hidden" name="" id="idin" value="@item.Id" size="30" />
-                                        </td>
+                                    <tr class="odd gradeX" align="center">
+                                        <td>@item.IdBill</td>
+                                        <td>@item.NameBill</td>
+                                        <td>@item.NameUser (@item.IdUser)</td>
+                                        <td>@item.NameCus</td>
+                                        <td>@item.FileHD</td>
+                                        <td>@item.Date</td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </body>
 </html>
-
-<script src="~/Content/theme/plugins/canvasjs-2.3.2/canvasjs.min.js"></script>
-<script src="~/Content/CustomJS/NewFeed/NewFeed.js"></script>
-<script src="~/Content/CustomJS/Dashboard/Dashboard.js"></script>
-<script src="~/Content/theme/plugins/DataTables/jquery.dataTables.js"></script>
-<script src="~/Content/theme/plugins/DataTables/dataTables.fixedHeader.js"></script>
-<script src="~/Content/theme/plugins/DataTables/FixedColumns-3.2.4/js/dataTables.fixedColumns.min.js"></script>
-<script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
-<script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
-<script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
-
-<script src="~/Content/theme/plugins/jQuery/jquery-3.5.1.js"></script>
-<script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
-<script src="~/Content/theme/bootstrap/js/bootstrap.min.js"></script>
-
-<script src="~/Content/filescan/js/document.js"></script>
-<script src="~/Content/theme/plugins/jQuery/jquery.min.js"></script>
-<script href="~/Content/theme/plugins/DataTables/datatables.min.js"></script>
 
 <script type="text/javascript">
 
@@ -229,14 +171,14 @@
         var inputVal = $('input').val()
         var inputid = document.getElementById("idin").value;
         var result = confirm("Bạn có chắc chắn muốn xoá không ?");
-        var url = '/Customer/Delete/' + inputid;
+        var url = '/Product/Delete/' + inputid;
 
         if (result) {
 
             window.location.href = url;
-        } else {
-            alert("Bye!");
         }
     }
 
 </script>
+
+
