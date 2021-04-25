@@ -147,6 +147,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerPlus.cs" />
     <Compile Include="Models\QLCT.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -229,6 +230,7 @@
     <Content Include="Content\filescan\js\document.js" />
     <Content Include="Content\filescan\js\jquery-1.4.2.min.js" />
     <Content Include="Content\filescan\js\jquery-3.5.1.js" />
+    <Content Include="Content\filescan\js\site.js" />
     <Content Include="Content\filescan\test-search.html" />
     <Content Include="Content\Image\avatar.png" />
     <Content Include="Content\Image\contruction.PNG" />
@@ -1329,6 +1331,7 @@
     <Content Include="Content\theme\plugins\TriStateCheckbox\css\jquery.triSwitch.css" />
     <Content Include="Content\theme\plugins\TriStateCheckbox\js\jquery.triSwitch.js" />
     <Content Include="Content\theme\plugins\VivaGraphJS\vivagraph.js" />
+    <Content Include="DocumentQLCT.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

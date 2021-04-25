@@ -1,3 +1,4 @@
-﻿$("document").ready(function () {
-    $('#Id').val('@Model.IdStaff');
-});
+﻿////$("document").ready(function () {
+////    $('#Id').val('@Model.IdStaff');
+////});
+debugger;

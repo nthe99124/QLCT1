@@ -1,9 +1,12 @@
-lỗi update
+--------Customer--------
 
 
-
-Customer
-Status :0 - Không là khách hàng tiềm năng
-		1 - Là khách hàng tiềm năng
-TypeOfDebt: 1 - Nợ ngắn hạn
-			2 - Nợ dài hạn
+Status :	0 - Không là khách hàng tiềm năng
+			1 - Là khách hàng tiềm năng (Tổng số tiền đã mua là 500tr)
+			
+TypeOfDebt: 1 - Nợ ngắn hạn (180 ngày)
+			2 - Nợ dài hạn (360 ngày)
+			
+IsOverDue: 	True - Nợ quá hạn ( TypeOfDebt==1( (Now - EndDate)>0 )
+			False - Nợ không quá hạn
+Note:		EndDate xử lý c#

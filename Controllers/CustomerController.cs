@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System;   
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +12,7 @@ namespace QLCT.Controllers
     {
         public QLCTDataContext db = new QLCTDataContext();
         // GET: Customer
+        #region Get Customer
         // View KH tiềm năng
         public ActionResult Index1(int? page)
         {
@@ -21,8 +22,7 @@ namespace QLCT.Controllers
                 return RedirectToAction("Index", "Log");
             }
             var viewcus = from c in db.Customers
-                          where c.IsDeleted== false
-                          where c.TypeOfDebt != 0
+                          where c.IsDeleted == false
                           where c.Status == 1
                           orderby c.Name descending
                           select c;
@@ -50,7 +50,6 @@ namespace QLCT.Controllers
             var viewcus = from c in db.Customers
                           where c.IsDeleted == false
                           where c.TypeOfDebt == 1
-                          where c.Status == 0
                           orderby c.Name descending
                           select c;
             return View(viewcus.ToPagedList(page ?? 1, 20));
@@ -67,7 +66,6 @@ namespace QLCT.Controllers
                           where c.Name.Contains(Request["key"])
                           where c.IsDeleted == false
                           where c.TypeOfDebt == 1
-                          where c.Status == 0
                           orderby c.Name descending
                           select c;
             return View(viewcus.ToPagedList(page ?? 1, 20));
@@ -103,10 +101,11 @@ namespace QLCT.Controllers
                           select c;
             return View(viewcus.ToPagedList(page ?? 1, 20));
         }
+        #endregion
         // Insert
         public ActionResult Insert()
         {
-            if (Session["user"] == null)
+            if (Session["user"] == null)                                                                                             
             {
                 return RedirectToAction("Index", "Log");
             }
@@ -129,7 +128,6 @@ namespace QLCT.Controllers
                 cus.Address = Request["Address"];
                 cus.Debt = Convert.ToInt32(Request["Debt"]);
                 cus.StartDate = Convert.ToDateTime(Request["StartDate"]);
-                cus.EndDate = Convert.ToDateTime(Request["EndDate"]);
                 cus.TIN = Request["TIN"];
                 cus.BankNumber = Request["BankNumber"];
                 cus.BankName = Request["BankName"];
@@ -160,7 +158,7 @@ namespace QLCT.Controllers
             var cus = db.Customers.First(c => c.Id == id);
             ViewBag.lstStaff = from u in db.Users
                                where u.IsDeleted == false
-                               where u.Id != 0
+                               where u.IdDepartment == 3
                                select new { u.Id, u.Name };
             return View(cus);
         }
@@ -178,7 +176,6 @@ namespace QLCT.Controllers
             cus.Address = Request["Address"];
             cus.Debt = Convert.ToInt32(Request["Debt"]);
             cus.StartDate = Convert.ToDateTime(Request["StartDate"]);
-            cus.EndDate = Convert.ToDateTime(Request["EndDate"]);
             cus.TIN = Request["TIN"];
             cus.BankNumber = Request["BankNumber"];
             cus.BankName = Request["BankName"];
