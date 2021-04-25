@@ -80,7 +80,6 @@ $('.sort_col_table')
 
 // -------------------- search col table-------------
 function Search1() {
-    debugger;
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("Search1");
     filter = input.value.toUpperCase();
