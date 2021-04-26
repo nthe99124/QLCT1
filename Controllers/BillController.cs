@@ -28,8 +28,8 @@ namespace QLCT.Controllers
                        join u in db.Users on b.IdUser equals u.Id
                        join c in db.Customers on b.IdCustormer equals c.Id
                        join de in db.DetailsBills on b.IdDetails equals de.Id
+                       where b.TypeOfBill == 0
                        where b.IsDelete == false
-                       where b.IdUser == 7
                        select new User_DetailsBill_Cus_Bill
                        {
                            IdBill = b.Id,
@@ -38,11 +38,12 @@ namespace QLCT.Controllers
                            NameUser = u.Name,
                            NameCus = c.Name,
                            FileHD = b.UrlBill,
-                           Date = Convert.ToDateTime(b.Date)
+                           Date = Convert.ToDateTime(b.Date),
+                           TypeOfBill = Convert.ToInt32(b.TypeOfBill)
                        };
             return View(list);
         }
-        [HttpPost]
+        
 
         public ActionResult IndexSell()
         {
@@ -59,8 +60,8 @@ namespace QLCT.Controllers
                        join u in db.Users on b.IdUser equals u.Id
                        join c in db.Customers on b.IdCustormer equals c.Id
                        join de in db.DetailsBills on b.IdDetails equals de.Id
+                       where b.TypeOfBill == 1
                        where b.IsDelete == false
-                       where b.IdUser == 7
                        select new User_DetailsBill_Cus_Bill
                        {
                            IdBill = b.Id,
@@ -69,11 +70,12 @@ namespace QLCT.Controllers
                            NameUser = u.Name,
                            NameCus = c.Name,
                            FileHD = b.UrlBill,
-                           Date = Convert.ToDateTime(b.Date)
+                           Date = Convert.ToDateTime(b.Date),
+                           TypeOfBill = Convert.ToInt32(b.TypeOfBill)
                        };
             return View(list);
         }
-        [HttpPost]
+        
 
         public ActionResult Index(int? page, FormCollection a)
         {
@@ -82,8 +84,18 @@ namespace QLCT.Controllers
                           select p;
             return View(viewpro.ToPagedList(page ?? 1, 20));
         }
-        public ActionResult ShowBill()
+        public ActionResult ShowBill(int id)
         {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Log");
+            }
+            if (Session["user"] != "PGD" && Session["user"] != "PKD")
+            {
+                ViewBag.notify = "Bạn không có quyền truy cập";
+            }
+            var bill = db.Bills.First(b => b.Id == id);
+            ViewBag.UrlBill = bill.UrlBill;
             return View();
         }
         // Insert

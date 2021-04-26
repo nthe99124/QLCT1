@@ -17,6 +17,7 @@ namespace QLCT.Models
         public int? IdCus { get; set; }
         public string NameCus { get; set; }
         public string FileHD { get; set; }
+        public int TypeOfBill { get; set; }
         public string SDTKH { get; set; }
         public string SL { get; set; }
         public int IdPro { get; set; }

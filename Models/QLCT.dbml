@@ -1,19 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLCT" Class="QLCTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-2SERJAO\SQLEXPRESS;Initial Catalog=QLCT;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLCTConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Bill" Member="Bills">
-    <Type Name="Bill">
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="NameBill" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="IdUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IdDetails" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IdCustormer" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="UrlBill" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="IsDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Bill_DetailsBill" Member="DetailsBills" ThisKey="Id" OtherKey="IdBill" Type="DetailsBill" />
-      <Association Name="Customer_Bill" Member="Customer" ThisKey="IdCustormer" OtherKey="Id" Type="Customer" IsForeignKey="true" />
-      <Association Name="User_Bill" Member="User" ThisKey="IdUser" OtherKey="Id" Type="User" IsForeignKey="true" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Sex" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="NumberSup" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IdDepartment" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NumberCus" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="User_Customer" Member="Customers" ThisKey="Id" OtherKey="IdStaff" Type="Customer" />
+      <Association Name="User_Department" Member="Departments" ThisKey="Id" OtherKey="IdHeader" Type="Department" />
+      <Association Name="User_Supplier" Member="Suppliers" ThisKey="Id" OtherKey="IdStaff" Type="Supplier" />
+      <Association Name="User_Bill" Member="Bills" ThisKey="Id" OtherKey="IdUser" Type="Bill" />
+      <Association Name="Department_User" Member="Department" ThisKey="IdDepartment" OtherKey="Id" Type="Department" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Customer" Member="Customers">
@@ -24,14 +28,14 @@
       <Column Name="Phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Debt" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="TIN" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="BankNumber" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="BankName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="BankAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsOverDue" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="TypeOfDebt" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Customer_Bill" Member="Bills" ThisKey="Id" OtherKey="IdCustormer" Type="Bill" />
       <Association Name="User_Customer" Member="User" ThisKey="IdStaff" OtherKey="Id" Type="User" IsForeignKey="true" />
@@ -44,7 +48,6 @@
       <Column Name="NumberStaff" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IdHeader" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="Department_Plan" Member="Plans" ThisKey="Id" OtherKey="IdDeparterment" Type="Plan" />
       <Association Name="Department_User" Member="Users" ThisKey="Id" OtherKey="IdDepartment" Type="User" />
       <Association Name="User_Department" Member="User" ThisKey="IdHeader" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
@@ -55,8 +58,8 @@
       <Column Name="IdBill" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IdProduct" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Number" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Association Name="Bill_DetailsBill" Member="Bill" ThisKey="IdBill" OtherKey="Id" Type="Bill" IsForeignKey="true" />
       <Association Name="Product_DetailsBill" Member="Product" ThisKey="IdProduct" OtherKey="Id" Type="Product" IsForeignKey="true" />
+      <Association Name="Bill_DetailsBill" Member="Bill" ThisKey="IdBill" OtherKey="Id" Type="Bill" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Notify" Member="Notifies">
@@ -78,19 +81,6 @@
       <Association Name="NotifyType_Notify" Member="Notifies" ThisKey="Id" OtherKey="TypeId" Type="Notify" />
     </Type>
   </Table>
-  <Table Name="dbo.[Plan]" Member="Plans">
-    <Type Name="Plan">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="IdDeparterment" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IdStaff" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PlanContent" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="FromDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ToDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Department_Plan" Member="Department" ThisKey="IdDeparterment" OtherKey="Id" Type="Department" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Product" Member="Products">
     <Type Name="Product">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -101,6 +91,7 @@
       <Column Name="Discount" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Unit" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Product_DetailsBill" Member="DetailsBills" ThisKey="Id" OtherKey="IdProduct" Type="DetailsBill" />
+      <Association Name="Product_Bill" Member="Bills" ThisKey="Id" OtherKey="IdDetails" Type="Bill" />
     </Type>
   </Table>
   <Table Name="dbo.Supplier" Member="Suppliers">
@@ -120,24 +111,23 @@
       <Association Name="User_Supplier" Member="User" ThisKey="IdStaff" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.[User]" Member="Users">
-    <Type Name="User">
+  <Table Name="dbo.Bill" Member="Bills">
+    <Type Name="Bill">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Sex" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Phone" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="NumberSup" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="IdDepartment" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="NumberCus" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="User_Bill" Member="Bills" ThisKey="Id" OtherKey="IdUser" Type="Bill" />
-      <Association Name="User_Customer" Member="Customers" ThisKey="Id" OtherKey="IdStaff" Type="Customer" />
-      <Association Name="User_Department" Member="Departments" ThisKey="Id" OtherKey="IdHeader" Type="Department" />
-      <Association Name="User_Supplier" Member="Suppliers" ThisKey="Id" OtherKey="IdStaff" Type="Supplier" />
-      <Association Name="Department_User" Member="Department" ThisKey="IdDepartment" OtherKey="Id" Type="Department" IsForeignKey="true" />
+      <Column Name="NameBill" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IdUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdDetails" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdCustormer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UrlBill" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="IsDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AddDelivery" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TypeOfBill" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Bill_DetailsBill" Member="DetailsBills" ThisKey="Id" OtherKey="IdBill" Type="DetailsBill" />
+      <Association Name="Customer_Bill" Member="Customer" ThisKey="IdCustormer" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+      <Association Name="Product_Bill" Member="Product" ThisKey="IdDetails" OtherKey="Id" Type="Product" IsForeignKey="true" />
+      <Association Name="User_Bill" Member="User" ThisKey="IdUser" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

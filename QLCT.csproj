@@ -216,6 +216,7 @@
     <Content Include="Content\CustomJS\backToTop.js" />
     <Content Include="Content\CustomJS\CommonModule.js" />
     <Content Include="Content\CustomJS\CommonUpload.js" />
+    <Content Include="Content\CustomJS\Customer\Index1.js" />
     <Content Include="Content\CustomJS\Customer\Update.js" />
     <Content Include="Content\CustomJS\less.js" />
     <Content Include="Content\CustomJS\LTECustom.js" />
@@ -1371,6 +1372,7 @@
     <Content Include="packages\EntityFramework.6.2.0\tools\EntityFramework.PowerShell.dll" />
     <Content Include="packages\EntityFramework.6.2.0\tools\EntityFramework.PowerShell.Utility.dll" />
     <Content Include="packages\EntityFramework.6.2.0\tools\migrate.exe" />
+    <Content Include="Content\FileHD\BaoCao_TKCSDL.pdf" />
     <None Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1-vsdoc.js" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.js" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.min.js" />
@@ -1797,7 +1799,6 @@
     <Content Include="Views\Supplier\Delete.cshtml" />
     <Content Include="Views\Guarantee\Index.cshtml" />
     <Content Include="Views\Bill\ShowBill.cshtml" />
-    <Content Include="Views\Bill\BaoCao_TKCSDL.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

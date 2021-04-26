@@ -1,4 +1,6 @@
 --------Customer--------
+chưa hiên được chọn ngày tháng, mặc dù vs code đúng nhwung vs k đúng
+
 
 
 Status :	0 - Không là khách hàng tiềm năng
@@ -10,3 +12,8 @@ TypeOfDebt: 1 - Nợ ngắn hạn (180 ngày)
 IsOverDue: 	True - Nợ quá hạn ( TypeOfDebt==1( (Now - EndDate)>0 )
 			False - Nợ không quá hạn
 Note:		EndDate xử lý c#
+
+--------Bill--------
+
+TypeOfBill :  0 - Hợp đồng mua
+			  1 - Hợp đồng bán

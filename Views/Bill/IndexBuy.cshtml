@@ -151,7 +151,7 @@
                                         <td>@item.NameBill</td>
                                         <td>@item.NameUser (@item.IdUser)</td>
                                         <td>@item.NameCus</td>
-                                        <td><a href="~/Bill/ShowBill">@item.FileHD</a></td>
+                                        <td><a href="@Url.Action("ShowBill", "Bill", new {id = item.IdBill })">@item.FileHD</a></td>
                                         <td>@item.Date</td>
                                     </tr>
                                 }

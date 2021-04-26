@@ -26,9 +26,14 @@ namespace QLCT.Controllers
                           where c.Status == 1
                           orderby c.Name descending
                           select c;
+            foreach (var item in viewcus.ToList())
+            {
+                string strdate = item.StartDate.ToString("dd/MM/yy");
+            }
             return View(viewcus.ToPagedList(page ?? 1, 20));
         }
         [HttpPost]
+
         public ActionResult Index1(int? page, FormCollection a)
         {
             var viewpro = from c in db.Customers
@@ -174,7 +179,7 @@ namespace QLCT.Controllers
             cus.Name = Request["Name"];
             cus.Phone = Request["Phone"];
             cus.Address = Request["Address"];
-            cus.Debt = Convert.ToInt32(Request["Debt"]);
+            cus.Debt = Decimal.Parse(Request["Debt"]);
             cus.StartDate = Convert.ToDateTime(Request["StartDate"]);
             cus.TIN = Request["TIN"];
             cus.BankNumber = Request["BankNumber"];

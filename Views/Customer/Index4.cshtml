@@ -174,20 +174,39 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @{
+                                    DateTime End = DateTime.Now;
+                                    string TypeOfDebt = "Chưa xác định";
+
+                                }
                                 @foreach (var item in Model)
                                 {
+                                    string StartDate = item.StartDate.ToString("dd/MM/yy");
+                                    if (Convert.ToInt32(@item.TypeOfDebt) == 1)
+                                    {
+                                        End = Convert.ToDateTime(@item.StartDate).AddMonths(6);
+                                        TypeOfDebt = Convert.ToString("Nợ ngắn hạn");
+                                    }
+                                    else
+                                    {
+                                        End = Convert.ToDateTime(@item.StartDate).AddMonths(6);
+                                        TypeOfDebt = Convert.ToString("Nợ dài hạn");
+                                    }
+                                    string EndDate = End.ToString("dd/MM/yy");
                                     <tr align="center">
                                         <td>@item.Id</td>
                                         <td>@item.Name</td>
                                         <td>@item.Phone</td>
                                         <td>@item.Address</td>
                                         <td>@item.Debt</td>
-                                        <td>@item.StartDate</td>
-                                        <td>@item.EndDate</td>
+
+                                        <td>@StartDate</td>
+                                        <td>@EndDate</td>
                                         <td>@item.TIN</td>
                                         <td>@item.BankNumber</td>
                                         <td>@item.BankName</td>
                                         <td>@item.BankAddress</td>
+                                        <td>@TypeOfDebt</td>
                                         <td>
                                             <a href="@Url.Action("Update", "Customer", new {id = item.Id })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                             <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
