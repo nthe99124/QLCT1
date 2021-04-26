@@ -17,3 +17,9 @@ Note:		EndDate xử lý c#
 
 TypeOfBill :  0 - Hợp đồng mua
 			  1 - Hợp đồng bán
+			  
+			  
+			  
+--------User--------
+Status : 0 - Nhân viên
+		 1 - Leader

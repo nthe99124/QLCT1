@@ -37,10 +37,40 @@ namespace QLCT.Controllers
                                    NameUser = u.Name,
                                    NameDepart = d.Name,
                                    UserName = u.UserName,
+                                   Status = u.Status
                                };
             }
             return View();
 
+        }
+        [HttpPost]
+        public ActionResult IndexUser(User user)
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Log");
+            }
+            else
+            {
+                if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
+                {
+
+                    return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
+                }
+                ViewBag.list = from u in db.Users
+                               join d in db.Departments on u.IdDepartment equals d.Id
+                               where u.IsDeleted == false
+                               where u.Id != 0
+                               where d.IsDeleted == false
+                               orderby u.Name descending
+                               select new UserDepart
+                               {
+                                   NameUser = u.Name,
+                                   NameDepart = d.Name,
+                                   UserName = u.UserName,
+                                   Status = u.Status
+                               };
+            }
         }
         public ActionResult IndexDevision()
         {
