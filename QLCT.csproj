@@ -1373,6 +1373,10 @@
     <Content Include="packages\EntityFramework.6.2.0\tools\EntityFramework.PowerShell.Utility.dll" />
     <Content Include="packages\EntityFramework.6.2.0\tools\migrate.exe" />
     <Content Include="Content\FileHD\BaoCao_TKCSDL.pdf" />
+    <Content Include=".vs\ProjectSettings.json" />
+    <Content Include=".vs\QLCT\config\applicationhost.config" />
+    <Content Include=".vs\slnx.sqlite" />
+    <Content Include=".vscode\launch.json" />
     <None Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1-vsdoc.js" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.js" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.min.js" />
@@ -1804,6 +1808,8 @@
     <Content Include="Views\Guarantee\Update .cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".vs\QLCT1\v16\" />
+    <Folder Include=".vs\QLCT\v16\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\theme\plugins\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="Content\theme\plugins\select2\i18n\" />

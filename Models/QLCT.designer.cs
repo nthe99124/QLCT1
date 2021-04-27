@@ -63,7 +63,7 @@ namespace QLCT.Models
     #endregion
 		
 		public QLCTDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLCTConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLCTConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

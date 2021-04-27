@@ -13,32 +13,34 @@
     <title>Quản lý người dùng</title>
 </head>
 <body>
-    <div class="title-header">
-        <div class="title-grid">
-            <div class="title-flexi-truncate">
-                <div class="title-media">
-                    <div class="title-media__figure">
-                        <div>
-                            <div class="title-icon">
-                                <span>
-                                    <img src="~/Content/CustomCSS/Image/contact_120.png" class="title-icon" alt="Contacts" title="Contacts">
-                                </span>
+    <div class="container content" id="content-layout">
+        <div class="title-header">
+            <div class="title-grid">
+                <div class="title-flexi-truncate">
+                    <div class="title-media">
+                        <div class="title-media__figure">
+                            <div>
+                                <div class="title-icon">
+                                    <span>
+                                        <img src="~/Content/CustomCSS/Image/contact_120.png" class="title-icon" alt="Contacts" title="Contacts">
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <nav>
-                            <ol class="title-ol">
-                                <li class="title-li">
-                                    <span>Người dùng</span>
-                                </li>
-                            </ol>
-                        </nav>
-                        <div class="title-grid">
-                            <div class="title-header__title">
-                                <div class="title-name">
-                                    <div>
-                                        <span>Quản lý người dùng</span>
+                        <div>
+                            <nav>
+                                <ol class="title-ol">
+                                    <li class="title-li">
+                                        <span>Người dùng</span>
+                                    </li>
+                                </ol>
+                            </nav>
+                            <div class="title-grid">
+                                <div class="title-header__title">
+                                    <div class="title-name">
+                                        <div>
+                                            <span>Quản lý người dùng</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -47,121 +49,122 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="nav-tabs-custom">
-        <div class="tab-content no-padding-top">
-            <div id="tab_15_1" class="tab-pane active">
-                <div class="box-body no-padding">
-                    <div class="row">
-                        <form action="~/User/IndexUser" class="form-horizontal form-row-seperated" method="post">
-                            <input name="__RequestVerificationToken" type="hidden" value="O2NuozK-qjMbpX0wlTZKGuPzgxgnOF_45iwvR6QDVsh5G9n2TyrFBe3ukbFpbYncbQ81wCwSkHLfHUuIIX6kmK3sh45VtP6GAHD2MrGFDlEh3dl89pceWjHt9948ZB_bxTpx5w2" />                        <!--Paging required-->
-                            <input data-val="true" data-val-number="The field PageSize must be a number." data-val-required="The PageSize field is required." id="PaginationInfo_PageSize" name="PaginationInfo.PageSize" type="hidden" value="20" /><input data-val="true" data-val-number="The field CurrentPageIndex must be a number." data-val-required="The CurrentPageIndex field is required." id="PaginationInfo_CurrentPageIndex" name="PaginationInfo.CurrentPageIndex" type="hidden" value="1" /><input id="ListId" name="ListId" type="hidden" value="" />                        <!--End Paging-->
-                            <input type="submit" id="cmd_deletemulti" name="btn" value="cmd_delete" style="display: none" />
-                            <input type="submit" id="cmd_approve" name="btn" value="cmd_approve" style="display: none" />
-                            <input type="submit" id="cmd_reject" name="btn" value="cmd_reject" style="display: none" />
-                            <input type="submit" id="btn_submitpaging" style="display: none" />
-                            <div class="col-md-12 padding-top-15">
-                                <div class="col-md-3">
-                                    <input Class="form-control" data-val="true" data-val-maxlength="The field Username must be a string or array type with a maximum length of &#39;250&#39;." data-val-maxlength-max="250" data-val-required="Please enter user name" id="FilterOptions_Username" name="FilterOptions.Username" placeholder="Tên truy cập ..." type="text" value="" />
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <select class="form-control select_status" id="FilterOptions_Roles" name="FilterOptions.Roles">
-                                                <option value="">Chọn vai tr&#242;</option>
-                                                <option name="Status" value="0">Nhân viên</option>
-                                                <option name="Status" value="1">Trưởng Phòng</option>
-                                            </select>
+        <div class="data-content" style="display: flex; flex-direction: column">
+            <div class="nav-tabs-custom">
+                <div class="tab-content no-padding-top">
+                    <div id="tab_15_1" class="tab-pane active">
+                        <div class="box-body no-padding">
+                            <div class="row">
+                                <form action="~/User/IndexUser" class="form-horizontal form-row-seperated" method="post">
+                                    <input name="__RequestVerificationToken" type="hidden" value="O2NuozK-qjMbpX0wlTZKGuPzgxgnOF_45iwvR6QDVsh5G9n2TyrFBe3ukbFpbYncbQ81wCwSkHLfHUuIIX6kmK3sh45VtP6GAHD2MrGFDlEh3dl89pceWjHt9948ZB_bxTpx5w2" />                        <!--Paging required-->
+                                    <input data-val="true" data-val-number="The field PageSize must be a number." data-val-required="The PageSize field is required." id="PaginationInfo_PageSize" name="PaginationInfo.PageSize" type="hidden" value="20" /><input data-val="true" data-val-number="The field CurrentPageIndex must be a number." data-val-required="The CurrentPageIndex field is required." id="PaginationInfo_CurrentPageIndex" name="PaginationInfo.CurrentPageIndex" type="hidden" value="1" /><input id="ListId" name="ListId" type="hidden" value="" />                        <!--End Paging-->
+                                    <input type="submit" id="cmd_deletemulti" name="btn" value="cmd_delete" style="display: none" />
+                                    <input type="submit" id="cmd_approve" name="btn" value="cmd_approve" style="display: none" />
+                                    <input type="submit" id="cmd_reject" name="btn" value="cmd_reject" style="display: none" />
+                                    <input type="submit" id="btn_submitpaging" style="display: none" />
+                                    <div class="col-md-12 padding-top-15">
+                                        <div class="col-md-3">
+                                            <input Class="form-control" data-val="true" data-val-maxlength="The field Username must be a string or array type with a maximum length of &#39;250&#39;." data-val-maxlength-max="250" data-val-required="Please enter user name" id="FilterOptions_Username" name="FilterOptions.Username" placeholder="Tên truy cập ..." type="text" value="" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <select class="form-control select_status" id="FilterOptions_Roles" name="FilterOptions.Roles">
+                                                        <option value="">Chọn vai tr&#242;</option>
+                                                        <option name="Status" value="0">Nhân viên</option>
+                                                        <option name="Status" value="1">Trưởng Phòng</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input class="btn btn green btn-success" type="button" value="T&#236;m kiếm" id="btnSubmitSearch" />
+                                        </div>
+                                        <div class="col-md-3 padding-right-5" style="display: flex; flex-direction: row">
+                                            <div class="page-toolbar">
+                                                <div class="btn-group pull-right  ">
+                                                    <a class="btn green btn-success margin-right-10" href="~/User/IndexDevision">
+                                                        Quản lý đơn vị
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="page-toolbar">
+                                                <div class="btn-group pull-right  ">
+                                                    <a class="btn green btn-success margin-right-10" href="~/User/InsertUser">
+                                                        <i class="fa fa-plus"></i>
+                                                        Th&#234;m mới
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <input class="btn btn green btn-success" type="button" value="T&#236;m kiếm" id="btnSubmitSearch" />
-                                </div>
-                                <div class="col-md-3 padding-right-5" style="display: flex; flex-direction: row">
-                                    <div class="page-toolbar">
-                                        <div class="btn-group pull-right  ">
-                                            <a class="btn green btn-success margin-right-10" href="~/User/IndexDevision">
-                                                Quản lý đơn vị
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="page-toolbar">
-                                        <div class="btn-group pull-right  ">
-                                            <a class="btn green btn-success margin-right-10" href="~/User/InsertUser">
-                                                <i class="fa fa-plus"></i>
-                                                Th&#234;m mới
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
-                        </form>
-                    </div>
-                    <div class="content padding-top-10 no-padding-bottom">
-                        <div class="table-wraper">
-                            <table class="table table-striped table-bordered table-hover fixed" id="userlist">
-                                <thead>
-                                    <tr role="row" class="heading">
-                                        <th class="col-stt">
-                                            #
-                                        </th>
-                                        <th>T&#234;n truy cập</th>
-                                        <th>T&#234;n đầy đủ</th>
-                                        <th style="width:20%">Vai tr&#242;</th>
-                                        <th style="width:10%">H&#224;nh động</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @{
-                                        int dem = 0;
-                                        string IsLead = null;
-                                    }
-                                    @foreach (var item in @ViewBag.list)
-                                    {
-                                        if (Convert.ToInt32(item.Status) == 0)
-                                        {
-                                            IsLead = "Nhân viên";
-                                        }
-                                        else
-                                        {
-                                            IsLead = "Lead";
-                                        }
-                                        <tr>
-                                            <td class="col-stt">
-                                                @(dem += 1)
-                                            </td>
-                                            <td>
-                                                @item.UserName
-                                            </td>
-                                            <td>
-                                                @item.NameUser
-                                            </td>
-                                            <td>
-                                                <span id="admin_13" class="set-role-user input-group-addon unlock-status">
-                                                    @IsLead | @item.NameDepart
-                                                </span>
+                            <div class="content padding-top-10 no-padding-bottom">
+                                <div class="table-wraper">
+                                    <table class="table table-striped table-bordered table-hover fixed" id="userlist">
+                                        <thead>
+                                            <tr role="row" class="heading">
+                                                <th class="col-stt">
+                                                    #
+                                                </th>
+                                                <th>T&#234;n truy cập</th>
+                                                <th>T&#234;n đầy đủ</th>
+                                                <th style="width:20%">Vai tr&#242;</th>
+                                                <th style="width:10%">H&#224;nh động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                int dem = 0;
+                                                string IsLead = null;
+                                            }
+                                            @foreach (var item in @ViewBag.list)
+                                            {
+                                                if (Convert.ToInt32(item.Status) == 0)
+                                                {
+                                                    IsLead = "Nhân viên";
+                                                }
+                                                else
+                                                {
+                                                    IsLead = "Lead";
+                                                }
+                                                <tr>
+                                                    <td class="col-stt">
+                                                        @(dem += 1)
+                                                    </td>
+                                                    <td>
+                                                        @item.UserName
+                                                    </td>
+                                                    <td>
+                                                        @item.NameUser
+                                                    </td>
+                                                    <td>
+                                                        <span id="admin_13" class="set-role-user input-group-addon unlock-status">
+                                                            @IsLead | @item.NameDepart
+                                                        </span>
 
 
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="javascript:void(0);" onclick="DeleteItem(13); " class=" btn btn-danger btn-sm">X&#243;a</a>
-                                                <a href="~/User/UpdateUser"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="javascript:void(0);" onclick="DeleteItem(13); " class=" btn btn-danger btn-sm">X&#243;a</a>
+                                                        <a href="~/User/UpdateUser"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                        <div class="row">
-                            <div class="col-md-5" style="margin-top: 20px;">
-                                <span>Hiển thị 1 - 20 / 330 bản ghi.</span>
-                            </div>
-                            <div class="col-md-7" id="pageDiv">
-                                <div class="dataTables_paginate paging_bootstrap_full_number" id="sample_1_paginate" style="text-align: right;">
-                                    <ul class='pagination' style='visibility: visible;'><li class='active'><a>1</a></li><li><a onclick="PagerClick(2);">2</a></li><li><a onclick="PagerClick(3);">3</a></li><li><a onclick="PagerClick(4);">4</a></li><li><a onclick="PagerClick(5);">5</a></li><li class='next'><a title='Next' onclick="PagerClick(2);"><i class='fa fa-angle-right'></i></a></li><li class='next'><a title='Last' onclick="PagerClick(17);"><i class='fa fa-angle-double-right'></i></a></li></ul>
+                                <div class="row">
+                                    <div class="col-md-5" style="margin-top: 20px;">
+                                        <span>Hiển thị 1 - 20 / 330 bản ghi.</span>
+                                    </div>
+                                    <div class="col-md-7" id="pageDiv">
+                                        <div class="dataTables_paginate paging_bootstrap_full_number" id="sample_1_paginate" style="text-align: right;">
+                                            <ul class='pagination' style='visibility: visible;'><li class='active'><a>1</a></li><li><a onclick="PagerClick(2);">2</a></li><li><a onclick="PagerClick(3);">3</a></li><li><a onclick="PagerClick(4);">4</a></li><li><a onclick="PagerClick(5);">5</a></li><li class='next'><a title='Next' onclick="PagerClick(2);"><i class='fa fa-angle-right'></i></a></li><li class='next'><a title='Last' onclick="PagerClick(17);"><i class='fa fa-angle-double-right'></i></a></li></ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
