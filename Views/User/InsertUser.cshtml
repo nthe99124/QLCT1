@@ -3,7 +3,6 @@
     ViewBag.Title = "InsertUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,16 +41,7 @@
 
         <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
         <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
-        <form action="~/Accounts/Edit" class="horizontal-form" id="form-request" method="post">
-            <input name="__RequestVerificationToken" type="hidden" value="H7D3h7BLtbbubACPyI2Ty5pHAiKN1XJZV5wxeUMw395Dc8-Af_Pv2XFUCAbR4ujDQ_nBkOMVQD2evJqmdEpXvGmCo6v53yxFUuyhWL39xX9AYVMSyTR68-vbPZ4dm2rlNXnYVw2" />
-            <input type="hidden" id="AccountId" name="AccountId" value="0" />
-            <input type="hidden" id="valueTextAcc" />
-            <input type="hidden" id="valueTextValue" />
-            <input type="hidden" id="Error" />
-            <input type="hidden" id="currentuser" value="thent10" />
-            <input type="hidden" id="DataSaveLead" name="SaveLead" />
-            <input type="hidden" id="boolConvert" name="Convert" value="False" />
-            <input type="hidden" id="OwnerOld" name="OwnerOld" />
+        <form action="~/User/InsertUser" class="horizontal-form" id="form-request" method="post">
             <div class="title-header">
                 <div class="title-grid">
                     <div class="title-flexi-truncate">
@@ -97,47 +87,53 @@
                             </div>
                             <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 300px">
                                 <div class="form-group col-md-12 padding-top-10" id="hoten">
-                                    <label class='col-md-5 control-label'>Họ và tên đầy đủ</label>
-                                    <div class='col-md-7'>
-                                        <input type='hidden' name='LstAccPropertyValues[1].PropertyId' value='3'>
-                                        <input id='AccBasicShortName' type='text' value='' class='form-control ' name='LstAccPropertyValues[1].Value' />
+                                    <label class="col-md-5 control-label">Họ và tên đầy đủ</label>
+                                    <div class="col-md-7">
+                                        <input id="" type="text" value="" class="form-control " name="Name" />
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12 padding-top-10" id="">
+                                    <label class="col-md-5 control-label">Tên người dùng</label>
+                                    <div class="col-md-7">
+                                        <input id="" type="text" value="" class="form-control " name="UserName" />
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12 padding-top-10" id="T&#234;n viết tắt">
-                                    <label class='col-md-5 control-label'>Tên người dùng</label>
-                                    <div class='col-md-7'>
-                                        <input type='hidden' name='LstAccPropertyValues[1].PropertyId' value='3'>
-                                        <input id='AccBasicShortName' type='text' value='' class='form-control ' name='LstAccPropertyValues[1].Value' />
-                                    </div>
-                                </div>
-                                <div class="col-md-12 no-padding">
-                                    <div class="form-group col-md-12 padding-top-10 namecheck">
-                                        <label class="col-md-5 control-label">Mật khẩu</label>
-                                        <div class="col-md-7">
-                                            <input class="form-control input-icon required" id="Acc_AccountName" name="Acc.AccountName" type="text" value="" />
-                                            <span id="checkname" class="help-block-equalcheck" style="display:none"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-12 padding-top-10" id="T&#234;n viết tắt">
-                                    <label class='col-md-5 control-label'>Giới tính</label>
-                                    <div class='col-md-7' style="display: flex; flex-direction: row">
+                                    <label class="col-md-5 control-label">Giới tính</label>
+                                    <div class="col-md-7" style="display: flex; flex-direction: row">
                                         <div>
-                                            Nam <input type='radio' name='LstAccPropertyValues[1].PropertyId' value='0'>
+                                            <input type="radio" name="Sex" value="false" checked> Nam
                                         </div>
                                         <div style="padding-left: 30px">
-                                            Nữ <input type='radio' name='LstAccPropertyValues[1].PropertyId' value='1'>
+                                            <input type="radio" name="Sex" value="true"> Nữ
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-12 padding-top-10" id="Điện thoại VP">
-                                    <label class='col-md-5 control-label'>Số điện thoại</label><div class='col-md-7'><input type='hidden' name='LstAccPropertyValues[2].PropertyId' value='17'><input id='AccBasicPhone' type='text' value='' class='form-control ' name='LstAccPropertyValues[2].Value' /></div>
+                                <div class="form-group col-md-12 padding-top-10" id="">
+                                    <label class="col-md-5 control-label">Số điện thoại</label><div class="col-md-7"><input id="" type="text" value="" class="form-control " name="Phone" /></div>
                                 </div>
-                                <div class="form-group col-md-12 padding-top-10" id="Điện thoại VP">
-                                    <label class='col-md-5 control-label'>NumberCus</label><div class='col-md-7'><input type='hidden' name='LstAccPropertyValues[2].PropertyId' value='17'><input id='AccBasicPhone' type='text' value='' class='form-control ' name='LstAccPropertyValues[2].Value' /></div>
+                                <div class="form-group col-md-12 padding-top-10" id="">
+                                    <label class="col-md-5 control-label">Chức vụ</label>
+                                    <div class="col-md-7" style="display: flex; flex-direction: row">
+                                        <div>
+                                            <input type="radio" name="Status" value="0" checked> Nhân viên
+                                        </div>
+                                        <div style="padding-left: 30px">
+                                            <input type="radio" name="Status" value="1"> Trưởng phòng
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-12 padding-top-10" id="Điện thoại VP">
-                                    <label class='col-md-5 control-label'>Status</label><div class='col-md-7'><input type='hidden' name='LstAccPropertyValues[2].PropertyId' value='17'><input id='AccBasicPhone' type='text' value='' class='form-control ' name='LstAccPropertyValues[2].Value' /></div>
+                                <div class="form-group col-md-12 padding-top-10" id="T&#234;n viết tắt">
+                                    <label class="col-md-5 control-label">Phòng ban</label>
+                                    <div class="col-md-7" style="display: flex; flex-direction: row">
+                                        <select name="IdDepartment">
+                                            <option>Chọn đơn vị</option>
+                                            @foreach (var item in ViewBag.IdDepartment)
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>

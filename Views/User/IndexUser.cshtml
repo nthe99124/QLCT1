@@ -63,21 +63,21 @@
                             <input type="submit" id="btn_submitpaging" style="display: none" />
                             <div class="col-md-12 padding-top-15">
                                 <div class="col-md-3">
-                                    <input Class="form-control" data-val="true" data-val-maxlength="The field Username must be a string or array type with a maximum length of &#39;250&#39;." data-val-maxlength-max="250" data-val-required="Please enter user name" id="FilterOptions_Username" name="FilterOptions.Username" placeholder="Tên truy cập ..." type="text" value="" />
+                                    <input Class="form-control" data-val="true" data-val-maxlength="The field Username must be a string or array type with a maximum length of &#39;250&#39;." data-val-maxlength-max="250" data-val-required="Please enter user name" id="Search1" name="FilterOptions.Username" placeholder="Tên truy cập ..." type="text" value="" onkeyup="Search1()" />
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <div class="col-md-12">
-                                            <select class="form-control select_status" id="FilterOptions_Roles" name="FilterOptions.Roles">
+                                            <select class="form-control select_status" id="FilterOptions_Roles" name="Status">
                                                 <option value="">Chọn vai tr&#242;</option>
-                                                <option name="Status" value="0">Nhân viên</option>
-                                                <option name="Status" value="1">Trưởng Phòng</option>
+                                                <option value="0">Nhân viên</option>
+                                                <option value="1">Trưởng Phòng</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <input class="btn btn green btn-success" type="button" value="T&#236;m kiếm" id="btnSubmitSearch" />
+                                    <input class="btn btn green btn-success" type="submit" value="T&#236;m kiếm" id="btnSubmitSearch" />
                                 </div>
                                 <div class="col-md-3 padding-right-5" style="display: flex; flex-direction: row">
                                     <div class="page-toolbar">
@@ -146,8 +146,9 @@
 
                                             </td>
                                             <td class="text-center">
-                                                <a href="javascript:void(0);" onclick="DeleteItem(13); " class=" btn btn-danger btn-sm">X&#243;a</a>
-                                                <a href="~/User/UpdateUser"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <a href="@Url.Action("UpdateUser", "User", new {id = item.IdUser })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                <input type="hidden" name="" id="idin" value="@item.IdUser" size="30" />
                                             </td>
                                         </tr>
                                     }
@@ -172,3 +173,38 @@
     </div>
 </body>
 </html>
+<script>
+    function Search1() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("Search1");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("userlist");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<script type="text/javascript">
+
+    function isDelete() {
+        var inputVal = $('input').val()
+        var inputid = document.getElementById("idin").value;
+        var result = confirm("Bạn có chắc chắn muốn xoá không ?");
+        var url = '/User/Delete/' + inputid;
+
+        if (result) {
+
+            window.location.href = url;
+        }
+    }
+
+</script>

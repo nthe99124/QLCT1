@@ -54,27 +54,9 @@
                 <div class="box-body no-padding">
                     <div class="row">
                         <form action="~/User" class="form-horizontal form-row-seperated" method="post">
-                            <input name="__RequestVerificationToken" type="hidden" value="O2NuozK-qjMbpX0wlTZKGuPzgxgnOF_45iwvR6QDVsh5G9n2TyrFBe3ukbFpbYncbQ81wCwSkHLfHUuIIX6kmK3sh45VtP6GAHD2MrGFDlEh3dl89pceWjHt9948ZB_bxTpx5w2" />                        <!--Paging required-->
-                            <input data-val="true" data-val-number="The field PageSize must be a number." data-val-required="The PageSize field is required." id="PaginationInfo_PageSize" name="PaginationInfo.PageSize" type="hidden" value="20" /><input data-val="true" data-val-number="The field CurrentPageIndex must be a number." data-val-required="The CurrentPageIndex field is required." id="PaginationInfo_CurrentPageIndex" name="PaginationInfo.CurrentPageIndex" type="hidden" value="1" /><input id="ListId" name="ListId" type="hidden" value="" />                        <!--End Paging-->
-                            <input type="submit" id="cmd_deletemulti" name="btn" value="cmd_delete" style="display: none" />
-                            <input type="submit" id="cmd_approve" name="btn" value="cmd_approve" style="display: none" />
-                            <input type="submit" id="cmd_reject" name="btn" value="cmd_reject" style="display: none" />
-                            <input type="submit" id="btn_submitpaging" style="display: none" />
                             <div class="col-md-12 padding-top-15">
                                 <div class="col-md-3">
                                     <input Class="form-control" data-val="true" data-val-maxlength="The field Username must be a string or array type with a maximum length of &#39;250&#39;." data-val-maxlength-max="250" data-val-required="Please enter user name" id="FilterOptions_Username" name="FilterOptions.Username" placeholder="Tên truy cập ..." type="text" value="" />
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <select class="form-control select2_category" id="FilterOptions_Roles" name="FilterOptions.Roles">
-                                                <option value="">Chọn vai tr&#242;</option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="DataManager">DataManager</option>
-                                                <option value="ProductBase">ProductBase</option>
-                                            </select>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                     <input class="btn btn green btn-success" type="button" value="T&#236;m kiếm" id="btnSubmitSearch" />
@@ -115,26 +97,30 @@
                                 </thead>
 
                                 <tbody>
+                                    @{
+                                        int dem = 0;
+                                    }
                                     @foreach (var item in @ViewBag.list)
                                     {
                                         <tr>
                                             <td class="col-stt">
-                                                1
+                                                @(dem += 1)
                                             </td>
                                             <td>
-                                                @item.Name
+                                                @item.NameDepart
                                             </td>
                                             <td>
                                                 @item.NumberStaff
                                             </td>
                                             <td>
                                                 <span id="admin_13" ct-type="admin" ct-user="13" class="set-role-user input-group-addon unlock-status">
-                                                    @item.IdHeader
+                                                    @item.NameUser (@item.IdUser)
                                                 </span>
                                             </td>
                                             <td class="text-center">
-                                                <a href="javascript:void(0);" onclick="DeleteItem(13); " class=" btn btn-danger btn-sm">X&#243;a</a>
-                                                <a href="~/User/UpdateDevision"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <a href="@Url.Action("UpdateDevision", "User", new {id = item.IdUser })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                <input type="hidden" name="" id="idin" value="@item.IdUser" size="30" />
                                             </td>
                                         </tr>
                                     }
@@ -159,3 +145,18 @@
     </div>
 </body>
 </html>
+<script type="text/javascript">
+
+    function isDelete() {
+        var inputVal = $('input').val()
+        var inputid = document.getElementById("idin").value;
+        var result = confirm("Bạn có chắc chắn muốn xoá không ?");
+        var url = '/User/Delete/' + inputid;
+
+        if (result) {
+
+            window.location.href = url;
+        }
+    }
+
+</script>

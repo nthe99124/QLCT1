@@ -149,6 +149,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerPlus.cs" />
+    <Compile Include="Models\Guarantee_DetailsBill_Bill_Cus_Staff.cs" />
     <Compile Include="Models\QLCT.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -223,6 +224,7 @@
     <Content Include="Content\CustomJS\Supplier\Insert.js" />
     <Content Include="Content\CustomJS\User\Export.js" />
     <Content Include="Content\CustomJS\User\IndexBackend.js" />
+    <Content Include="Content\CustomJS\User\Update.js" />
     <Content Include="Content\CustomJS\Utility.js" />
     <Content Include="Content\CustomJS\LoginJS\Login.js" />
     <Content Include="Content\CustomCSS\Login\Login.css" />
@@ -244,6 +246,7 @@
     <Content Include="Content\Image\icon-hidden.svg" />
     <Content Include="Content\Image\icon-opportunities.svg" />
     <Content Include="Content\Image\icon-task.svg" />
+    <Content Include="Content\Image\logo_vuha.ico" />
     <Content Include="Content\Image\new-feed.svg" />
     <Content Include="Content\Image\report-icon-2.jpg" />
     <Content Include="Content\Image\report-icon.jpg" />
@@ -1802,6 +1805,8 @@
     <Content Include="Views\Bill\Insert.cshtml" />
     <Content Include="Views\Bill\Update.cshtml" />
     <Content Include="Views\Guarantee\Update .cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\Guarantee\ShowGuarantee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

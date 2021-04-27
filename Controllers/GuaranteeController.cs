@@ -21,27 +21,48 @@ namespace QLCT.Controllers
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["user"] != "PGD" && Session["user"] != "PKD")
+            if (Session["PB"] != "PGD" && Session["PB"] != "PKD")
             {
                 ViewBag.notify = "Bạn không có quyền truy cập";
             }
-            var list = from b in db.Bills
+            var list = from g in db.Guarantees
+                       join de in db.DetailsBills on g.IdDetailsBill equals de.Id
+                       join b in db.Bills on de.IdBill equals b.Id
                        join u in db.Users on b.IdUser equals u.Id
                        join c in db.Customers on b.IdCustormer equals c.Id
-                       join de in db.DetailsBills on b.IdDetails equals de.Id
+                       join p in db.Products on de.IdProduct equals p.Id
                        where b.IsDelete == false
-                       where b.IdUser == 7
-                       select new User_DetailsBill_Cus_Bill
+                       select new Guarantee_DetailsBill_Bill_Cus_Staff
                        {
+                           IdGuarantee = g.Id,
+                           UrlGuarantee = g.UrlGuarantee,
                            IdBill = b.Id,
                            NameBill = b.NameBill,
                            IdUser = u.Id,
                            NameUser = u.Name,
                            NameCus = c.Name,
                            FileHD = b.UrlBill,
-                           Date = Convert.ToDateTime(b.Date)
+                           Date = Convert.ToDateTime(b.Date),
+                           NameProduct = p.Name,
+                           IdStaffGuarantee = b.IdStaffGuarantee,
+                           Note = g.Note,
+                           DateOfGuarantee = Convert.ToInt32(p.DateOfGuarantee)
                        };
             return View(list);
+        }
+        public ActionResult ShowGuarantee(int id)
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Log");
+            }
+            if (Session["PB"] != "PGD" && Session["PB"] != "PKD")
+            {
+                ViewBag.notify = "Bạn không có quyền truy cập";
+            }
+            var Guarantee = db.Guarantees.First(b => b.Id == id);
+            ViewBag.UrlGuarantee = Guarantee.UrlGuarantee;
+            return View();
         }
     }
 }

@@ -23,3 +23,13 @@ TypeOfBill :  0 - Hợp đồng mua
 --------User--------
 Status : 0 - Nhân viên
 		 1 - Leader
+Sex : False - Nam
+	  True - Nữ
+PassWord : "VuHa_"+"UserName"
+Mong muốn : UserName : (VD: Nguyễn Tiến Thế -> NTT@vuha.com.vn,Nếu xuất hiện NTT 2,UserName sẽ xét stt: NTT2@vuha.com.vn)
+UserName : "UserName"+"@vuha.com.vn"
+
+--------Guarantee--------
+
+Status : True - còn hạn BH
+		 False - hết hạn BH
