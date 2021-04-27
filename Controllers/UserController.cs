@@ -71,6 +71,7 @@ namespace QLCT.Controllers
                                    Status = u.Status
                                };
             }
+            return View();
         }
         public ActionResult IndexDevision()
         {
