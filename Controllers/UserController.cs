@@ -37,14 +37,15 @@ namespace QLCT.Controllers
                                    NameUser = u.Name,
                                    NameDepart = d.Name,
                                    UserName = u.UserName,
-                                   Status = u.Status
+                                   Status = u.Status,
+                                   IdUser = u.Id
                                };
             }
             return View();
 
         }
         [HttpPost]
-        public ActionResult IndexUser(User user)
+        public ActionResult IndexUser(int Status)
         {
             if (Session["user"] == null)
             {
@@ -60,6 +61,7 @@ namespace QLCT.Controllers
                 ViewBag.list = from u in db.Users
                                join d in db.Departments on u.IdDepartment equals d.Id
                                where u.IsDeleted == false
+                               where u.Status == Status
                                where u.Id != 0
                                where d.IsDeleted == false
                                orderby u.Name descending
@@ -67,8 +69,9 @@ namespace QLCT.Controllers
                                {
                                    NameUser = u.Name,
                                    NameDepart = d.Name,
-                                   UserName = u.UserName,
-                                   Status = u.Status
+                                   UserName = u.Name,
+                                   Status = u.Status,
+                                   IdUser = u.Id
                                };
             }
             return View();
@@ -81,14 +84,22 @@ namespace QLCT.Controllers
             }
             else
             {
-                if (Session["user"] != "PGD" && Session["user"] != "PNS")
+                if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
                 {
                     ViewBag.notify = "Bạn không có quyền truy cập";
                 }
                 ViewBag.list = from d in db.Departments
+                               join u in db.Users on d.IdHeader equals u.Id
                                where d.IsDeleted == false
                                orderby d.Name descending
-                               select d;
+                               select new UserDepart
+                               {
+                                   IdHeader = d.Id,
+                                   NameUser = u.Name,
+                                   NameDepart = d.Name,
+                                   NumberStaff = d.NumberStaff,
+                                   IdUser = u.Id
+                               };
             }
             return View();
 
@@ -113,9 +124,8 @@ namespace QLCT.Controllers
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
-            ViewBag.IdDepartment = from u in db.Users 
-                                   join d in db.Departments on u.IdDepartment equals d.Id
-                                   select new { d.Name, u.IdDepartment };
+            ViewBag.IdDepartment = from d in db.Departments
+                                   select d;
             return View();
         }
         [HttpPost]
@@ -125,15 +135,28 @@ namespace QLCT.Controllers
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["user"] != "PGD" && Session["user"] != "PNS")
+            if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
+            RemoveUnicode(Request["Name"]).Replace(" ", "");
+            //string b = Request["Name"];
+            //string[] a = null;
+            //for (int i = 0; i < Request["Name"].Length; i++)
+            //{
+                
+            //    do
+            //    {
+            //        a[i] += b[i];
+            //        i++;
+            //    } while (b[i].ToString()!=" ");
+            //}
             var checkuser = db.Users.Where(u => u.Phone == Request["Phone"]).FirstOrDefault();
             if (checkuser == null)
             {
-                user.UserName = Request["UserName"];
-                user.PassWord = Request["PassWord"];
+                RemoveUnicode(Request["Name"]).Replace(" ", "");
+                user.UserName = String.Format("{0}@vuha.com.vn", RemoveUnicode(Request["Name"]).Replace(" ", ""), user.Id);
+                user.PassWord = String.Format("VuHa_{0}", RemoveUnicode(Request["Name"]).Replace(" ", ""));
                 user.Sex = Convert.ToBoolean(Request["Sex"]);
                 user.Phone = Request["Phone"];
                 user.IdDepartment = Convert.ToInt32(Request["IdDepartment"]);
@@ -178,7 +201,7 @@ namespace QLCT.Controllers
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["user"] != "PGD" && Session["user"] != "PNS")
+            if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
@@ -188,9 +211,12 @@ namespace QLCT.Controllers
                 user.UserName = Request["UserName"];
                 user.PassWord = Request["PassWord"];
                 user.Sex = Convert.ToBoolean(Request["Sex"]);
+                user.Name = Request["Name"];
                 user.Phone = Request["Phone"];
                 user.IdDepartment = Convert.ToInt32(Request["IdDepartment"]);
                 user.Status = Convert.ToInt32(Request["Status"]);
+                user.NumberCus = 0;
+                user.NumberSup = 0;
                 user.IsDeleted = false;
                 db.Users.InsertOnSubmit(user);
                 // tang sl nhan vien
@@ -213,11 +239,13 @@ namespace QLCT.Controllers
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["user"] != "PGD" && Session["user"] != "PNS")
+            if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
             var user = db.Users.First(u => u.Id == id);
+            ViewBag.IdDepartment = from d in db.Departments
+                                   select d;
             return View(user);
         }
         [HttpPost]
@@ -227,7 +255,7 @@ namespace QLCT.Controllers
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["user"] != "PGD" && Session["user"] != "PNS")
+            if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
@@ -251,7 +279,7 @@ namespace QLCT.Controllers
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["user"] != "PGD" && Session["user"] != "PNS")
+            if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
@@ -311,6 +339,29 @@ namespace QLCT.Controllers
             UpdateModel(user);
             db.SubmitChanges();
             return this.Delete(id);
+        }
+        public static string RemoveUnicode(string text)
+        {
+            string[] arr1 = new string[] { "á", "à", "ả", "ã", "ạ", "â", "ấ", "ầ", "ẩ", "ẫ", "ậ", "ă", "ắ", "ằ", "ẳ", "ẵ", "ặ",
+    "đ",
+    "é","è","ẻ","ẽ","ẹ","ê","ế","ề","ể","ễ","ệ",
+    "í","ì","ỉ","ĩ","ị",
+    "ó","ò","ỏ","õ","ọ","ô","ố","ồ","ổ","ỗ","ộ","ơ","ớ","ờ","ở","ỡ","ợ",
+    "ú","ù","ủ","ũ","ụ","ư","ứ","ừ","ử","ữ","ự",
+    "ý","ỳ","ỷ","ỹ","ỵ",};
+            string[] arr2 = new string[] { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a",
+    "d",
+    "e","e","e","e","e","e","e","e","e","e","e",
+    "i","i","i","i","i",
+    "o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o",
+    "u","u","u","u","u","u","u","u","u","u","u",
+    "y","y","y","y","y",};
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                text = text.Replace(arr1[i], arr2[i]);
+                text = text.Replace(arr1[i].ToUpper(), arr2[i].ToUpper());
+            }
+            return text;
         }
     }
 }

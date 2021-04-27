@@ -90,7 +90,7 @@ namespace QLCT.Controllers
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["user"] != "PGD" && Session["user"] != "PKD")
+            if (Session["PB"] != "PGD" && Session["PB"] != "PKD")
             {
                 ViewBag.notify = "Bạn không có quyền truy cập";
             }

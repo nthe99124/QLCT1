@@ -23,5 +23,7 @@ namespace QLCT.Models
         public int IdPro { get; set; }
         public float Gia { get; set; }
         public float GiamGia { get; set; }
+        public int? IdStaffGuarantee { get; set; }
+        public int DateOfGuarantee { get; set; }
     }
 }

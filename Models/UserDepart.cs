@@ -11,7 +11,7 @@ namespace QLCT.Models
         public string NameDepart { get; set; }
         public int IdDepart { get; set; }
         public int IdUser { get; set; }
-        public int NumberStaff { get; set; }
+        public int? NumberStaff { get; set; }
         public int IdHeader { get; set; }
         public bool IsDeletedDepart { get; set; }
         public string PassWord { get; set; }

@@ -87,7 +87,7 @@
             <div class="data-content" style="display: flex; flex-direction: column">
                 <div style="display: flex; flex-direction: row">
                     <div style="flex: 0.6">
-                        <form method="post" action="~/Product/Index">
+                        <form method="post" action="~/Guarantee/Index">
                             <div style="display: flex; padding-top: 20px; padding-left: 30px">
                                 <input style="width: 200px " type="text" name="key" placeholder="Gõ tìm kiếm">
                                 <button type="submit" class="btn btn title-button title-button--neutral" style="margin-left: 10px">
@@ -112,13 +112,13 @@
                             <thead>
                                 <tr align="center">
                                     <th class="sort_col_table" scope="col"> Mã bảo hành <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col"> Tên bảo hành <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col"> Tên hợp đồng <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Mã hợp đồng <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col"> Tên khách hàng  <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col"> Tên sản phẩm  <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col"> NV bảo hành <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col"> File bảo hành <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col"> Status <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Ngày BĐ BH <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Ngày BĐ HH <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col"> Ghi chú <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                 </tr>
                                 <tr align="center">
@@ -147,32 +147,40 @@
                                         <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
                                     </th>
                                     <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search6" onkeyup="search7()">
+                                        <input type="text" name="" id="search7" onkeyup="search7()">
                                         <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
                                     </th>
                                     <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search6" onkeyup="search8()">
+                                        <input type="text" name="" id="search8" onkeyup="search8()">
                                         <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
                                     </th>
                                     <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search6" onkeyup="search9()">
+                                        <input type="text" name="" id="search9" onkeyup="search9()">
                                         <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @*@foreach (var item in Model)
+                                @{
+                                    string EndDate = null;
+
+                                }
+                                @foreach (var item in Model)
                                 {
-                                <tr class="odd gradeX" align="center">
-                                    <td>@item.IdBill</td>
-                                    <td>@item.IdCustormer</td>
-                                    <td>@item.IdProduct</td>
-                                    <td>@item.IdUser</td>
-                                    <td>@item.Status</td>
-                                    <td>@item.FileGuarantee</td>
-                                    <td>@item.Note</td>
-                                </tr>
-                                }*@
+                                    string StartDate = item.Date.ToString("dd/MM/yy");
+                                    EndDate = Convert.ToDateTime(StartDate).AddMonths(item.DateOfGuarantee).ToString("dd/MM/yy");
+                                    <tr class="odd gradex" align="center">
+                                        <td>@item.IdGuarantee</td>
+                                        <td>@item.IdBill</td>
+                                        <td>@item.NameCus</td>
+                                        <td>@item.NameProduct</td>
+                                        <td>@item.IdStaffGuarantee</td>
+                                        <td><a href="@Url.Action("ShowGuarantee", "Guarantee", new {id = item.IdGuarantee })">@item.UrlGuarantee</td>
+                                        <td>@StartDate</td>
+                                        <td>@EndDate</td>
+                                        <td>@item.Note</td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
