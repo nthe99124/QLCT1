@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Insert";
+    ViewBag.Title = "Update";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Thêm sản phẩm</title>
+    <title>Sửa hợp đồng</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" href="~/favicon.ico">
@@ -60,7 +60,7 @@
                                 <nav>
                                     <ol class="title-ol">
                                         <li class="title-li">
-                                            <span>Sản phẩm</span>
+                                            <span>Hợp đồng</span>
                                         </li>
                                     </ol>
                                 </nav>
@@ -68,7 +68,7 @@
                                     <div class="title-header__title">
                                         <div class="title-name">
                                             <div>
-                                                <span>Thêm sản phẩm</span>
+                                                <span>Sửa hợp đồng</span>
                                             </div>
 
                                         </div>
@@ -89,25 +89,30 @@
 
                             <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
 
-                                <div class="form-group col-md-6 padding-top-10" id="T&#234;n viết tắt">
-                                    <label class='col-md-4 control-label'>Tên sản phẩm</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Name'></div>
+                                <div class="form-group col-md-6 padding-top-10" id="mabh">
+                                    <label class='col-md-4 control-label'>Mã hợp đồng</label><div class='col-md-8'><input required="" type="text" class="form-control" id='Id'></div>
                                 </div>
 
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; bưu ch&#237;nh">
-                                    <label class='col-md-4 control-label'>SL còn</label><div class='col-md-8'><input required="" type="text" class="form-control"  name='NumberRemain'></div>
+                                <div class="form-group col-md-6 padding-top-10" id="tenbh">
+                                    <label class='col-md-4 control-label'>Tên hợp đồng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='name'></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="Số fax">
-                                    <label class='col-md-4 control-label'>Mô tả</label><div class='col-md-8'><input required="" type="text" class="form-control"  name='Description'></div>
+                                <div class="form-group col-md-6 padding-top-10" id="tenkh">
+                                    <label class='col-md-4 control-label'>Tên khách hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='nameCustormer'></div>
                                 </div>
-
-                                <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
-                                    <label class='col-md-4 control-label'>Giá</label><div class='col-md-8'><input required="" type="text" class="form-control"  name='Price'></div>
+                                <div class="form-group col-md-6 padding-top-10" id="nv">
+                                    <label class='col-md-4 control-label'>Nhân viên phụ trách</label>
+                                    <div class='col-md-8'>
+                                        @*@Html.DropDownListFor(model => model.IdStaff, new SelectList(@ViewBag.lstStaff, "Id", "Name"))*@
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Giảm giá(%)</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Discount'></div>
+                                <div class="form-group col-md-6 padding-top-10" id="filebh">
+                                    <label class='col-md-4 control-label'>File hợp đồng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='file'></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Đơn vị tính</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
+                                <div class="form-group col-md-6 padding-top-10" id="nv">
+                                    <label class='col-md-4 control-label'>Loại hợp đồng</label>
+                                    <div class='col-md-8'>
+                                        @*@Html.DropDownListFor(model => model.IdStaff, new SelectList(@ViewBag.lstStaff, "Id", "Name"))*@
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +123,7 @@
                             </div>
                             <div class="col-md-6 text-center">
                                 <button type="submit" class="btn btn-success">
-                                    Thêm sản phẩm
+                                    Cập nhật
                                 </button>
                                 <a href="~/Product/Index" class="btn grey-salt gray" type="button">
                                     <i></i> Hủy

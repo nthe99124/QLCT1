@@ -1799,6 +1799,9 @@
     <Content Include="Views\Supplier\Delete.cshtml" />
     <Content Include="Views\Guarantee\Index.cshtml" />
     <Content Include="Views\Bill\ShowBill.cshtml" />
+    <Content Include="Views\Bill\Insert.cshtml" />
+    <Content Include="Views\Bill\Update.cshtml" />
+    <Content Include="Views\Guarantee\Update .cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
