@@ -20,42 +20,24 @@ $(".addParties").click(function () {
     $("#pro").append(html);
 })
 $('document').ready(function () {
-    var lst = '@ViewBag.lstPro';
-    alert(lst);
-    var url = $("#Ahihi").val();
-    //$.ajax({
-    //    type: "GET",
-    //    url: url,
-    //    "dataType": "Json",
-    //    success: function (data) {
-    //        $(data).each(function (i) {
-    //            $("#pro").append(data[i].Id);
-    //        });
-    //    },
-    //    error: (error) => {
-    //        console.log(JSON.stringify(error));
-    //    }
-    //});
-    $.get(url, function (data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    })
-
-    
-})
-function Ajax() {
     var url = $("#Ahihi").val();
     $.ajax({
         type: "GET",
         url: url,
         "dataType": "Json",
-        contentType: 'application/json; charset=utf-8',
         success: function (data) {
             $(data).each(function (i) {
-                $("#pro").append(data[i].Id);
+                var append = data[i].Id + data[i].Name;
+                $("#pro").append(append);
             });
         }
     });
-}
+    //$.get(url, function (data, status){
+    //    alert("Data: " + data + "\nStatus: " + status);
+    //})
+
+    
+})
 
                                     
                                 

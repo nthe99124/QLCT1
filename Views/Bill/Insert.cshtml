@@ -31,16 +31,11 @@
 
 
     <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
-    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
-    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
-    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
-    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
 
 </head>
 <body>
     <div class="container content" id="content-layout">
 
-        <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
         <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
         <form method="post" action="/Product/Insert">
             <div class="title-header">
@@ -133,9 +128,6 @@
                                 <div class="form-group col-md-6 padding-top-10" id="tenbh">
                                     <label class="col-md-4 control-label">Nơi nhận hàng</label><div class="col-md-8"><input type="text" class="form-control" name="AddDelivery"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="tenbh">
-                                    <label class="col-md-4 control-label">Nơi nhận hàng</label><div class="col-md-8"><input type="text" class="form-control" name="AddDelivery"></div>
-                                </div>
                             </div>
                             <div class="col-md-12 infor-title">
                                 Các sản phẩm trong hợp đồng
@@ -186,9 +178,10 @@
             </div>
         </form>
     </div>
-    <input type="hidden" id="Ahihi" value="@Url.Action("ListPro","Bill")"/>
+    <input type="hidden" id="Ahihi" value="@Url.Action("ListPro","Bill")" />
 </body>
 </html>
+
 <script src="~/Content/theme/plugins/DataTables/datatables.js"></script>
 <script src="~/Content/CustomJS/Account/Edit.js"></script>
 

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using QLCT.Models;
 using PagedList;
+using Newtonsoft.Json;
 
 namespace QLCT.Controllers
 {
@@ -98,9 +99,9 @@ namespace QLCT.Controllers
             ViewBag.UrlBill = bill.UrlBill;
             return View();
         }
-        public ActionResult ListPro()
+        public JsonResult ListPro()
         {
-            var result = db.Products.Select(p => p);
+            var result = Newtonsoft.Json.JsonConvert.SerializeObject(db.Products.Select(p => p));
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         // Insert
