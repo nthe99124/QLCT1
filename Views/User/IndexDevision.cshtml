@@ -1,7 +1,7 @@
 ﻿
-@{
+@{ 
     ViewBag.Title = "IndexDevision";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
 
 
@@ -88,7 +88,7 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                               Tên phòng ban: <input type="text" name="tenpb"/>
+                                                                Tên phòng ban: <input type="text" name="tenpb" />
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -118,29 +118,31 @@
                                         </thead>
 
                                         <tbody>
+                                            @{ int dem = 0; }
                                             @foreach (var item in @ViewBag.list)
                                             {
-                                                <tr>
-                                                    <td class="col-stt">
-                                                        1
-                                                    </td>
-                                                    <td>
-                                                        @item.Name
-                                                    </td>
-                                                    <td>
-                                                        @item.NumberStaff
-                                                    </td>
-                                                    <td>
-                                                        <span id="admin_13" ct-type="admin" ct-user="13" class="set-role-user input-group-addon unlock-status">
-                                                            @item.IdHeader
-                                                        </span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a href="javascript:void(0);" onclick="DeleteItem(13); " class=" btn btn-danger btn-sm">X&#243;a</a>
-                                                        <a href="~/User/UpdateDevision"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                    </td>
-                                                </tr>
-                                            }
+                                <tr>
+                                    <td class="col-stt">
+                                        @(dem += 1)
+                                    </td>
+                                    <td>
+                                        @item.NameDepart
+                                    </td>
+                                    <td>
+                                        @item.NumberStaff
+                                    </td>
+                                    <td>
+                                        <span id="admin_13" ct-type="admin" ct-user="13" class="set-role-user input-group-addon unlock-status">
+                                            @item.NameUser (@item.IdUser)
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("UpdateDevision", "User", new {id = item.IdUser })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        <input type="hidden" name="" id="idin" value="@item.IdUser" size="30" />
+                                    </td>
+                                </tr>
+}
                                         </tbody>
                                     </table>
                                 </div>
@@ -165,7 +167,7 @@
 </body>
 </html>
 <script type="text/javascript">
-    avc
+
     function isDelete() {
         var inputVal = $('input').val()
         var inputid = document.getElementById("idin").value;

@@ -122,7 +122,7 @@
                                     <th class="sort_col_table" scope="col">MS thuế<i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col">Số tài khoản <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col">Tên NH <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Địa chỉ NH<i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col">Kiểu nợ<i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col">Active<i class="fa fa-exchange" aria-hidden="true"></i></th>
                                 </tr>
                                 <tr align="center">
@@ -181,7 +181,7 @@
                                 }
                                 @foreach (var item in Model)
                                 {
-                                    string StartDate = item.StartDate.ToString("dd/MM/yy");
+                                    string StartDate = item.StartDate.ToString("dd/MM/yyyy");
                                     if (Convert.ToInt32(@item.TypeOfDebt) == 1)
                                     {
                                         End = Convert.ToDateTime(@item.StartDate).AddMonths(6);
@@ -192,7 +192,8 @@
                                         End = Convert.ToDateTime(@item.StartDate).AddMonths(6);
                                         TypeOfDebt = Convert.ToString("Nợ dài hạn");
                                     }
-                                    string EndDate = End.ToString("dd/MM/yy");
+                                    string EndDate = End.ToString("dd/MM/yyyy");
+                                    string Bank = item.BankName + " chi nhánh " + item.BankAddress;
                                     <tr align="center">
                                         <td>@item.Id</td>
                                         <td>@item.Name</td>
@@ -204,8 +205,7 @@
                                         <td>@EndDate</td>
                                         <td>@item.TIN</td>
                                         <td>@item.BankNumber</td>
-                                        <td>@item.BankName</td>
-                                        <td>@item.BankAddress</td>
+                                        <td>@Bank</td>
                                         <td>@TypeOfDebt</td>
                                         <td>
                                             <a href="@Url.Action("Update", "Customer", new {id = item.Id })"><i class="fa fa-pencil" aria-hidden="true"></i></a>

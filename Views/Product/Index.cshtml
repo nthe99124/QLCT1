@@ -27,6 +27,9 @@
     <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
     <link href="~/Content/theme/bootstrap/css/bootstrap.min.css">
     <link href="~/Content/theme/plugins/DataTables/datatables.min.css">
+
+
+
     <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
     <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
 
@@ -113,6 +116,7 @@
                                     <th class="sort_col_table" scope="col"> Mô tả <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col"> Giá <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col"> Giảm giá(%) <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Thời hạn bảo hành <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col"> Đơn vị tính <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col">Active</th>
                                 </tr>
@@ -145,6 +149,10 @@
                                         <input type="text" name="" id="search7" onkeyup="search7()">
                                         <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
                                     </th>
+                                    <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
+                                        <input type="text" name="" id="search8" onkeyup="search8()">
+                                        <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
+                                    </th>
                                     <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col"></th>
                                 </tr>
                             </thead>
@@ -158,6 +166,7 @@
                                         <td>@item.Description</td>
                                         <td>@item.Price</td>
                                         <td>@item.Discount%</td>
+                                        <td>@item.MonthOfGuarantee tháng</td>
                                         <td>@item.Unit</td>
                                         <td>
                                             <a href="@Url.Action("Update", "Product", new {id = item.Id })"><i class="fa fa-pencil" aria-hidden="true"></i></a>

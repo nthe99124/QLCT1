@@ -46,7 +46,7 @@ namespace QLCT.Controllers
                            NameProduct = p.Name,
                            IdStaffGuarantee = b.IdStaffGuarantee,
                            Note = g.Note,
-                           DateOfGuarantee = Convert.ToInt32(p.DateOfGuarantee)
+                           MonthOfGuarantee = Convert.ToInt32(p.MonthOfGuarantee)
                        };
             return View(list);
         }

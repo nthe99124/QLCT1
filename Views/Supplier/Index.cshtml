@@ -120,7 +120,6 @@
                                     <th class="sort_col_table" scope="col">MS thuế<i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col">Số tài khoản <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col">Tên NH <i class="fa fa-exchange" aria-hidden="true"></i></th>
-                                    <th class="sort_col_table" scope="col">Địa chỉ NH<i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col">Active<i class="fa fa-exchange" aria-hidden="true"></i></th>
                                 </tr>
                                 <tr align="center">
@@ -156,32 +155,28 @@
                                         <input type="text" name="" id="search8" onkeyup="search8()">
                                         <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
                                     </th>
-                                    <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search9" onkeyup="search9()">
-                                        <i class="fa fa-search" aria-hidden="true" style="padding-top: 2px"></i>
-                                    </th>
                                     <th style="width: 100px; border-color: black; padding-bottom: 10px" class="sort_col_table" scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr align="center">
-                                    <td>@item.Id</td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Phone</td>
-                                    <td>@item.Address</td>
-                                    <td>@item.Debt</td>
-                                    <td>@item.TIN</td>
-                                    <td>@item.BankNumber</td>
-                                    <td>@item.BankName</td>
-                                    <td>@item.BankAddress</td>
-                                    <td>
-                                        <a href="@Url.Action("Update", "Supplier", new {id = item.Id })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                        <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                        <input type="hidden" name="" id="idin" value="@item.Id" size="30" />
-                                    </td>
-                                </tr>
+                                    string Bank = item.BankName + " chi nhánh " + item.BankAddress;
+                                    <tr align="center">
+                                        <td>@item.Id</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Phone</td>
+                                        <td>@item.Address</td>
+                                        <td>@item.Debt</td>
+                                        <td>@item.TIN</td>
+                                        <td>@item.BankNumber</td>
+                                        <td>@Bank</td>
+                                        <td>
+                                            <a href="@Url.Action("Update", "Supplier", new {id = item.Id })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <input type="hidden" name="" id="idin" value="@item.Id" size="30" />
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>

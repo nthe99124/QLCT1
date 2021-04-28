@@ -106,6 +106,36 @@ namespace QLCT.Controllers
                           select c;
             return View(viewcus.ToPagedList(page ?? 1, 20));
         }
+        public ActionResult Index4(int? page)
+        {
+
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Log");
+            }
+            var viewcus = from c in db.Customers
+                          where c.IsDeleted == false
+                          where c.TypeOfDebt == 1? Convert.ToInt32(DateTime.Compare(DateTime.Now,c.StartDate.AddMonths(6)))== 1 : Convert.ToInt32(DateTime.Compare(DateTime.Now, c.StartDate.AddMonths(12))) == 1
+                          orderby c.Name descending
+                          select c;
+            return View(viewcus.ToPagedList(page ?? 1, 20));
+        }
+        [HttpPost]
+        public ActionResult Index4(int? page, FormCollection a)
+        {
+
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Log");
+            }
+            var viewcus = from c in db.Customers
+                          where c.Name.Contains(Request["key"])
+                          where c.IsDeleted == false
+                          where c.TypeOfDebt == 2
+                          orderby c.Name descending
+                          select c;
+            return View(viewcus.ToPagedList(page ?? 1, 20));
+        }
         #endregion
         // Insert
         public ActionResult Insert()

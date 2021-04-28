@@ -5,7 +5,7 @@ using System.Web;
 
 namespace QLCT.Models
 {
-    public class User_DetailsBill_Cus_Bill
+    public class User_DetailsBill_Cus_Bill_Product
     {
         public int IdBill { get; set; }
         public int? IdUser { get; set; }
@@ -24,6 +24,11 @@ namespace QLCT.Models
         public float Gia { get; set; }
         public float GiamGia { get; set; }
         public int? IdStaffGuarantee { get; set; }
-        public int DateOfGuarantee { get; set; }
+        public float Totalpay { get; set; }
+        public float Deposit { get; set; }
+        public int TypeOfDebt { get; set; }
+        public float Debt { get; set; }
+        public int MonthOfGuarantee { get; set; }
+        
     }
 }

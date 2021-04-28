@@ -49,6 +49,8 @@ jQuery.fn.sortElements = (function () {
 $('.sort_col_table')
     .wrapInner('<span title="sort this column"/>')
     .each(function () {
+        debugger;
+
         var th = $(this),
             thIndex = th.index(),
             inverse = false;

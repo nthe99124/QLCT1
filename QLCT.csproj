@@ -158,7 +158,7 @@
     <Compile Include="Models\SearchPlan.cs" />
     <Compile Include="Models\UserDepart.cs" />
     <Compile Include="Models\User_Depart_Plan.cs" />
-    <Compile Include="Models\User_DetailsBill_Cus_Bill.cs" />
+    <Compile Include="Models\User_DetailsBill_Cus_Bill_Product.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.5.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -215,6 +215,7 @@
     <Content Include="Content\CustomCSS\openSans.css" />
     <Content Include="Content\CustomCSS\tag_module.css" />
     <Content Include="Content\CustomJS\backToTop.js" />
+    <Content Include="Content\CustomJS\Bill\Insert.js" />
     <Content Include="Content\CustomJS\CommonModule.js" />
     <Content Include="Content\CustomJS\CommonUpload.js" />
     <Content Include="Content\CustomJS\Customer\Index1.js" />
@@ -1376,10 +1377,6 @@
     <Content Include="packages\EntityFramework.6.2.0\tools\EntityFramework.PowerShell.Utility.dll" />
     <Content Include="packages\EntityFramework.6.2.0\tools\migrate.exe" />
     <Content Include="Content\FileHD\BaoCao_TKCSDL.pdf" />
-    <Content Include=".vs\ProjectSettings.json" />
-    <Content Include=".vs\QLCT\config\applicationhost.config" />
-    <Content Include=".vs\slnx.sqlite" />
-    <Content Include=".vscode\launch.json" />
     <None Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1-vsdoc.js" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.js" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.min.js" />
@@ -1811,10 +1808,9 @@
     <Content Include="Views\Guarantee\Update .cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Guarantee\ShowGuarantee.cshtml" />
+    <Content Include="Views\Bill\DetailsBill.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include=".vs\QLCT1\v16\" />
-    <Folder Include=".vs\QLCT\v16\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\theme\plugins\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="Content\theme\plugins\select2\i18n\" />

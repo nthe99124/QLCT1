@@ -30,7 +30,7 @@ namespace QLCT.Controllers
                        join de in db.DetailsBills on b.IdDetails equals de.Id
                        where b.TypeOfBill == 0
                        where b.IsDelete == false
-                       select new User_DetailsBill_Cus_Bill
+                       select new User_DetailsBill_Cus_Bill_Product
                        {
                            IdBill = b.Id,
                            NameBill = b.NameBill,
@@ -62,7 +62,7 @@ namespace QLCT.Controllers
                        join de in db.DetailsBills on b.IdDetails equals de.Id
                        where b.TypeOfBill == 1
                        where b.IsDelete == false
-                       select new User_DetailsBill_Cus_Bill
+                       select new User_DetailsBill_Cus_Bill_Product
                        {
                            IdBill = b.Id,
                            NameBill = b.NameBill,
@@ -98,6 +98,11 @@ namespace QLCT.Controllers
             ViewBag.UrlBill = bill.UrlBill;
             return View();
         }
+        public ActionResult ListPro()
+        {
+            var result = db.Products.Select(p => p);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
         // Insert
         public ActionResult Insert()
         {
@@ -105,14 +110,18 @@ namespace QLCT.Controllers
             {
                 return RedirectToAction("Index", "Log");
             }
-            if (Session["user"] != "PGD" && Session["user"] != "PKD")
+            if (Session["PB"] != "PGD" && Session["PB"] != "PKD")
             {
                 ViewBag.notify = "Bạn không có quyền truy cập";
             }
+            ViewBag.lstCus = db.Customers.Select(c => c);
+            ViewBag.lstUser = db.Users.Select(c => c).Where(c=>c.IdDepartment == 3 && c.IsDeleted == false);
+            ViewBag.lstPro = db.Products.Select(p => p);
+            ViewBag.lstPro1 = "Hello";
             return View();
         }
         [HttpPost]
-        public ActionResult Insert(Product pro)
+        public ActionResult Insert(Bill bill,DetailsBill debill)
         {
             if (Session["user"] == null)
             {
@@ -122,24 +131,40 @@ namespace QLCT.Controllers
             {
                 ViewBag.notify = "Bạn không có quyền truy cập";
             }
-            Product checkpro = db.Products.Where(p => p.Name == Request["Name"]).FirstOrDefault();
-            if (checkpro != null)
+            Bill checkbill = db.Bills.Where(b => b.NameBill == Request["NameBill"]).FirstOrDefault();
+            if (checkbill != null)
             {
-                ViewBag.check = "Mặt hàng này đã tồn tại!";
-                return RedirectToAction("Index", "Product");
+                ViewBag.check = "Hợp đồng này đã tồn tại!";
+                return RedirectToAction("Index", "Bill");
             }
             else
             {
-                pro.Name = Request["Name"];
-                pro.NumberRemain = Convert.ToInt32(Request["NumberRemain"]);
-                pro.Description = Request["Description"];
-                pro.Price = Convert.ToInt32(Request["Price"]);
-                pro.Discount = Convert.ToInt32(Request["Discount"]);
-                pro.Unit = Request["Unit"];
-                db.Products.InsertOnSubmit(pro);
-                db.SubmitChanges();
+                //bill.NameBill = Request["NameBill"];
+                //bill.IdUser = Convert.ToInt32(Request["NumberRemain"]);
+                //bill.IdDetails = Request["Description"];
+                //bill.IdCustormer = Convert.ToInt32(Request["Price"]);
+                //bill.UrlBill = Convert.ToInt32(Request["Discount"]);
+                //bill.Date = DateTime.Now;
+                //bill.IsDelete = false;
+                //bill.Status = DateTime.Now;
+                //bill.Date = DateTime.Now;
+                //db.Products.InsertOnSubmit(pro);
+                //db.SubmitChanges();
             }
             return this.Insert();
+        }
+        public ActionResult DetailsBill()
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Log");
+            }
+            if (Session["PB"] != "PGD" && Session["PB"] != "PKD")
+            {
+                ViewBag.notify = "Bạn không có quyền truy cập";
+            }
+            ViewBag.lstCus = db.Customers.Select(c => c);
+            return View();
         }
         // Update
         public ActionResult Update(int id)

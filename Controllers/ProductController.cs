@@ -24,14 +24,14 @@ namespace QLCT.Controllers
                           select p;
             return View(viewpro.ToPagedList(page ?? 1, 20));
         }
-        //[HttpPost]
-        //public ActionResult Index(int? page, FormCollection a)
-        //{
-        //    var viewpro = from p in db.Products
-        //                  where p.Name.Contains(Request["key"])
-        //                  select p;
-        //    return View(viewpro.ToPagedList(page ?? 1, 20));
-        //}
+        [HttpPost]
+        public ActionResult Index(int? page, FormCollection a)
+        {
+            var viewpro = from p in db.Products
+                          where p.Name.Contains(Request["key"])
+                          select p;
+            return View(viewpro.ToPagedList(page ?? 1, 20));
+        }
         // Insert
         public ActionResult Insert()
         {
@@ -70,6 +70,7 @@ namespace QLCT.Controllers
                 pro.Price = Convert.ToInt32(Request["Price"]);
                 pro.Discount = Convert.ToInt32(Request["Discount"]);
                 pro.Unit = Request["Unit"];
+                pro.MonthOfGuarantee = Convert.ToInt32(Request["MonthOfGuarantee"]);
                 db.Products.InsertOnSubmit(pro);
                 db.SubmitChanges();
             }
@@ -103,6 +104,7 @@ namespace QLCT.Controllers
             pro.Price = Decimal.Parse(Request["Price"]);
             pro.Discount = Convert.ToInt32(Request["Discount"]);
             pro.Unit = Request["Unit"];
+            pro.MonthOfGuarantee = Convert.ToInt32(Request["MonthOfGuarantee"]);
             UpdateModel(pro);
             db.SubmitChanges();
             return RedirectToAction("Index", "Product");

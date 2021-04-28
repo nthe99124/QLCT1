@@ -168,7 +168,7 @@
                                 @foreach (var item in Model)
                                 {
                                     string StartDate = item.Date.ToString("dd/MM/yy");
-                                    EndDate = Convert.ToDateTime(StartDate).AddMonths(item.DateOfGuarantee).ToString("dd/MM/yy");
+                                    EndDate = Convert.ToDateTime(StartDate).AddMonths(item.MonthOfGuarantee).ToString("dd/MM/yy");
                                     <tr class="odd gradex" align="center">
                                         <td>@item.IdGuarantee</td>
                                         <td>@item.IdBill</td>

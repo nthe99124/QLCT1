@@ -97,7 +97,7 @@
                     <div class="title-grid" style="flex: 0.4; justify-content: flex-end; padding-top: 20px; padding-right: 30px; ">
                         <ul>
                             <li class="btn btn title-button title-button--neutral" onclick="replaceEditAcc()">
-                                <a href="~/Product/Insert">
+                                <a href="~/Bill/Insert">
                                     Th&#234;m mới
                                 </a>
                             </li>
@@ -146,13 +146,14 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    string Date = item.Date.ToString("dd/MM/yyyy");
                                     <tr class="odd gradeX" align="center">
                                         <td>@item.IdBill</td>
-                                        <td>@item.NameBill</td>
+                                        <td><a href="@Url.Action("DetailsBill", "Bill", new {id = item.IdBill })">@item.NameBill</td>
                                         <td>@item.NameUser (@item.IdUser)</td>
                                         <td>@item.NameCus</td>
                                         <td><a href="@Url.Action("ShowBill", "Bill", new {id = item.IdBill })">@item.FileHD</a></td>
-                                        <td>@item.Date</td>
+                                        <td>@Date</td>
                                     </tr>
                                 }
                             </tbody>
