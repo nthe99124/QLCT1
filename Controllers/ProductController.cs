@@ -32,6 +32,11 @@ namespace QLCT.Controllers
                           select p;
             return View(viewpro.ToPagedList(page ?? 1, 20));
         }
+        public JsonResult ListPro()
+        {
+            var result = Newtonsoft.Json.JsonConvert.SerializeObject(db.Products.Select(p => p));
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
         // Insert
         public ActionResult Insert()
         {
@@ -43,6 +48,7 @@ namespace QLCT.Controllers
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
+            ViewBag.lstPro = db.Products.Select(p => p);
             return View();
         }
         [HttpPost]
