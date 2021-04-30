@@ -18,6 +18,7 @@ Status : 0 - Chưa duyệt (Chưa hoàn thành - Mới lập xong - Thêm đư�
 		 1 - Đã duyệt (Chưa hoàn thành - Sửa UrlBill dạng có chữ kí)
 		 2 - Không duyệt (Chưa hoàn thành - Phải thay đổi lại hợp đồng, sửa UrlBill chưa có chữ kí)
 		 3 - Hoàn thành (Hoàn thành -  đủ mọi thứ)
+?????????vấn đề tạo details bill : dùng append chỉ gen html tĩnh,không request được name hoặc view không call được id?????????
 --------User--------
 Status : 0 - Nhân viên
 		 1 - Leader
