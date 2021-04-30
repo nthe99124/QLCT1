@@ -259,7 +259,7 @@ namespace QLCT.Controllers
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
-            user = db.Users.Where(u => u.Id == id).SingleOrDefault();
+            //user = db.Users.Where(u => u.Id == id).SingleOrDefault();
             user.UserName = Request["UserName"];
             user.PassWord = Request["PassWord"];
             user.Name = Request["Name"];

@@ -1,8 +1,6 @@
 ﻿@using QLCT.Models
-@{
-    ViewBag.Title = "InsertSell";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewBag.Title = "InsertSell";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 @model QLCT.Models.Bill
 <!DOCTYPE html>
 <html>
@@ -38,7 +36,7 @@
 
         <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
         <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
-        <form method="post" action="/Product/Insert">
+        <form id="postAction" method="post" action="/Bill/Insert">
             <div class="title-header">
                 <div class="title-grid">
                     <div class="title-flexi-truncate">
@@ -84,7 +82,7 @@
                             </div>
                             <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
                                 <div class="form-group col-md-6 padding-top-10" id="tenbh">
-                                    <label class="col-md-4 control-label">Tên hợp đồng</label><div class="col-md-8"><input type="text" class="form-control" name="Name"></div>
+                                    <label class="col-md-4 control-label">Tên hợp đồng</label><div class="col-md-8"><input type="text" class="form-control" name="NameBill"></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="tenkh">
                                     <label class="col-md-4 control-label">Tên khách hàng</label>
@@ -132,7 +130,7 @@
                                 Các sản phẩm trong hợp đồng
                             </div>
                             <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
-                                <div class="form-group col-md-6 padding-top-10" id="nv">
+                                <div class="form-group col-md-6 padding-top-10" id="nv1">
                                     <label class="col-md-4 control-label">Tên sản phẩm</label>
                                     <div class="col-md-8">
                                         <select name="IdProduct" id="selectedPro">
@@ -148,22 +146,31 @@
                                     <label class="col-md-6 control-label">Số lượng</label><div class="col-md-6"><input type="text" class="form-control" name="Number" id="sl"></div>
                                 </div>
                                 <div class="form-group col-md-2 padding-top-10" id="tenbh">
-                                    <button type="button" onclick="getValue()"> Thêm SP</button>
+                                    <button type="button" onclick="getValue()" name="" id="btnThemsp" value="1">Thêm SP</button>
                                 </div>
+                                <input type="hidden" id="hiddenIndex" name="hiddenIndex"/>
                                 <script type="text/javascript">
+
                                     function getValue() {
+                                        var i = $('#btnThemsp').val();
                                         let html = '<tr align="center">';
-                                        html += '<td id="masp">';
+                                        html += '<td>';
                                         html += $('#selectedPro').val();
                                         html += '</td>';
-                                        html += '<td id="tensp">';
+                                        html += '<td>';
                                         html += $('#selectedPro').find(":selected").data('name');
                                         html += '</td>';
-                                        html += '<td id="sl">';
+                                        html += '<td name="Number' + i + '">';
                                         html += $('#sl').val();
                                         html += '</td>';
-                                        html += '</tr>';       
+                                        html += '</tr>';
                                         $("#tbody").append(html);
+                                        $('#hiddenIndex').val(i);
+                                        let html1 = '<input type="hidden" name="IdPro' + i + '" value="' + $('#selectedPro').val() + '" />';
+                                        html1 += '<input type="hidden" name="NamePro' + i + '" value="' + $('#selectedPro').find(":selected").data('name') + '" />';
+                                        html1 += '<input type="hidden" name="Number' + i + '" value="' + $('#sl').val() + '" />';
+                                        $("#tbody").append(html1);
+                                        $('#btnThemsp').val(++i);
                                     }
                                 </script>
                             </div>
@@ -191,7 +198,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id="tbody">
-                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -201,7 +207,7 @@
                         <div class="col-md-3">
                         </div>
                         <div class="col-md-6 text-center">
-                            <button type="submit" class="btn btn-success">
+                            <button type="submit" class="btn btn-success" id="insertBill">
                                 Lập hợp đồng
                             </button>
                             <a href="~/Product/Index" class="btn grey-salt gray" type="button">

@@ -116,7 +116,8 @@
                                         </thead>
                                         <tbody>
                                             @{ int dem = 0;
-                                                string IsLead = null; }
+                                                string IsLead = null; 
+                                            }
                                             @foreach (var item in @ViewBag.list)
                                             {
                                                 if (Convert.ToInt32(item.Status) == 0)

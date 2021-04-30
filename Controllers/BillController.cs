@@ -28,7 +28,7 @@ namespace QLCT.Controllers
             var list = from b in db.Bills
                        join u in db.Users on b.IdUser equals u.Id
                        join c in db.Customers on b.IdCustormer equals c.Id
-                       join de in db.DetailsBills on b.IdDetails equals de.Id
+                       join de in db.DetailsBills on b.Id equals de.IdBill
                        where b.TypeOfBill == 0
                        where b.IsDelete == false
                        select new User_DetailsBill_Cus_Bill_Product
@@ -42,10 +42,9 @@ namespace QLCT.Controllers
                            Date = Convert.ToDateTime(b.Date),
                            TypeOfBill = Convert.ToInt32(b.TypeOfBill)
                        };
+            
             return View(list);
         }
-        
-
         public ActionResult IndexSell()
         {
             var uid = Session["user"];
@@ -60,7 +59,7 @@ namespace QLCT.Controllers
             var list = from b in db.Bills
                        join u in db.Users on b.IdUser equals u.Id
                        join c in db.Customers on b.IdCustormer equals c.Id
-                       join de in db.DetailsBills on b.IdDetails equals de.Id
+                       join de in db.DetailsBills on b.Id equals de.IdBill
                        where b.TypeOfBill == 1
                        where b.IsDelete == false
                        select new User_DetailsBill_Cus_Bill_Product
@@ -76,15 +75,6 @@ namespace QLCT.Controllers
                        };
             return View(list);
         }
-        
-
-        public ActionResult Index(int? page, FormCollection a)
-        {
-            var viewpro = from p in db.Bills
-                          where p.NameBill.Contains(Request["key"])
-                          select p;
-            return View(viewpro.ToPagedList(page ?? 1, 20));
-        }
         public ActionResult ShowBill(int id)
         {
             if (Session["user"] == null)
@@ -98,11 +88,6 @@ namespace QLCT.Controllers
             var bill = db.Bills.First(b => b.Id == id);
             ViewBag.UrlBill = bill.UrlBill;
             return View();
-        }
-        public JsonResult ListPro()
-        {
-            var result = Newtonsoft.Json.JsonConvert.SerializeObject(db.Products.Select(p => p));
-            return Json(result, JsonRequestBehavior.AllowGet);
         }
         // Insert
         public ActionResult Insert()
@@ -140,17 +125,35 @@ namespace QLCT.Controllers
             }
             else
             {
-                //bill.NameBill = Request["NameBill"];
-                //bill.IdUser = Convert.ToInt32(Request["NumberRemain"]);
-                //bill.IdDetails = Request["Description"];
-                //bill.IdCustormer = Convert.ToInt32(Request["Price"]);
-                //bill.UrlBill = Convert.ToInt32(Request["Discount"]);
-                //bill.Date = DateTime.Now;
-                //bill.IsDelete = false;
-                //bill.Status = DateTime.Now;
-                //bill.Date = DateTime.Now;
-                //db.Products.InsertOnSubmit(pro);
-                //db.SubmitChanges();
+                
+                bill.NameBill = Request["NameBill"];
+                bill.IdUser = Convert.ToInt32(Request["IdUser"]);
+                bill.IdCustormer = Convert.ToInt32(Request["IdCustormer"]);
+                bill.Date = DateTime.Now;
+                bill.IsDelete = false;
+                bill.Status = 0;
+                bill.AddDelivery = Request["AddDelivery"];
+                bill.Totalpay = 0;
+                bill.TypeOfBill = Convert.ToInt32(Request["TypeOfBill"]);
+                bill.TypeOfDebt = Convert.ToInt32(Request["TypeOfDebt"]);
+                bill.Deposit = decimal.Parse(Request["Deposit"]);
+                bill.Debt = decimal.Parse(Request["Debt"]);
+                db.Bills.InsertOnSubmit(bill);
+                db.SubmitChanges();
+                List<int> getid = db.Bills.Where(b => b.NameBill == bill.NameBill && b.IdUser == bill.IdUser && b.IdCustormer == bill.IdCustormer &&
+                b.Date == bill.Date && b.IsDelete == false && bill.Status == 0 && b.AddDelivery == bill.AddDelivery
+                && b.TypeOfBill == bill.TypeOfBill && b.TypeOfDebt == bill.TypeOfDebt && b.Deposit == bill.Deposit && b.Debt == bill.Debt).Select(b => b.Id).ToList();
+                var index = Convert.ToInt32(Request["hiddenIndex"]);
+                for (int i = 0; i < index; i++)
+                {
+                    debill.IdBill = getid[0];
+                    var IdPro = String.Format("IdPro{0}",i+1);
+                    var Number = String.Format("Number{0}", i+1);
+                    debill.IdProduct = Convert.ToInt32(Request[IdPro]);
+                    debill.Number = Convert.ToInt32(Request[Number]);
+                    db.DetailsBills.InsertOnSubmit(debill);
+                }
+                db.SubmitChanges();
             }
             return this.Insert();
         }
@@ -186,7 +189,7 @@ namespace QLCT.Controllers
         {
             if (Session["user"] == null)
             {
-                return RedirectToAction("Index", "Log");
+                return  RedirectToAction("Index", "Log");
             }
             pro = db.Products.Where(c => c.Id == id).SingleOrDefault();
             pro.Name = Request["Name"];

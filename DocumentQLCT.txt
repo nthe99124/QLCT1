@@ -14,8 +14,10 @@ TypeOfDebt: 1 - Nợ ngắn hạn (180 ngày)
 TypeOfBill :  0 - Hợp đồng mua
 			  1 - Hợp đồng bán
 			  
-			  
-			  
+Status : 0 - Chưa duyệt (Chưa hoàn thành - Mới lập xong - Thêm được UrlBill dạng chưa có chữ kí)
+		 1 - Đã duyệt (Chưa hoàn thành - Sửa UrlBill dạng có chữ kí)
+		 2 - Không duyệt (Chưa hoàn thành - Phải thay đổi lại hợp đồng, sửa UrlBill chưa có chữ kí)
+		 3 - Hoàn thành (Hoàn thành -  đủ mọi thứ)
 --------User--------
 Status : 0 - Nhân viên
 		 1 - Leader
