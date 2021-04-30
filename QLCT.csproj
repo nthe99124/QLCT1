@@ -1377,6 +1377,7 @@
     <Content Include="packages\EntityFramework.6.2.0\tools\EntityFramework.PowerShell.Utility.dll" />
     <Content Include="packages\EntityFramework.6.2.0\tools\migrate.exe" />
     <Content Include="Content\FileHD\BaoCao_TKCSDL.pdf" />
+    <Content Include=".vscode\launch.json" />
     <None Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1-vsdoc.js" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.js" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.min.js" />
@@ -1793,9 +1794,7 @@
     <Content Include="Views\Log\SignOut.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
     <Content Include="Views\User\IndexDevision.cshtml" />
-    <Content Include="Views\User\InsertDevision.cshtml" />
     <Content Include="Views\User\InsertUser.cshtml" />
-    <Content Include="Views\User\UpdateDevision.cshtml" />
     <Content Include="Views\User\UpdateUser.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
     <Content Include="Views\Supplier\Insert.cshtml" />
