@@ -73,12 +73,12 @@
                                             </div>
                                             <div class="page-toolbar">
                                                 <div class="btn-group pull-right  ">
-                                                    <button type="button" class="btn btn-primary btn green btn-success margin-right-10" data-toggle="modal" data-target="#thempb">
+                                                    <button type="button" class="btn btn-primary btn green btn-success margin-right-10" data-toggle="modal" data-target="#exampleModal">
                                                         <i class="fa fa-plus"></i>
                                                         Th&#234;m mới
                                                     </button>
                                                 </div>
-                                                <div class="modal fade" id="thempb" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -91,8 +91,8 @@
                                                                 Tên phòng ban: <input type="text" name="tenpb" />
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                                                                <button type="button" class="btn btn-primary">Thêm</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Save changes</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -136,33 +136,8 @@
                                             @item.NameUser (@item.IdUser)
                                         </span>
                                     </td>
-                                    <td>
-                                        <div class="page-toolbar">
-                                            <div class="btn-group pull-right  ">
-                                                <button type="button" class="margin-right-10" data-toggle="modal" data-target="#suapb">
-                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                            <div class="modal fade" id="suapb" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" id="exampleModalLabel"><b>Sửa phòng ban</b></h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            Tên phòng ban: <input type="text" name="tenpb" />
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                                                            <button type="button" class="btn btn-primary">Thêm</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("UpdateDevision", "User", new {id = item.IdUser })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                         <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                         <input type="hidden" name="" id="idin" value="@item.IdUser" size="30" />
                                     </td>

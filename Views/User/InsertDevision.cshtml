@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Insert";
+    ViewBag.Title = "InsertDevision";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Thêm sản phẩm</title>
+    <title>Thêm đơn vị</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" href="~/favicon.ico">
@@ -42,7 +42,7 @@
 
         <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
         <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
-        <form method="post" action="/Product/Insert">
+        <form action="~/User/InsertDevision" class="horizontal-form" id="form-request" method="post">
             <div class="title-header">
                 <div class="title-grid">
                     <div class="title-flexi-truncate">
@@ -60,7 +60,7 @@
                                 <nav>
                                     <ol class="title-ol">
                                         <li class="title-li">
-                                            <span>Sản phẩm</span>
+                                            <span>Đơn vị</span>
                                         </li>
                                     </ol>
                                 </nav>
@@ -68,7 +68,7 @@
                                     <div class="title-header__title">
                                         <div class="title-name">
                                             <div>
-                                                <span>Thêm sản phẩm</span>
+                                                <span>Thêm đơn vị</span>
                                             </div>
 
                                         </div>
@@ -86,48 +86,31 @@
                             <div class="col-md-12 infor-title">
                                 Th&#244;ng tin cơ bản
                             </div>
-
-                            <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
-
-                                <div class="form-group col-md-6 padding-top-10" id="T&#234;n viết tắt">
-                                    <label class='col-md-4 control-label'>Tên sản phẩm</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Name'></div>
+                            <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 300px">
+                                <div class="form-group col-md-12 padding-top-10" id="hoten">
+                                    <label class="col-md-5 control-label">Tên phòng ban</label>
+                                    <div class="col-md-7">
+                                        <input id="" type="text" value="" class="form-control " name="" />
+                                    </div>
                                 </div>
-
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; bưu ch&#237;nh">
-                                    <label class='col-md-4 control-label'>SL còn</label><div class='col-md-8'><input required="" type="text" class="form-control" name='NumberRemain'></div>
-                                </div>
-                                <div class="form-group col-md-6 padding-top-10" id="Số fax">
-                                    <label class='col-md-4 control-label'>Mô tả</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Description'></div>
-                                </div>
-
-                                <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
-                                    <label class='col-md-4 control-label'>Giá</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Price'></div>
-                                </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Giảm giá(%)</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Discount'></div>
-                                </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Đơn vị tính</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit'></div>
-                                </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Thời hạn bảo hành</label><div class='col-md-8'><input type='text' class='form-control' name="MonthOfGuarantee" /></div>
+                                <div class="form-group col-md-12 padding-top-10" id="">
+                                    <label class="col-md-5 control-label">Số lượng nhân viên</label>
+                                    <div class="col-md-7">
+                                        <input id="" type="text" value="" class="form-control " name="" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 " style="padding-left: 200px">
+                    <div class="col-md-12 " style="padding-left: 450px">
                         <div class="margin-top-30">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <button type="submit" class="btn btn-success">
-                                    Thêm sản phẩm
+                            <div class="col-md-7 text-center">
+                                <button type="submit" class="btn btn-success ">
+                                    <i></i> Thêm đơn vị
                                 </button>
-                                <a href="~/Product/Index" class="btn grey-salt gray" type="button">
+                                <a href="~/Plan/IndexPersinalLeader" class="btn grey-salt gray" type="button">
                                     <i></i> Hủy
                                 </a>
-                            </div>
-                            <div class="col-md-3">
                             </div>
                         </div>
                     </div>
@@ -135,11 +118,5 @@
             </div>
         </form>
     </div>
-    <footer class="main-footer no-margin">
-        <div class="text-center">  Công ty TNHH thương mại và dịch vụ Vũ Hà.</div>
-    </footer>
 </body>
 </html>
-<script src="~/Content/theme/plugins/DataTables/datatables.js"></script>
-<script src="~/Content/CustomJS/Account/Edit.js"></script>
-
