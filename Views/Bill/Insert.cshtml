@@ -137,7 +137,7 @@
                                             <option>Chọn sản phẩm</option>
                                             @foreach (var item in @ViewBag.lstPro)
                                             {
-                                                <option value="@item.Id" data-name="@item.Name">@item.Name</option>
+                                                <option value="@item.Id" data-name="@item.Name" data-price="@item.Price" data-discount="@item.Discount">@item.Name</option>
                                             }
                                         </select>
                                     </div>
@@ -163,6 +163,18 @@
                                         html += '<td name="Number' + i + '">';
                                         html += $('#sl').val();
                                         html += '</td>';
+                                        html += '<td>';
+                                        html += $('#selectedPro').find(":selected").data('price');
+                                        html += '</td>';
+                                        html += '<td>';
+                                        html += $('#selectedPro').find(":selected").data('discount');
+                                        html += '</td>';
+                                        html += '<td>';
+                                        html += (1 - $('#selectedPro').find(":selected").data('discount') / 100) * $('#sl').val() * $('#selectedPro').find(":selected").data('price');
+                                        html += '</td>';
+                                        html += '<td>';
+                                        html += '<button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
+                                        html += '</td>';
                                         html += '</tr>';
                                         $("#tbody").append(html);
                                         $('#hiddenIndex').val(i);
@@ -174,26 +186,44 @@
                                     }
                                 </script>
                             </div>
-                            <div style="padding-top: 10px; margin-left: 130px">
+                            <div style="padding-top: 10px; margin-left: 100px">
                                 <table id="myTable" class="table table-bordered" style="background-color: white;">
                                     <thead>
                                         <tr align="center">
                                             <th class="sort_col_table" scope="col"> Mã sản phẩm <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                             <th class="sort_col_table" scope="col"> Tên sản phẩm <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                             <th class="sort_col_table" scope="col"> Số lượng <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                            <th class="sort_col_table" scope="col"> Giá <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                            <th class="sort_col_table" scope="col"> Giảm giá <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                            <th class="sort_col_table" scope="col"> Thành tiền <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                            <th class="sort_col_table" scope="col"> Xoá <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                         </tr>
                                         <tr align="center">
                                             <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
-                                                <input type="text" name="" id="search1" onkeyup="search1()" style="width: 200px">
+                                                <input type="text" name="" id="search1" onkeyup="search1()" style="width: 150px">
                                                 <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
                                             </th>
                                             <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
-                                                <input type="text" name="" id="search1" onkeyup="search2()" style="width: 200px">
+                                                <input type="text" name="" id="search1" onkeyup="search2()" style="width: 150px">
                                                 <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
                                             </th>
                                             <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
-                                                <input type="text" name="" id="search1" onkeyup="search3()" style="width: 200px">
+                                                <input type="text" name="" id="search1" onkeyup="search3()" style="width: 100px">
                                                 <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                            </th>
+                                            <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
+                                                <input type="text" name="" id="search1" onkeyup="search4()" style="width: 150px">
+                                                <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                            </th>
+                                            <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
+                                                <input type="text" name="" id="search1" onkeyup="search5()" style="width: 100px">
+                                                <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                            </th>
+                                            <th>
+                                                <label style="width: 100px"></label>
+                                            </th>
+                                            <th>
+                                                <label style="width: 50px"></label>
                                             </th>
                                         </tr>
                                     </thead>
