@@ -1,9 +1,9 @@
-﻿
+﻿@using QLCT.Models
 @{
     ViewBag.Title = "Insert";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@model QLCT.Models.Product
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,16 +31,11 @@
 
 
     <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
-    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
-    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
-    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
-    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
 
 </head>
 <body>
     <div class="container content" id="content-layout">
 
-        <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
         <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
         <form method="post" action="/Product/Insert">
             <div class="title-header">
@@ -87,113 +82,157 @@
                                 Th&#244;ng tin cơ bản
                             </div>
                             <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
-                                <div class="form-group col-md-6 padding-top-10" id="T&#234;n viết tắt">
-                                    <label class='col-md-4 control-label'>Tên sản phẩm</label>
-                                    <div class='col-md-8'>
-                                        <select name="IdProduct" id="selectedPro">
-                                            <option>Chọn sản phẩm</option>
-                                            @foreach (var item in @ViewBag.lstPro)
-                                            {
-                                                <option value="@item.Id" data-name="@item.Name" data-price="@item.Price" data-discount="@item.Discount" data-time="@item.MonthOfGuarantee" data-unit="@item.Unit">@item.Name</option>
-                                            }
-                                        </select>
-                                    </div>
+                                <div class="form-group col-md-6 padding-top-10" id="">
+                                    <label class='col-md-4 control-label'>Tên sản phẩm</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Name' id="Name"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; bưu ch&#237;nh">
+                                <div class="form-group col-md-6 padding-top-10" id="">
                                     <label class='col-md-4 control-label'>Số Lượng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='NumberRemain' id="sl"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="Số fax">
-                                    <label class='col-md-4 control-label'>Mô tả</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Description'></div>
+                                <div class="form-group col-md-6 padding-top-10" id="">
+                                    <label class='col-md-4 control-label'>Mô tả</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Description' id="Description"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
+                                <div class="form-group col-md-6 padding-top-10" id="">
                                     <label class='col-md-4 control-label'>Giá</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Price' id="price"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                <div class="form-group col-md-6 padding-top-10" id="">
                                     <label class='col-md-4 control-label'>Giảm giá(%)</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Discount' id="discount"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
+                                <div class="form-group col-md-6 padding-top-10" id="">
                                     <label class='col-md-4 control-label'>Đơn vị tính</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit' id="unit"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; số thuế">
-                                    <label class='col-md-4 control-label'>Thời hạn bảo hành</label><div class='col-md-8'><input type='text' class='form-control' name="MonthOfGuarantee" id="time"/></div>
+                                <div class="form-group col-md-6 padding-top-10" id="">
+                                    <label class='col-md-4 control-label'>Thời hạn bảo hành</label><div class='col-md-8'><input type='text' class='form-control' name="MonthOfGuarantee" id="time" /></div>
                                 </div>
                             </div>
+                            <div class="form-group col-md-2 padding-top-10" id="" style="margin-left: 400px">
+                                <button type="button" onclick="getValue()" name="" id="btnThemsp" value="1" style="width: 150px">Thêm vào danh sách</button>
+                            </div>
+                            <input type="hidden" id="hiddenIndex" name="hiddenIndex" />
                         </div>
                     </div>
+                    <button type="button" onclick="hihi()" id="dcm">Ấn đi đm</button>
+
                     <div class="col-md-12 infor-title">
                         Danh sách các sản phẩm thêm
                     </div>
-                    <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
-                        <div class="form-group col-md-6 padding-top-10" id="nv1">
-                            <label class="col-md-4 control-label">Tên sản phẩm</label>
-                            <div class="col-md-8">
-                                <select name="IdProduct" id="selectedPro">
-                                    <option>Chọn sản phẩm</option>
-                                    @foreach (var item in @ViewBag.lstPro)
-                                    {
-                                        <option value="@item.Id" data-name="@item.Name">@item.Name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-4 padding-top-10" id="tenbh">
-                            <label class="col-md-6 control-label">Số lượng</label><div class="col-md-6"><input type="text" class="form-control" name="Number" id="sl"></div>
-                        </div>
-                        <div class="form-group col-md-2 padding-top-10" id="tenbh">
-                            <button type="button" onclick="getValue()" name="" id="btnThemsp" value="1">Thêm SP</button>
-                        </div>
-                        <input type="hidden" id="hiddenIndex" name="hiddenIndex" />
-                        <script type="text/javascript">
 
-                                    function getValue() {
-                                        var i = $('#btnThemsp').val();
-                                        let html = '<tr align="center">';
-                                        html += '<td>';
-                                        html += $('#selectedPro').val();
-                                        html += '</td>';
-                                        html += '<td>';
-                                        html += $('#selectedPro').find(":selected").data('name');
-                                        html += '</td>';
-                                        html += '<td name="Number' + i + '">';
-                                        html += $('#sl').val();
-                                        html += '</td>';
-                                        html += '</tr>';
-                                        $("#tbody").append(html);
-                                        $('#hiddenIndex').val(i);
-                                        let html1 = '<input type="hidden" name="IdPro' + i + '" value="' + $('#selectedPro').val() + '" />';
-                                        html1 += '<input type="hidden" name="NamePro' + i + '" value="' + $('#selectedPro').find(":selected").data('name') + '" />';
-                                        html1 += '<input type="hidden" name="Number' + i + '" value="' + $('#sl').val() + '" />';
-                                        $("#tbody").append(html1);
-                                        $('#btnThemsp').val(++i);
-                                    }
+                    <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
+                        <script type="text/javascript">
+                            function getValue() {
+                                var i = $('#btnThemsp').val();
+                                let html = '<tr align="center" class="tablerun" id="table' + i + '">';
+                                html += '<td>';
+                                html += $('#Name').val();
+                                html += '</td>';
+                                html += '<td>';
+                                html += $('#sl').val();
+                                html += '</td>';
+                                html += '<td>';
+                                html += $('#Description').val();
+                                html += '</td>';
+                                html += '<td>';
+                                html += $('#price').val();
+                                html += '</td>';
+                                html += '<td>';
+                                html += $('#discount').val();
+                                html += '</td>';
+                                html += '<td>';
+                                html += $('#time').val();
+                                html += '</td>';
+                                html += '<td>';
+                                html += $('#unit').val();
+                                html += '</td>';
+                                html += '<td>';
+                                html += '<button type="button" class="Delete" id="isDelete' + i + '" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
+                                html += '</td>';
+                                html += '</tr>';
+                                $("#tbody").append(html);
+                                $('#hiddenIndex').val(i);
+                                let html1 = '<input type="hidden" name="NamePro' + i + '" value="' + $('#Name').val() + '" />';
+                                html1 += '<input type="hidden" name="NumberRemain' + i + '" value="' + $('#sl').val() + '" />';
+                                html1 += '<input type="hidden" name="Description' + i + '" value="' + $('#sl').val() + '" />';
+                                html1 += '<input type="hidden" name="Price' + i + '" value="' + $('#price').val() + '" />';
+                                html1 += '<input type="hidden" name="Discount' + i + '" value="' + $('#discount').val() + '" />';
+                                html1 += '<input type="hidden" name="MonthOfGuarantees' + i + '" value="' + $('#time').val() + '" />';
+                                html1 += '<input type="hidden" name="Unit' + i + '" value="' + $('#unit').val() + '" />';
+                                $("#tbody").append(html1);
+                                $('#btnThemsp').val(++i);
+                            };
+                            var i = $('#hiddenIndex').val() - 1;
+                            $('.Delete').each(function(index,value){
+                            
+                            })
+                            var isDele = "#isDelete" + i;
+                            debugger;
+                            $('#isdelete1').click(function () {
+                                var indexdiv = ".table" + i;
+                                debugger;
+                                $(indexdiv).removeClass();
+                            });
+                            //$('.Delete').each(function (i) {
+                            //    debugger;
+                            //    var indexrun = i + 1;
+                            //    var isDele = "isDelete" + indexrun;
+                            //    $(isDele).click(function(){
+                            //        var indexdiv = ".table" + indexrun;
+                            //        debugger;
+                            //        $(indexdiv).removeClass();
+                            //    });
+                            //});
                         </script>
                     </div>
-                    <div style="padding-top: 10px; margin-left: 130px">
+
+                    <div style="padding-top: 10px; margin-left: 50px">
                         <table id="myTable" class="table table-bordered" style="background-color: white;">
                             <thead>
                                 <tr align="center">
-                                    <th class="sort_col_table" scope="col"> Mã sản phẩm <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col"> Tên sản phẩm <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                     <th class="sort_col_table" scope="col"> Số lượng <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Mô tả <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Giá <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Giảm giá <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Thời hạn bảo hành <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Đơn vị <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                    <th class="sort_col_table" scope="col"> Xoá <i class="fa fa-exchange" aria-hidden="true"></i></th>
                                 </tr>
                                 <tr align="center">
                                     <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search1" onkeyup="search1()" style="width: 200px">
+                                        <input type="text" name="" id="search1" onkeyup="search1()" style="width: 150px">
                                         <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
                                     </th>
                                     <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search1" onkeyup="search2()" style="width: 200px">
+                                        <input type="text" name="" id="search1" onkeyup="search2()" style="width: 150px">
                                         <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
                                     </th>
                                     <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
-                                        <input type="text" name="" id="search1" onkeyup="search3()" style="width: 200px">
+                                        <input type="text" name="" id="search1" onkeyup="search3()" style="width: 100px">
                                         <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                    </th>
+                                    <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
+                                        <input type="text" name="" id="search1" onkeyup="search4()" style="width: 150px">
+                                        <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                    </th>
+                                    <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
+                                        <input type="text" name="" id="search1" onkeyup="search5()" style="width: 100px">
+                                        <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                    </th>
+                                    <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
+                                        <input type="text" name="" id="search1" onkeyup="search6()" style="width: 100px">
+                                        <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                    </th>
+                                    <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
+                                        <input type="text" name="" id="search1" onkeyup="search7()" style="width: 100px">
+                                        <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                    </th>
+                                    <th style="border-color: black; padding-bottom: 20px; width: 80px" class="sort_col_table" scope="col">
                                     </th>
                                 </tr>
                             </thead>
                             <tbody id="tbody">
                             </tbody>
+
                         </table>
+                        <div id="test"></div>
                     </div>
                     <div class="col-md-12 " style="padding-left: 200px">
                         <div class="margin-top-30">
@@ -215,25 +254,6 @@
             </div>
         </form>
     </div>
-    <footer class="main-footer no-margin">
-        <div class="text-center">  Công ty TNHH thương mại và dịch vụ Vũ Hà.</div>
-    </footer>
 </body>
 </html>
 <script src="~/Content/theme/plugins/DataTables/datatables.js"></script>
-<script src="~/Content/CustomJS/Account/Edit.js"></script>
-<script type="text/javascript">
-
-    function isDelete() {
-        var inputVal = $('input').val()
-        var inputid = document.getElementById("idin").value;
-        var result = confirm("Bạn có chắc chắn muốn xoá không ?");
-        var url = '/Product/Delete/' + inputid;
-
-        if (result) {
-
-            window.location.href = url;
-        }
-    }
-
-</script>

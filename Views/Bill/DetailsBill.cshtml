@@ -4,5 +4,118 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DetailsBill</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Chi tiết hợp đồng</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="~/favicon.ico">
+    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
+    <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/icons/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
+
+
+    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+
+    <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
+    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
+    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
+    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
+    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container content" id="content-layout">
+        <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
+        <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
+        <form method="post" action="/Product/Insert">
+            <div class="title-header">
+                <div class="title-grid">
+                    <div class="title-flexi-truncate">
+                        <div class="title-media">
+                            <div class="title-media__figure">
+                                <div>
+                                    <div class="title-icon" style="background-color: #A094ED">
+                                        <span>
+                                            <img src="~/Content/CustomCSS/Image/contact_120.png" class="title-icon" alt="Contacts" title="Contacts">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <nav>
+                                    <ol class="title-ol">
+                                        <li class="title-li">
+                                            <span>Hợp đồng</span>
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <div class="title-grid">
+                                    <div class="title-header__title">
+                                        <div class="title-name">
+                                            <div>
+                                                <span>Chi tiết hợp đồng</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data-content">
+                <table>
+                    <tr>
+                        <td class="col-md-6" style="padding-bottom: 250px">
+                            <div style="padding-left: 40px" id="mabh">
+                                <label class="col-md-5">Mã hợp đồng: </label>
+                                <label>Mã hợp đồng </label>
+                            </div>
+                            <div style="padding-left: 40px; padding-top: 20px" id="tenbh">
+                                <label class="col-md-5">Tên hợp đồng: </label>
+                                <label>Tên hợp đồng </label>
+                            </div>
+                            <div style="padding-left: 40px; padding-top: 20px" id="mabh">
+                                <label class="col-md-5">Tên khách hàng: </label>
+                                <label>Tên khách hàng </label>
+                            </div>
+                            <div style="padding-left: 40px; padding-top: 20px" id="mabh">
+                                <label class="col-md-5">Nhân viên phụ trách: </label>
+                                <label>Nhân viên phụ trách</label>
+                            </div>
+                            <div style="padding-left: 40px; padding-top: 20px" id="mabh">
+                                <label class="col-md-5">File hợp đồng: </label>
+                                <label>File hợp đồng</label>
+                            </div>
+                            <div style="padding-left: 40px; padding-top: 20px" id="mabh">
+                                <label class="col-md-5">Loại hợp đồng: </label>
+                                <label>Loại hợp đồng</label>
+                            </div>
+                        </td>
+                        <td class="col-md-6">
+                            <div id="content-layout" style="padding-left: 30px">
+                                <iframe id="iframepdf" src="@String.Format("/Content/FileHD/{0}",ViewBag.UrlBill)" style="width: 760px; height: 530px"></iframe>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
 
