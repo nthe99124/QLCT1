@@ -3,6 +3,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model PagedList.IPagedList<QLCT.Models.Product>
+@using PagedList.Mvc;
 
 <!DOCTYPE html>
 <html>
@@ -182,6 +184,11 @@
             </div>
         </div>
     </div>
+    <br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))
 </body>
 </html>
 
@@ -214,7 +221,7 @@
         if (result) {
 
             window.location.href = url;
-        } 
+        }
     }
 
 </script>

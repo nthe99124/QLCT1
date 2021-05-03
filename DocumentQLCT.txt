@@ -17,7 +17,10 @@ TypeOfBill :  0 - Hợp đồng mua
 Status : 0 - Chưa duyệt (Chưa hoàn thành - Mới lập xong - Thêm được UrlBill dạng chưa có chữ kí)
 		 1 - Đã duyệt (Chưa hoàn thành - Sửa UrlBill dạng có chữ kí)
 		 2 - Không duyệt (Chưa hoàn thành - Phải thay đổi lại hợp đồng, sửa UrlBill chưa có chữ kí)
-		 3 - Hoàn thành (Hoàn thành -  đủ mọi thứ)
+		 3 - Hoàn thành hợp đồng nhưng chưa xuất hàng khỏi kho
+		 4 - Hoàn thành hợp đồng, đã xuất hàng khỏi kho, đang vận chuyển
+		 5 - Hoàn thành hợp đồng, đã giao, hợp đồng còn nợ theo thỏa thuận
+		 6 - Hoàn thành (Hợp đồng không còn nợ gì cả)
 ?????????vấn đề tạo details bill : dùng append chỉ gen html tĩnh,không request được name hoặc view không call được id?????????
 --------User--------
 Status : 0 - Nhân viên

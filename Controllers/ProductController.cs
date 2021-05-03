@@ -22,7 +22,7 @@ namespace QLCT.Controllers
             var viewpro = from p in db.Products
                           orderby p.Name descending
                           select p;
-            return View(viewpro.ToPagedList(page ?? 1, 20));
+            return View(viewpro.ToPagedList(page ?? 5, 5));
         }
         [HttpPost]
         public ActionResult Index(int? page, FormCollection a)
@@ -30,7 +30,7 @@ namespace QLCT.Controllers
             var viewpro = from p in db.Products
                           where p.Name.Contains(Request["key"])
                           select p;
-            return View(viewpro.ToPagedList(page ?? 1, 20));
+            return View(viewpro.ToPagedList(page ?? 5, 5));
         }
         public JsonResult ListPro()
         {
@@ -63,14 +63,10 @@ namespace QLCT.Controllers
                 return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
             }
             Product checkpro = db.Products.Where(p => p.Name == Request["Name"]).FirstOrDefault();
-            if (checkpro != null)
+            var index = Convert.ToInt32(Request["hiddenIndex"]);
+            for (int i = 0; i < index; i++)
             {
-                ViewBag.check = "Mặt hàng này đã tồn tại!";
-                return RedirectToAction("Index", "Product");
-            }
-            else
-            {
-                pro.Name = Request["Name"];
+                pro.Name = Request["NamePro"];
                 pro.NumberRemain = Convert.ToInt32(Request["NumberRemain"]);
                 pro.Description = Request["Description"];
                 pro.Price = Convert.ToInt32(Request["Price"]);
@@ -78,8 +74,8 @@ namespace QLCT.Controllers
                 pro.Unit = Request["Unit"];
                 pro.MonthOfGuarantee = Convert.ToInt32(Request["MonthOfGuarantee"]);
                 db.Products.InsertOnSubmit(pro);
-                db.SubmitChanges();
             }
+            db.SubmitChanges();
             return this.Insert();
         }
         // Update

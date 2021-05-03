@@ -76,7 +76,7 @@ namespace QLCT.Controllers
             }
             return View();
         }
-        public ActionResult IndexDevision()
+        public ActionResult IndexDivision()
         {
             if (Session["user"] == null)
             {
@@ -88,18 +88,19 @@ namespace QLCT.Controllers
                 {
                     ViewBag.notify = "Bạn không có quyền truy cập";
                 }
-                ViewBag.list = from d in db.Departments
-                               join u in db.Users on d.IdHeader equals u.Id
-                               where d.IsDeleted == false
-                               orderby d.Name descending
-                               select new UserDepart
-                               {
-                                   IdHeader = d.Id,
-                                   NameUser = u.Name,
-                                   NameDepart = d.Name,
-                                   NumberStaff = d.NumberStaff,
-                                   IdUser = u.Id
-                               };
+                ViewBag.list = (from d in db.Departments
+                                join u in db.Users on d.IdHeader equals u.Id into u1
+                                from u2 in u1.DefaultIfEmpty()
+                                where d.IsDeleted == false
+                                orderby d.Name descending
+                                select new UserDepart
+                                {
+                                    IdHeader = d.Id,
+                                    NameUser = u2.Name,
+                                    NameDepart = d.Name,
+                                    NumberStaff = d.NumberStaff,
+                                    IdUser = u2.Id
+                                });
             }
             return View();
 
@@ -177,59 +178,25 @@ namespace QLCT.Controllers
             }
             return this.InsertUser();
         }
-
-        // InsertUser
-        public ActionResult InsertDevision()
-        {
-            if (Session["user"] == null)
-            {
-                return RedirectToAction("Index", "Log");
-            }
-            if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
-            {
-                return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
-            }
-            ViewBag.IdDepartment = from u in db.Users
-                                   join d in db.Departments on u.IdDepartment equals d.Id
-                                   select new { d.Name, u.IdDepartment };
-            return View();
-        }
         [HttpPost]
-        public ActionResult InsertDevision(User user)
+        public JsonResult InsertDivision(string Name)
         {
-            if (Session["user"] == null)
+            var checkDepart = db.Departments.Where(d => d.Name == Name).FirstOrDefault();
+            Department de = new Department();
+            if (checkDepart == null)
             {
-                return RedirectToAction("Index", "Log");
-            }
-            if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
-            {
-                return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
-            }
-            var checkuser = db.Users.Where(u => u.Phone == Request["Phone"]).FirstOrDefault();
-            if (checkuser == null)
-            {
-                user.UserName = Request["UserName"];
-                user.PassWord = Request["PassWord"];
-                user.Sex = Convert.ToBoolean(Request["Sex"]);
-                user.Name = Request["Name"];
-                user.Phone = Request["Phone"];
-                user.IdDepartment = Convert.ToInt32(Request["IdDepartment"]);
-                user.Status = Convert.ToInt32(Request["Status"]);
-                user.NumberCus = 0;
-                user.NumberSup = 0;
-                user.IsDeleted = false;
-                db.Users.InsertOnSubmit(user);
-                // tang sl nhan vien
-                var increaseDepart = db.Departments.Where(d => d.Id == Convert.ToInt32(Request["IdDepartment"])).FirstOrDefault();
-                increaseDepart.NumberStaff += 1;
-                UpdateModel(increaseDepart);
+                de.Name = Name;
+                de.IsDeleted = false;
+                de.NumberStaff = 0;
+                db.Departments.InsertOnSubmit(de);
                 db.SubmitChanges();
             }
             else
             {
-                ViewBag.check = "Nhân sự đã tồn tại";
+                ViewBag.check = "Phòng ban đã tồn tại";
             }
-            return this.InsertDevision();
+            var messenger = "Sucessfull";
+            return Json(messenger);
         }
 
         // UpdateUser

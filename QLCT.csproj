@@ -225,6 +225,7 @@
     <Content Include="Content\CustomJS\Supplier\Insert.js" />
     <Content Include="Content\CustomJS\User\Export.js" />
     <Content Include="Content\CustomJS\User\IndexBackend.js" />
+    <Content Include="Content\CustomJS\User\IndexDivision.js" />
     <Content Include="Content\CustomJS\User\Update.js" />
     <Content Include="Content\CustomJS\Utility.js" />
     <Content Include="Content\CustomJS\LoginJS\Login.js" />
@@ -252,8 +253,6 @@
     <Content Include="Content\Image\report-icon-2.jpg" />
     <Content Include="Content\Image\report-icon.jpg" />
     <Content Include="Content\Image\subtask_alternate.png" />
-    <Content Include="Content\Logo\fpt-logo.png" />
-    <Content Include="Content\Logo\logo.png" />
     <Content Include="Content\Logo\logo_vuha.jpg" />
     <Content Include="Content\CustomJS\Supplier\Update.js" />
     <Content Include="Content\theme\bootstrap\css\bootstrap.css" />
@@ -1793,7 +1792,7 @@
     <Content Include="Views\Product\Delete.cshtml" />
     <Content Include="Views\Log\SignOut.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
-    <Content Include="Views\User\IndexDevision.cshtml" />
+    <Content Include="Views\User\IndexDivision.cshtml" />
     <Content Include="Views\User\InsertUser.cshtml" />
     <Content Include="Views\User\UpdateUser.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />

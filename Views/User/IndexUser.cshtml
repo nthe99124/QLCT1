@@ -83,7 +83,7 @@
                                         <div class="col-md-3 padding-right-5" style="display: flex; flex-direction: row">
                                             <div class="page-toolbar">
                                                 <div class="btn-group pull-right  ">
-                                                    <a class="btn green btn-success margin-right-10" href="~/User/IndexDevision">
+                                                    <a class="btn green btn-success margin-right-10" href="~/User/IndexDivision">
                                                         Quản lý đơn vị
                                                     </a>
                                                 </div>
@@ -142,8 +142,6 @@
                                                         <span id="admin_13" class="set-role-user input-group-addon unlock-status">
                                                             @IsLead | @item.NameDepart
                                                         </span>
-
-
                                                     </td>
                                                     <td class="text-center">
                                                         <a href="@Url.Action("UpdateUser", "User", new {id = item.IdUser })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
