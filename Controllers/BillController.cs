@@ -157,7 +157,7 @@ namespace QLCT.Controllers
             }
             return this.Insert();
         }
-        public ActionResult DetailsBill()
+        public ActionResult DetailsBill(int id)
         {
             if (Session["user"] == null)
             {
@@ -168,6 +168,8 @@ namespace QLCT.Controllers
                 ViewBag.notify = "Bạn không có quyền truy cập";
             }
             ViewBag.lstCus = db.Customers.Select(c => c);
+            var bill = db.Bills.First(b => b.Id == id);
+            ViewBag.UrlBill = bill.UrlBill;
             return View();
         }
         // Update

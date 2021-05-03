@@ -1784,7 +1784,6 @@
     <Content Include="Views\Bill\IndexBuy.cshtml" />
     <Content Include="Views\Bill\IndexSell.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\Insert.cshtml" />
     <Content Include="Views\Product\Update.cshtml" />
     <Content Include="Views\Customer\Insert.cshtml" />
     <Content Include="Views\Customer\Update.cshtml" />
@@ -1807,6 +1806,7 @@
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Guarantee\ShowGuarantee.cshtml" />
     <Content Include="Views\Bill\DetailsBill.cshtml" />
+    <Content Include="Views\Product\Insert.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
