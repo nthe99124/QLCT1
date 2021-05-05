@@ -44,6 +44,25 @@ namespace QLCT.Controllers
             return View();
 
         }
+        public JsonResult IndexUser1()
+        {
+            var list = from u in db.Users
+                       join d in db.Departments on u.IdDepartment equals d.Id
+                       where u.IsDeleted == false
+                       where u.Id != 0
+                       where d.IsDeleted == false
+                       orderby u.Name descending
+                       select new UserDepart
+                       {
+                           NameUser = u.Name,
+                           NameDepart = d.Name,
+                           UserName = u.UserName,
+                           Status = u.Status,
+                           IdUser = u.Id
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+
+        }
         [HttpPost]
         public ActionResult IndexUser(int Status)
         {
@@ -95,25 +114,18 @@ namespace QLCT.Controllers
                                 orderby d.Name descending
                                 select new UserDepart
                                 {
-                                    IdHeader = d.Id,
+                                    IdHeader = d.IdHeader,
                                     NameUser = u2.Name,
                                     NameDepart = d.Name,
                                     NumberStaff = d.NumberStaff,
                                     IdUser = u2.Id
                                 });
+                ViewBag.listLead = (from u in db.Users where u.IdDepartment == 0 select u);
+                ViewBag.listLeadUpdate = (from u in db.Users select u);
             }
             return View();
 
         }
-        //Search View
-        //[HttpPost]
-        //public ActionResult Index(int? page)
-        //{
-
-        //    var search = " FROM(SELECT * FROM Cutomer WHERE Status = 1 AND IsDeleted = 0 ";
-
-
-        //}
         // InsertUser
         public ActionResult InsertUser()
         {
@@ -179,7 +191,7 @@ namespace QLCT.Controllers
             return this.InsertUser();
         }
         [HttpPost]
-        public JsonResult InsertDivision(string Name)
+        public JsonResult InsertDivision(string Name,int Header)
         {
             var checkDepart = db.Departments.Where(d => d.Name == Name).FirstOrDefault();
             Department de = new Department();
@@ -187,6 +199,7 @@ namespace QLCT.Controllers
             {
                 de.Name = Name;
                 de.IsDeleted = false;
+                de.IdHeader = Header;
                 de.NumberStaff = 0;
                 db.Departments.InsertOnSubmit(de);
                 db.SubmitChanges();
