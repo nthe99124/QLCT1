@@ -1,8 +1,7 @@
 ﻿$("#btnthem").click(function () {
-    debugger;
     $.ajax({
         url: $("#hiddenUrlInsert").val(),
-        type : 'POST',
+        type: 'POST',
         dataType: "json",
         data: {
             Name: $("#NameDevi").val()
@@ -11,5 +10,10 @@
             alert("Thêm thành công Đơn vị ");
         }
     });
+})
+$(document).ready(function () {
 
+    $('.buttonThem').click(function () {
+        location.reload();
+    })
 })

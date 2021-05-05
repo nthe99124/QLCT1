@@ -44,6 +44,25 @@ namespace QLCT.Controllers
             return View();
 
         }
+        public JsonResult IndexUser1()
+        {
+            var list = from u in db.Users
+                       join d in db.Departments on u.IdDepartment equals d.Id
+                       where u.IsDeleted == false
+                       where u.Id != 0
+                       where d.IsDeleted == false
+                       orderby u.Name descending
+                       select new UserDepart
+                       {
+                           NameUser = u.Name,
+                           NameDepart = d.Name,
+                           UserName = u.UserName,
+                           Status = u.Status,
+                           IdUser = u.Id
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+
+        }
         [HttpPost]
         public ActionResult IndexUser(int Status)
         {
@@ -103,6 +122,24 @@ namespace QLCT.Controllers
                                 });
             }
             return View();
+
+        }
+        public JsonResult IndexDivision1()
+        {
+            var list = (from d in db.Departments
+                        join u in db.Users on d.IdHeader equals u.Id into u1
+                        from u2 in u1.DefaultIfEmpty()
+                        where d.IsDeleted == false
+                        orderby d.Name descending
+                        select new UserDepart
+                        {
+                            IdHeader = d.Id,
+                            NameUser = u2.Name,
+                            NameDepart = d.Name,
+                            NumberStaff = d.NumberStaff,
+                            IdUser = u2.Id
+                        });
+            return Json(list, JsonRequestBehavior.AllowGet);
 
         }
         //Search View
