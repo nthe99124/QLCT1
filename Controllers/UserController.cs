@@ -121,7 +121,17 @@ namespace QLCT.Controllers
                                     IdUser = u2.Id
                                 });
                 ViewBag.listLead = (from u in db.Users where u.IdDepartment == 0 select u);
-                ViewBag.listLeadUpdate = (from u in db.Users select u);
+                ViewBag.listLeadUpdate = (from d in db.Departments
+                                          join u in db.Users on d.IdHeader equals u.Id into u1
+                                          from u2 in u1.DefaultIfEmpty()
+                                          select new UserDepart
+                                          {
+                                              IdHeader = d.IdHeader,
+                                              NameUser = u2.Name,
+                                              NameDepart = d.Name,
+                                              NumberStaff = d.NumberStaff,
+                                              IdUser = u2.Id
+                                          });
             }
             return View();
 
@@ -191,7 +201,7 @@ namespace QLCT.Controllers
             return this.InsertUser();
         }
         [HttpPost]
-        public JsonResult InsertDivision(string Name)
+        public JsonResult InsertDivision(string Name, int Header)
         {
             var checkDepart = db.Departments.Where(d => d.Name == Name).FirstOrDefault();
             Department de = new Department();

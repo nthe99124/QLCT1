@@ -60,7 +60,7 @@ namespace QLCT.Controllers
                        join u in db.Users on b.IdUser equals u.Id
                        join c in db.Customers on b.IdCustormer equals c.Id
                        join de in db.DetailsBills on b.Id equals de.IdBill
-                       where b.TypeOfBill == 1
+                       where b.TypeOfBill == 0
                        where b.IsDelete == false
                        select new User_DetailsBill_Cus_Bill_Product
                        {
@@ -73,7 +73,78 @@ namespace QLCT.Controllers
                            Date = Convert.ToDateTime(b.Date),
                            TypeOfBill = Convert.ToInt32(b.TypeOfBill)
                        };
+
             return View(list);
+        }
+        public JsonResult Ajax_Debt_Buy(int debt)
+        {
+            var list = from b in db.Bills
+                       join u in db.Users on b.IdUser equals u.Id
+                       join c in db.Customers on b.IdCustormer equals c.Id
+                       join de in db.DetailsBills on b.Id equals de.IdBill
+                       where b.TypeOfBill == 0
+                       where b.IsDelete == false
+                       select new User_DetailsBill_Cus_Bill_Product
+                       {
+                           IdBill = b.Id,
+                           NameBill = b.NameBill,
+                           IdUser = u.Id,
+                           NameUser = u.Name,
+                           NameCus = c.Name,
+                           FileHD = b.UrlBill,
+                           Date = Convert.ToDateTime(b.Date),
+                           TypeOfBill = Convert.ToInt32(b.TypeOfBill),
+                           TypeOfDebt = Convert.ToInt32(b.TypeOfDebt)
+                       };
+            if (debt == 0)
+            {
+                list = list.Where(l => l.TypeOfDebt == 0).Select(l => l);
+            }
+            else if (debt == 1)
+            {
+                list = list.Where(l => l.TypeOfDebt == 1).Select(l => l);
+            }
+            else
+            {
+                list = list.Where(l => l.TypeOfDebt == 1 || l.TypeOfDebt == 0).Select(l => l);
+            }
+            
+            return Json(list,JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Ajax_Debt_Sell(int debt)
+        {
+            var list = from b in db.Bills
+                       join u in db.Users on b.IdUser equals u.Id
+                       join c in db.Customers on b.IdCustormer equals c.Id
+                       join de in db.DetailsBills on b.Id equals de.IdBill
+                       where b.TypeOfBill == 1
+                       where b.IsDelete == false
+                       select new User_DetailsBill_Cus_Bill_Product
+                       {
+                           IdBill = b.Id,
+                           NameBill = b.NameBill,
+                           IdUser = u.Id,
+                           NameUser = u.Name,
+                           NameCus = c.Name,
+                           FileHD = b.UrlBill,
+                           Date = Convert.ToDateTime(b.Date),
+                           TypeOfBill = Convert.ToInt32(b.TypeOfBill),
+                           TypeOfDebt = Convert.ToInt32(b.TypeOfDebt)
+                       };
+            if (debt == 0)
+            {
+                list = list.Where(l => l.TypeOfDebt == 0).Select(l => l);
+            }
+            else if (debt == 1)
+            {
+                list = list.Where(l => l.TypeOfDebt == 1).Select(l => l);
+            }
+            else
+            {
+                list = list.Where(l => l.TypeOfDebt == 1 || l.TypeOfDebt == 0).Select(l => l);
+            }
+
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
         public ActionResult ShowBill(int id)
         {

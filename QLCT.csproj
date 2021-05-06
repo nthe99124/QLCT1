@@ -215,6 +215,7 @@
     <Content Include="Content\CustomCSS\openSans.css" />
     <Content Include="Content\CustomCSS\tag_module.css" />
     <Content Include="Content\CustomJS\backToTop.js" />
+    <Content Include="Content\CustomJS\Bill\Index.js" />
     <Content Include="Content\CustomJS\Bill\Insert.js" />
     <Content Include="Content\CustomJS\CommonModule.js" />
     <Content Include="Content\CustomJS\CommonUpload.js" />
