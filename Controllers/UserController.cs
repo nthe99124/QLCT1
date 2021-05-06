@@ -191,7 +191,7 @@ namespace QLCT.Controllers
             return this.InsertUser();
         }
         [HttpPost]
-        public JsonResult InsertDivision(string Name, int Header)
+        public JsonResult InsertDivision(string Name)
         {
             var checkDepart = db.Departments.Where(d => d.Name == Name).FirstOrDefault();
             Department de = new Department();
