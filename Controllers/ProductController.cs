@@ -133,3 +133,4 @@ namespace QLCT.Controllers
             return RedirectToAction("Index", "Product");
         }
     }
+}

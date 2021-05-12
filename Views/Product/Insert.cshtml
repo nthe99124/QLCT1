@@ -117,8 +117,7 @@
                     <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
                         <script type="text/javascript">
                             function getValue() {
-                                var indexdiv = "#table" + i; $(indexdiv).remove(); $("#remove").val($("#remove").val() + "  " + i.toString());
-                                var onclick = @"var indexdiv = "#table" + i; $(indexdiv).remove(); $("#remove").val($("#remove").val() + "  " + i.toString());";
+                                var text1 = "#table"; var text2 = "#remove"; var text3 = " ";
                                 var i = $('#btnThemsp').val();
                                 let html = '<tr align="center" class="tablerun" id="table' + i + '">';
                                 html += '<td>';
@@ -143,7 +142,7 @@
                                 html += $('#unit').val();
                                 html += '</td>';
                                 html += '<td id="ahihi">';
-                                html += '<button type="button" onclick="" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
+                                html += '<button type="button" id="isDelete" onclick="var indexdiv = ' + text1 + ' + ' + i + '; $(indexdiv).remove(); $(' + text2 + ').val($(' + text2 + ').val() + ' + text3 + ' + ' + i + '.toString());" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
                                 html += '</td>';
                                 html += '</tr>';
                                 $("#tbody").append(html);
@@ -157,7 +156,7 @@
                                 html1 += '<input type="hidden" name="Unit' + i + '" value="' + $('#unit').val() + '" />';
                                 $("#tbody").append(html1);
                                 $('#btnThemsp').val(++i);
-                            };   
+                            };
                             //$("body").on("click", "#isDelete", function () {
                             //    var val = $('#isDelete').val();
                             //    var indexdiv = "#table" + val;$(indexdiv).remove();$("#remove").val($("#remove").val() + "  " + val.toString());
@@ -174,7 +173,6 @@
                             //});
                         </script>
                     </div>
-
                     <div style="padding-top: 10px; margin-left: 50px">
                         <table id="myTable" class="table table-bordered" style="background-color: white;">
                             <thead>
@@ -225,7 +223,7 @@
                             </tbody>
 
                         </table>
-                        <input type="text" id="remove" name="remove"/>
+                        <input type="text" id="remove" name="remove" />
                         <div id="test"></div>
                     </div>
                     <div class="col-md-12 " style="padding-left: 200px">
@@ -239,7 +237,6 @@
                                 <a href="~/Product/Index" class="btn grey-salt gray" type="button">
                                     <i></i> Hủy
                                 </a>
-                                <button type="button" onclick="alert('ahihi')" ></button>
                             </div>
                             <div class="col-md-3">
                             </div>
