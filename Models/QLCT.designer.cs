@@ -54,12 +54,12 @@ namespace QLCT.Models
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
-    partial void InsertBill(Bill instance);
-    partial void UpdateBill(Bill instance);
-    partial void DeleteBill(Bill instance);
     partial void InsertDetailsBill(DetailsBill instance);
     partial void UpdateDetailsBill(DetailsBill instance);
     partial void DeleteDetailsBill(DetailsBill instance);
+    partial void InsertBill(Bill instance);
+    partial void UpdateBill(Bill instance);
+    partial void DeleteBill(Bill instance);
     #endregion
 		
 		public QLCTDataContext() : 
@@ -156,19 +156,19 @@ namespace QLCT.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Bill> Bills
-		{
-			get
-			{
-				return this.GetTable<Bill>();
-			}
-		}
-		
 		public System.Data.Linq.Table<DetailsBill> DetailsBills
 		{
 			get
 			{
 				return this.GetTable<DetailsBill>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Bill> Bills
+		{
+			get
+			{
+				return this.GetTable<Bill>();
 			}
 		}
 	}
@@ -2576,6 +2576,250 @@ namespace QLCT.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DetailsBill")]
+	public partial class DetailsBill : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _IdBill;
+		
+		private System.Nullable<int> _IdProduct;
+		
+		private System.Nullable<long> _Number;
+		
+		private EntitySet<Guarantee> _Guarantees;
+		
+		private EntityRef<Product> _Product;
+		
+		private EntityRef<Bill> _Bill;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnIdBillChanging(System.Nullable<int> value);
+    partial void OnIdBillChanged();
+    partial void OnIdProductChanging(System.Nullable<int> value);
+    partial void OnIdProductChanged();
+    partial void OnNumberChanging(System.Nullable<long> value);
+    partial void OnNumberChanged();
+    #endregion
+		
+		public DetailsBill()
+		{
+			this._Guarantees = new EntitySet<Guarantee>(new Action<Guarantee>(this.attach_Guarantees), new Action<Guarantee>(this.detach_Guarantees));
+			this._Product = default(EntityRef<Product>);
+			this._Bill = default(EntityRef<Bill>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBill", DbType="Int")]
+		public System.Nullable<int> IdBill
+		{
+			get
+			{
+				return this._IdBill;
+			}
+			set
+			{
+				if ((this._IdBill != value))
+				{
+					if (this._Bill.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdBillChanging(value);
+					this.SendPropertyChanging();
+					this._IdBill = value;
+					this.SendPropertyChanged("IdBill");
+					this.OnIdBillChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProduct", DbType="Int")]
+		public System.Nullable<int> IdProduct
+		{
+			get
+			{
+				return this._IdProduct;
+			}
+			set
+			{
+				if ((this._IdProduct != value))
+				{
+					if (this._Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdProductChanging(value);
+					this.SendPropertyChanging();
+					this._IdProduct = value;
+					this.SendPropertyChanged("IdProduct");
+					this.OnIdProductChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Number", DbType="BigInt")]
+		public System.Nullable<long> Number
+		{
+			get
+			{
+				return this._Number;
+			}
+			set
+			{
+				if ((this._Number != value))
+				{
+					this.OnNumberChanging(value);
+					this.SendPropertyChanging();
+					this._Number = value;
+					this.SendPropertyChanged("Number");
+					this.OnNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DetailsBill_Guarantee", Storage="_Guarantees", ThisKey="Id", OtherKey="IdDetailsBill")]
+		public EntitySet<Guarantee> Guarantees
+		{
+			get
+			{
+				return this._Guarantees;
+			}
+			set
+			{
+				this._Guarantees.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_DetailsBill", Storage="_Product", ThisKey="IdProduct", OtherKey="Id", IsForeignKey=true)]
+		public Product Product
+		{
+			get
+			{
+				return this._Product.Entity;
+			}
+			set
+			{
+				Product previousValue = this._Product.Entity;
+				if (((previousValue != value) 
+							|| (this._Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product.Entity = null;
+						previousValue.DetailsBills.Remove(this);
+					}
+					this._Product.Entity = value;
+					if ((value != null))
+					{
+						value.DetailsBills.Add(this);
+						this._IdProduct = value.Id;
+					}
+					else
+					{
+						this._IdProduct = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Product");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bill_DetailsBill", Storage="_Bill", ThisKey="IdBill", OtherKey="Id", IsForeignKey=true)]
+		public Bill Bill
+		{
+			get
+			{
+				return this._Bill.Entity;
+			}
+			set
+			{
+				Bill previousValue = this._Bill.Entity;
+				if (((previousValue != value) 
+							|| (this._Bill.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Bill.Entity = null;
+						previousValue.DetailsBills.Remove(this);
+					}
+					this._Bill.Entity = value;
+					if ((value != null))
+					{
+						value.DetailsBills.Add(this);
+						this._IdBill = value.Id;
+					}
+					else
+					{
+						this._IdBill = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Bill");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Guarantees(Guarantee entity)
+		{
+			this.SendPropertyChanging();
+			entity.DetailsBill = this;
+		}
+		
+		private void detach_Guarantees(Guarantee entity)
+		{
+			this.SendPropertyChanging();
+			entity.DetailsBill = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bill")]
 	public partial class Bill : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3081,250 +3325,6 @@ namespace QLCT.Models
 		{
 			this.SendPropertyChanging();
 			entity.Bill = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DetailsBill")]
-	public partial class DetailsBill : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<int> _IdBill;
-		
-		private System.Nullable<int> _IdProduct;
-		
-		private System.Nullable<long> _Number;
-		
-		private EntitySet<Guarantee> _Guarantees;
-		
-		private EntityRef<Bill> _Bill;
-		
-		private EntityRef<Product> _Product;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdBillChanging(System.Nullable<int> value);
-    partial void OnIdBillChanged();
-    partial void OnIdProductChanging(System.Nullable<int> value);
-    partial void OnIdProductChanged();
-    partial void OnNumberChanging(System.Nullable<long> value);
-    partial void OnNumberChanged();
-    #endregion
-		
-		public DetailsBill()
-		{
-			this._Guarantees = new EntitySet<Guarantee>(new Action<Guarantee>(this.attach_Guarantees), new Action<Guarantee>(this.detach_Guarantees));
-			this._Bill = default(EntityRef<Bill>);
-			this._Product = default(EntityRef<Product>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBill", DbType="Int")]
-		public System.Nullable<int> IdBill
-		{
-			get
-			{
-				return this._IdBill;
-			}
-			set
-			{
-				if ((this._IdBill != value))
-				{
-					if (this._Bill.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdBillChanging(value);
-					this.SendPropertyChanging();
-					this._IdBill = value;
-					this.SendPropertyChanged("IdBill");
-					this.OnIdBillChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProduct", DbType="Int")]
-		public System.Nullable<int> IdProduct
-		{
-			get
-			{
-				return this._IdProduct;
-			}
-			set
-			{
-				if ((this._IdProduct != value))
-				{
-					if (this._Product.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdProductChanging(value);
-					this.SendPropertyChanging();
-					this._IdProduct = value;
-					this.SendPropertyChanged("IdProduct");
-					this.OnIdProductChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Number", DbType="BigInt")]
-		public System.Nullable<long> Number
-		{
-			get
-			{
-				return this._Number;
-			}
-			set
-			{
-				if ((this._Number != value))
-				{
-					this.OnNumberChanging(value);
-					this.SendPropertyChanging();
-					this._Number = value;
-					this.SendPropertyChanged("Number");
-					this.OnNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DetailsBill_Guarantee", Storage="_Guarantees", ThisKey="Id", OtherKey="IdDetailsBill")]
-		public EntitySet<Guarantee> Guarantees
-		{
-			get
-			{
-				return this._Guarantees;
-			}
-			set
-			{
-				this._Guarantees.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bill_DetailsBill", Storage="_Bill", ThisKey="IdBill", OtherKey="Id", IsForeignKey=true)]
-		public Bill Bill
-		{
-			get
-			{
-				return this._Bill.Entity;
-			}
-			set
-			{
-				Bill previousValue = this._Bill.Entity;
-				if (((previousValue != value) 
-							|| (this._Bill.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Bill.Entity = null;
-						previousValue.DetailsBills.Remove(this);
-					}
-					this._Bill.Entity = value;
-					if ((value != null))
-					{
-						value.DetailsBills.Add(this);
-						this._IdBill = value.Id;
-					}
-					else
-					{
-						this._IdBill = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Bill");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_DetailsBill", Storage="_Product", ThisKey="IdProduct", OtherKey="Id", IsForeignKey=true)]
-		public Product Product
-		{
-			get
-			{
-				return this._Product.Entity;
-			}
-			set
-			{
-				Product previousValue = this._Product.Entity;
-				if (((previousValue != value) 
-							|| (this._Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Product.Entity = null;
-						previousValue.DetailsBills.Remove(this);
-					}
-					this._Product.Entity = value;
-					if ((value != null))
-					{
-						value.DetailsBills.Add(this);
-						this._IdProduct = value.Id;
-					}
-					else
-					{
-						this._IdProduct = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Product");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Guarantees(Guarantee entity)
-		{
-			this.SendPropertyChanging();
-			entity.DetailsBill = this;
-		}
-		
-		private void detach_Guarantees(Guarantee entity)
-		{
-			this.SendPropertyChanging();
-			entity.DetailsBill = null;
 		}
 	}
 }

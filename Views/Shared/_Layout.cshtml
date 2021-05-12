@@ -6,7 +6,6 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" href="~/Content/Image/logo_vuha.ico">
     <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
     <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
     <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
@@ -18,13 +17,13 @@
     <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
     <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
     <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
+    <link href="~/Content/theme/plugins/DataTables/DataTables-1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 
-
-    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
-
-
+    <script src="~/Content/theme/plugins/jQuery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
-
+    <script src="~/Content/theme/plugins/DataTables/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/theme/plugins/DataTables/DataTables-1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Content/theme/plugins/datepicker/bootstrap-datepicker.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -50,37 +49,37 @@
                     <div class="layout">
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs main-menu-wraper">
-                                <li >
+                                <li>
                                     <div class="btn-group btn-layout">
-                                        <a href="~/Dashboard/Index" aria-expanded="false"  >
+                                        <a href="~/Dashboard/Index" aria-expanded="false">
                                             <i class="fa fa-home"></i>
                                         </a>
                                     </div>
                                 </li>
-                                <li >
+                                <li>
                                     <div class="btn-group btn-layout">
-                                        <a href="~/User/IndexUser" aria-expanded="false"  >
+                                        <a href="~/User/IndexUser" aria-expanded="false">
                                             Quản trị
                                         </a>
                                     </div>
                                 </li>
-                                <li >
+                                <li>
                                     <div class="btn-group btn-layout">
-                                        <a href="/Supplier/Index" aria-expanded="false"  >
+                                        <a href="/Supplier/Index" aria-expanded="false">
                                             Nhà cung cấp
                                         </a>
                                     </div>
                                 </li>
-                                <li >
+                                <li>
                                     <div class="btn-group btn-layout">
-                                        <a href="/Product/Index" aria-expanded="false"  >
+                                        <a href="/Product/Index" aria-expanded="false">
                                             Sản phẩm
                                         </a>
                                     </div>
                                 </li>
-                                <li >
+                                <li>
                                     <div class="btn-group btn-layout">
-                                        <a href="#" aria-expanded="false"  >
+                                        <a href="#" aria-expanded="false">
                                             Khách hàng
                                         </a>
                                         <a href="#" class="dropdown-toggle padding-right-0 padding-left-0" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
@@ -112,9 +111,9 @@
                                     </div>
                                 </li>
 
-                                <li >
+                                <li>
                                     <div class="btn-group btn-layout">
-                                        <a href="#" aria-expanded="false"  >
+                                        <a href="#" aria-expanded="false">
                                             Hợp đồng
                                         </a>
                                         <a href="#" class="dropdown-toggle padding-right-0 padding-left-0" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
@@ -134,21 +133,21 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li >
+                                <li>
                                     <div class="btn-group btn-layout">
-                                        <a href="/Guarantee/Index" aria-expanded="false"  >
+                                        <a href="/Guarantee/Index" aria-expanded="false">
                                             Bảo hành
                                         </a>
                                     </div>
                                 </li>
-                                <li >
+                                <li>
                                     <div class="btn-group btn-layout">
 
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
                                             Báo cáo  <i class="fa fa-angle-down"></i>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li >
+                                            <li>
                                                 <p>  Báo cáo doanh số cá nhân </p>
                                             </li>
                                             <li>
@@ -198,7 +197,7 @@
                                 </li>
                                 <li class="hidden ">
                                     <div class="btn-group btn-layout">
-                                        <a href="#" aria-expanded="false"  >
+                                        <a href="#" aria-expanded="false">
                                             BCC
                                         </a>
                                         <a href="#" class="dropdown-toggle padding-right-0 padding-left-0" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
@@ -261,8 +260,10 @@
             </nav>
         </div>
     </header>
-
+    
     <div class="container">
+        <script src="~/Content/theme/plugins/chart/Chart.js"></script>
+        <script src="~/Content/theme/plugins/chart/Chart.min.js"></script>
         @RenderBody()
     </div>
     <footer class="main-footer no-margin">

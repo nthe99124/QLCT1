@@ -24,7 +24,7 @@ namespace QLCT.Models
         public float Gia { get; set; }
         public float GiamGia { get; set; }
         public int? IdStaffGuarantee { get; set; }
-        public float Totalpay { get; set; }
+        public decimal Totalpay { get; set; }
         public float Deposit { get; set; }
         public int TypeOfDebt { get; set; }
         public float Debt { get; set; }

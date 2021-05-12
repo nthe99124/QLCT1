@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model QLCT.Models.Product
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -110,7 +109,6 @@
                             <input type="hidden" id="hiddenIndex" name="hiddenIndex" />
                         </div>
                     </div>
-                    <button type="button" onclick="hihi()" id="dcm">Ấn đi đm</button>
 
                     <div class="col-md-12 infor-title">
                         Danh sách các sản phẩm thêm
@@ -119,6 +117,8 @@
                     <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
                         <script type="text/javascript">
                             function getValue() {
+                                var indexdiv = "#table" + i; $(indexdiv).remove(); $("#remove").val($("#remove").val() + "  " + i.toString());
+                                var onclick = @"var indexdiv = "#table" + i; $(indexdiv).remove(); $("#remove").val($("#remove").val() + "  " + i.toString());";
                                 var i = $('#btnThemsp').val();
                                 let html = '<tr align="center" class="tablerun" id="table' + i + '">';
                                 html += '<td>';
@@ -142,8 +142,8 @@
                                 html += '<td>';
                                 html += $('#unit').val();
                                 html += '</td>';
-                                html += '<td>';
-                                html += '<button type="button" class="Delete" id="isDelete' + i + '()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
+                                html += '<td id="ahihi">';
+                                html += '<button type="button" onclick="" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
                                 html += '</td>';
                                 html += '</tr>';
                                 $("#tbody").append(html);
@@ -157,15 +157,11 @@
                                 html1 += '<input type="hidden" name="Unit' + i + '" value="' + $('#unit').val() + '" />';
                                 $("#tbody").append(html1);
                                 $('#btnThemsp').val(++i);
-                            };
-                            var i = $('#hiddenIndex').val() - 1;
-                            var isDele = "#isDelete" + i;
-                            debugger;
-                            $(isDele).click(function () {
-                                var indexdiv = ".table" + i;
-                                debugger;
-                                $(indexdiv).removeClass();
-                            });
+                            };   
+                            //$("body").on("click", "#isDelete", function () {
+                            //    var val = $('#isDelete').val();
+                            //    var indexdiv = "#table" + val;$(indexdiv).remove();$("#remove").val($("#remove").val() + "  " + val.toString());
+                            //});
                             //$('.Delete').each(function (i) {
                             //    debugger;
                             //    var indexrun = i + 1;
@@ -229,6 +225,7 @@
                             </tbody>
 
                         </table>
+                        <input type="text" id="remove" name="remove"/>
                         <div id="test"></div>
                     </div>
                     <div class="col-md-12 " style="padding-left: 200px">
@@ -242,6 +239,7 @@
                                 <a href="~/Product/Index" class="btn grey-salt gray" type="button">
                                     <i></i> Hủy
                                 </a>
+                                <button type="button" onclick="alert('ahihi')" ></button>
                             </div>
                             <div class="col-md-3">
                             </div>

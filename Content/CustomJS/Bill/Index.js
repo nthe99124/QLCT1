@@ -1,4 +1,6 @@
-﻿function ajaxDebt(debt) {
+﻿const { error } = require("jquery");
+
+function ajaxDebt(debt) {
     $.ajax({
         url: $('#chkdebthidden').val(),
         type: 'GET',
@@ -7,7 +9,7 @@
             debt: debt
         },
         success: function (data) {
-            alert(data.length);
+            alert(data);
             var html = "";
             for (var i = 0; i < data.length; i++) {
                 var url = '@Url.Action("Update", "Bill", new {id = ' + data[i].IdBill + ' })';
@@ -26,7 +28,7 @@
                 html += '</tr>';
             };
             $('.tbody').append(html);
-        }
+        },
     });
 }
 debugger;

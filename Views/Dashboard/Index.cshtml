@@ -3,3 +3,175 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container content" id="content-layout">
+    <div class="title-header"></div>
+    <div class="data-content" style="display: flex; flex-direction: column">
+        <div class="card-body">
+            <div class="d-flex">
+                <p class="d-flex flex-column">
+                    @*<span class="text-bold text-lg" style="margin-top:-38px;margin-bottom:28px;margin-left:10px">
+
+                            @{ decimal dtn = 0;}
+                            @foreach (var item in @ViewBag.dtn)
+                            {
+                                dtn = dtn + item.Pro_Price;
+                            }
+                            @string.Format("{0:#,##0}", @dtn)đ
+                        </span>*@
+                    <span>Thống kê bán hàng</span>
+                </p>
+                <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                        <i class="fas fa-arrow-up"></i> 33.1%
+                    </span>
+                    <span class="text-muted"><button type="button" id="LastYearBtn">Năm trước</button></span>
+                    <input type="hidden" id="Year" value="@DateTime.Now.Year" />
+                </p>
+            </div>
+            <div class="position-relative mb-4">
+                <canvas id="sales"></canvas>
+            </div>
+            <input type="hidden" value="@Url.Action("AjaxRevenue","Dashboard")" id="UrlChart" />
+
+        </div>
+    </div>
+    <div class="input-append date" id="datepicker" data-date="02-2012"
+         data-date-format="mm-yyyy">
+
+        <input type="text" readonly id="date">
+        <span class="add-on"><i class="icon-th"></i></span>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        CallAjax();
+
+        
+    });
+    $("#date").datepicker({
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years"
+    });
+    $('#LastYearBtn').click(function () {
+        var LastYear = (parseInt($('#Year').val()) - 1).toString();
+        $('#Year').val(LastYear);
+        CallAjax();
+    })
+    function renderChart(data1, data2, Year, LastYear) {
+        var label1 = "Tổng bill năm " + Year;
+        var label2 = "Tổng bill năm " + LastYear;
+        debugger;
+        let myChart = $('#sales')[0].getContext('2d');
+        // Global Options
+        Chart.defaults.global.defaultFontFamily = 'Lato';
+        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontColor = '#777';
+        let massPopChart = new Chart(myChart, {
+            type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+                datasets: [{
+                    label: label1,
+                    data: data1,
+                    backgroundColor: 'green',
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }, {
+                    label: label2,
+                    data: data2,
+                    //backgroundColor:'green',
+                    backgroundColor: [
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(153, 102, 255, 0.6)'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Thống kê bán hàng',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                }
+            }
+        });
+    }
+    function CallAjax() {
+        var Year = $('#Year').val();
+        var LastYear = (parseInt(Year) - 1).toString();
+        $.ajax({
+            url: $('#UrlChart').val(),
+            type: 'GET',
+            data: {
+                year: parseInt(Year)
+            },
+            dataType: 'json',
+            success: function (data1) {
+                $.ajax({
+                    url: $('#UrlChart').val(),
+                    type: 'GET',
+                    data: {
+                        year: parseInt(LastYear)
+                    },
+                    dataType: 'json',
+                    success: function (data2) {
+                        renderChart(data1, data2, Year, LastYear);
+                    }
+                });
+            }
+        });
+
+    }
+
+
+
+</script>
