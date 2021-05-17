@@ -76,41 +76,103 @@ namespace QLCT.Controllers
 
             return View(list);
         }
-        public JsonResult Ajax_Debt_Buy(int debt)
+        public JsonResult Ajax_Debt_Status_Buy(int debt,int status)
         {
-            //var list = from b in db.Bills
-            //           join u in db.Users on b.IdUser equals u.Id
-            //           join c in db.Customers on b.IdCustormer equals c.Id
-            //           join de in db.DetailsBills on b.Id equals de.IdBill
-            //           where b.TypeOfBill == 0
-            //           where b.IsDelete == false
-            //           select new User_DetailsBill_Cus_Bill_Product
-            //           {
-            //               IdBill = b.Id,
-            //               NameBill = b.NameBill,
-            //               IdUser = u.Id,
-            //               NameUser = u.Name,
-            //               NameCus = c.Name,
-            //               FileHD = b.UrlBill,
-            //               Date = Convert.ToDateTime(b.Date),
-            //               TypeOfBill = Convert.ToInt32(b.TypeOfBill),
-            //               TypeOfDebt = Convert.ToInt32(b.TypeOfDebt)
-            //           };
-            //if (debt == 0)
-            //{
-            //    list = list.Where(l => l.TypeOfDebt == 0).Select(l => l);
-            //}
-            //else if (debt == 1)
-            //{
-            //    list = list.Where(l => l.TypeOfDebt == 1).Select(l => l);
-            //}
-            //else
-            //{
-            //    list = list.Where(l => l.TypeOfDebt == 1 || l.TypeOfDebt == 0).Select(l => l);
-            //}
-            List<int> list = new List<int>();
-            list.Add(1);
-            list.Add(2);
+            var list = from b in db.Bills
+                       join u in db.Users on b.IdUser equals u.Id
+                       join c in db.Customers on b.IdCustormer equals c.Id
+                       join de in db.DetailsBills on b.Id equals de.IdBill
+                       where b.TypeOfBill == 0
+                       where b.IsDelete == false
+                       select new User_DetailsBill_Cus_Bill_Product
+                       {
+                           IdBill = b.Id,
+                           NameBill = b.NameBill,
+                           IdUser = u.Id,
+                           NameUser = u.Name,
+                           NameCus = c.Name,
+                           FileHD = b.UrlBill,
+                           Date = Convert.ToDateTime(b.Date),
+                           TypeOfBill = Convert.ToInt32(b.TypeOfBill),
+                           TypeOfDebt = Convert.ToInt32(b.TypeOfDebt),
+                           Status = b.Status
+                       };
+            // status = 7  - debt = 3 - search full
+            if (status == 7)
+            {
+                if (debt == 0)
+                {
+                    list = list.Where(l => l.TypeOfDebt == 0).Select(l => l);
+                }
+                else if (debt == 1)
+                {
+                    list = list.Where(l => l.TypeOfDebt == 1).Select(l => l);
+                }
+                else
+                {
+                    list = list.Where(l => l.TypeOfDebt == 1 || l.TypeOfDebt == 0).Select(l => l);
+                }
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                if (debt == 0)
+                {
+                    list = list.Where(l => l.TypeOfDebt == 0).Select(l => l);
+                }
+                else if (debt == 1)
+                {
+                    list = list.Where(l => l.TypeOfDebt == 1).Select(l => l);
+                }
+                else
+                {
+                    list = list.Where(l => l.TypeOfDebt == 1 || l.TypeOfDebt == 0).Select(l => l);
+                }
+                switch (status)
+                {
+                    case 0: list = list.Where(l => l.Status == 0).Select(l => l); break;
+                    case 1: list = list.Where(l => l.Status == 1).Select(l => l); break;
+                    case 2: list = list.Where(l => l.Status == 2).Select(l => l); break;
+                    case 3: list = list.Where(l => l.Status == 3).Select(l => l); break;
+                    case 4: list = list.Where(l => l.Status == 4).Select(l => l); break;
+                    case 5: list = list.Where(l => l.Status == 5).Select(l => l); break;
+                    case 6: list = list.Where(l => l.Status == 6).Select(l => l); break;
+                }
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult Ajax_Status_Buy(int status)
+        {
+            var list = from b in db.Bills
+                       join u in db.Users on b.IdUser equals u.Id
+                       join c in db.Customers on b.IdCustormer equals c.Id
+                       join de in db.DetailsBills on b.Id equals de.IdBill
+                       where b.TypeOfBill == 0
+                       where b.IsDelete == false
+                       select new User_DetailsBill_Cus_Bill_Product
+                       {
+                           IdBill = b.Id,
+                           NameBill = b.NameBill,
+                           IdUser = u.Id,
+                           NameUser = u.Name,
+                           NameCus = c.Name,
+                           FileHD = b.UrlBill,
+                           Date = Convert.ToDateTime(b.Date),
+                           TypeOfBill = Convert.ToInt32(b.TypeOfBill),
+                           TypeOfDebt = Convert.ToInt32(b.TypeOfDebt),
+                           Status = b.Status
+                       };
+            switch (status)
+            {
+                case 0 : list = list.Where(l => l.Status == 0).Select(l => l);break;
+                case 1 : list = list.Where(l => l.Status == 1).Select(l => l);break;
+                case 2 : list = list.Where(l => l.Status == 2).Select(l => l);break;
+                case 3 : list = list.Where(l => l.Status == 3).Select(l => l);break;
+                case 4 : list = list.Where(l => l.Status == 4).Select(l => l);break;
+                case 5 : list = list.Where(l => l.Status == 5).Select(l => l);break;
+                case 6 : list = list.Where(l => l.Status == 6).Select(l => l);break;
+                case 7 : list = list.Select(l => l);break;
+            }
             return Json(list,JsonRequestBehavior.AllowGet);
         }
         public JsonResult Ajax_Debt_Sell(int debt)
@@ -176,7 +238,6 @@ namespace QLCT.Controllers
             ViewBag.lstCus = db.Customers.Select(c => c);
             ViewBag.lstUser = db.Users.Select(c => c).Where(c=>c.IdDepartment == 3 && c.IsDeleted == false);
             ViewBag.lstPro = db.Products.Select(p => p);
-            ViewBag.lstPro1 = "Hello";
             return View();
         }
         [HttpPost]
@@ -256,8 +317,33 @@ namespace QLCT.Controllers
             {
                 ViewBag.notify = "Bạn không có quyền truy cập";
             }
-            var pro = db.Products.First(p => p.Id == id);
-            return View(pro);
+            ViewBag.lstCus = db.Customers.Select(c => c);
+            ViewBag.lstUser = db.Users.Select(c => c).Where(c => c.IdDepartment == 3 && c.IsDeleted == false);
+            ViewBag.lstPro = db.Products.Select(p => p);
+            var list = (from b in db.Bills
+                       join u in db.Users on b.IdUser equals u.Id
+                       join c in db.Customers on b.IdCustormer equals c.Id
+                       join de in db.DetailsBills on b.Id equals de.IdBill
+                       where b.IsDelete == false
+                       where b.Id == id
+                       select new User_DetailsBill_Cus_Bill_Product
+                       {
+                           IdBill = b.Id,
+                           NameBill = b.NameBill,
+                           IdUser = u.Id,
+                           NameUser = u.Name,
+                           NameCus = c.Name,
+                           FileHD = b.UrlBill,
+                           Date = Convert.ToDateTime(b.Date),
+                           TypeOfBill = Convert.ToInt32(b.TypeOfBill),
+                           TypeOfDebt = Convert.ToInt32(b.TypeOfDebt),
+                           Status = b.Status,
+                           IdCustormer = b.IdCustormer,
+                           Deposit = b.Deposit,
+                           Debt = b.Debt,
+                           AddDelivery = b.AddDelivery
+                       });
+            return View(list);
         }
         [HttpPost]
         public ActionResult Update(int id, Product pro)

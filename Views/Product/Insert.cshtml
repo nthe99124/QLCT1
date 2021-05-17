@@ -9,33 +9,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Thêm sản phẩm</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="icon" href="~/favicon.ico">
-    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
-    <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/icons/ionicons.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
-    <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
-
-
-    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
-
-
-    <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
-
 </head>
 <body>
     <div class="container content" id="content-layout">
-
-        <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
         <form method="post" action="/Product/Insert">
             <div class="title-header">
                 <div class="title-grid">
@@ -82,25 +58,25 @@
                             </div>
                             <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
                                 <div class="form-group col-md-6 padding-top-10" id="">
-                                    <label class='col-md-4 control-label'>Tên sản phẩm</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Name' id="Name"></div>
+                                    <label class='col-md-4 control-label'>Tên sản phẩm</label><div class='col-md-8'><input type="text" class="form-control" name='Name'></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="">
-                                    <label class='col-md-4 control-label'>Số Lượng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='NumberRemain' id="sl"></div>
+                                    <label class='col-md-4 control-label'>Số Lượng</label><div class='col-md-8'><input type="text" class="form-control" name='NumberRemain'></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="">
-                                    <label class='col-md-4 control-label'>Mô tả</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Description' id="Description"></div>
+                                    <label class='col-md-4 control-label'>Mô tả</label><div class='col-md-8'><input type="text" class="form-control" name='Description'></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="">
-                                    <label class='col-md-4 control-label'>Giá</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Price' id="price"></div>
+                                    <label class='col-md-4 control-label'>Giá</label><div class='col-md-8'><input type="text" class="form-control" name='Price'></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="">
-                                    <label class='col-md-4 control-label'>Giảm giá(%)</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Discount' id="discount"></div>
+                                    <label class='col-md-4 control-label'>Giảm giá(%)</label><div class='col-md-8'><input type="text" class="form-control" name='Discount'></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="">
-                                    <label class='col-md-4 control-label'>Đơn vị tính</label><div class='col-md-8'><input required="" type="text" class="form-control" name='Unit' id="unit"></div>
+                                    <label class='col-md-4 control-label'>Đơn vị tính</label><div class='col-md-8'><input type="text" class="form-control" name='Unit'></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="">
-                                    <label class='col-md-4 control-label'>Thời hạn bảo hành</label><div class='col-md-8'><input type='text' class='form-control' name="MonthOfGuarantee" id="time" /></div>
+                                    <label class='col-md-4 control-label'>Thời hạn bảo hành</label><div class='col-md-8'><input type='text' class='form-control' name="MonthOfGuarantee"/></div>
                                 </div>
                             </div>
                             <div class="form-group col-md-2 padding-top-10" id="" style="margin-left: 400px">
@@ -160,7 +136,7 @@
                             //$("body").on("click", "#isDelete", function () {
                             //    var val = $('#isDelete').val();
                             //    var indexdiv = "#table" + val;$(indexdiv).remove();$("#remove").val($("#remove").val() + "  " + val.toString());
-                            //});
+                            //}); 
                             //$('.Delete').each(function (i) {
                             //    debugger;
                             //    var indexrun = i + 1;
@@ -248,4 +224,3 @@
     </div>
 </body>
 </html>
-<script src="~/Content/theme/plugins/DataTables/datatables.js"></script>

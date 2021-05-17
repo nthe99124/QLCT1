@@ -9,45 +9,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Hợp đồng</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="icon" href="~/favicon.ico">
-    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
-    <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/icons/ionicons.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
-    <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
-    <link href="~/Content/theme/bootstrap/css/bootstrap.min.css">
-    <link href="~/Content/theme/plugins/DataTables/datatables.min.css">
-
-
-
-    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
-    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
-
-
-    <!--thu vien cua tim kiem-->
-
-    <link rel="stylesheet" href="~/Content/filescan/css/style.css">
-
-    <script src="~/Content/filescan/js/document.js"></script>
-
-    <script src="~/Content/filescan/js/site.js"></script>
-
+    <link rel="icon" href="~/Content/Image/logo_vuha.ico">
 </head>
 <body>
     <div class="container content" id="content-layout">
-        <link href="~/Content/CustomCSS/Accounts/Index.css" rel="stylesheet" />
-        <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
-        <link href="~/Content/theme/plugins/DataTables/jquery.dataTables.css" rel="stylesheet" />
-        <link href="~/Content/theme/plugins/DataTables/fixedHeader.dataTables.css" rel="stylesheet" />
         <div class="title-header">
             <div class="title-grid">
                 <div class="title-flexi-truncate">
@@ -86,8 +51,8 @@
                     <div style="flex: 0.35">
                         <form method="post" action="~/Product/Index">
                             <div style="display: flex; padding-top: 20px; padding-left: 30px">
-                                <select name="statusBill" style="width: 200px">
-                                    <option>Chọn trạng thái hợp đồng</option>
+                                <select name="statusBill" id="statusBill" style="width: 200px">
+                                    <option value="7">Chọn trạng thái hợp đồng</option>
                                     <option value="0">Chưa duyệt</option>
                                     <option value="1">Đã duyệt</option>
                                     <option value="2">Không duyệt</option>
@@ -96,9 +61,8 @@
                                     <option value="5">Đã ký lấy hàng còn nợ</option>
                                     <option value="6">Đã hoàn thành</option>
                                 </select>
-                                <button type="submit" class="btn btn title-button title-button--neutral" style="margin-left: 20px">
-                                    Tìm kiếm
-                                </button>
+                                <input type="hidden" id="selectStatusOld" value="7" />
+                                <input type="hidden" id="selectStatusNew" value="7" />
                             </div>
                         </form>
                     </div>
@@ -110,7 +74,7 @@
                         <input type="checkbox" id="chknodai">
                         <label>Nợ dài hạn</label>
                     </div>
-                    <input type="hidden" id="chkdebthidden" value="@Url.Action("Ajax_Debt_Buy","Bill")" />
+                    <input type="hidden" id="chkdebthidden" value="@Url.Action("Ajax_Debt_Status_Buy","Bill")" />
                     <div class="title-grid" style="flex: 0.4; justify-content: flex-end; padding-top: 20px; padding-right: 30px; ">
                         <ul>
                             <li class="btn btn title-button title-button--neutral" onclick="replaceEditAcc()">
@@ -121,26 +85,8 @@
                         </ul>
                     </div>
                 </div>
-                @*<script  type="text/javascript">
-                    function checkDuyet()
-                    {
-                        // Khai báo tham số
-                        var checkbox = document.getElementsByName('duyet');
-                        var result = "";
-                        // Lặp qua từng checkbox để lấy giá trị
-                        for (var i = 0; i < checkbox.length; i++){
-                            if (checkbox[i].checked === true){
-                                result += checkbox[i].value;
-                            }
-                        }
-                        if(result === 'daduyet')
-                        {
-                           <div class="text-center" style="padding-top: 20px"><label>ĐÃ DUYỆT</label></div>
-                        }
-                    };
-                </script>*@
+                
                 <div style="padding-top: 20px">
-                    <div class="text-center"><label>ĐÃ DUYỆT</label></div>
                     <div style="padding-top: 20px">
                         <table id="example2" class="table table-bordered" style="background-color: white;">
                             <thead>
@@ -184,23 +130,7 @@
                                 </tr>
                             </thead>
                             <tbody class="tbody">
-                                @foreach (var item in Model)
-                                {
-                                    string Date = item.Date.ToString("dd/MM/yyyy");
-                                    <tr class="odd gradeX trdata" align="center">
-                                        <td>@item.IdBill</td>
-                                        <td><a href="@Url.Action("DetailsBill", "Bill", new {id = item.IdBill })">@item.NameBill</td>
-                                        <td>@item.NameUser (@item.IdUser)</td>
-                                        <td>@item.NameCus</td>
-                                        <td><a href="@Url.Action("ShowBill", "Bill", new {id = item.IdBill })">@item.FileHD</a></td>
-                                        <td>@Date</td>
-                                        <td>
-                                            <a href="@Url.Action("Update", "Bill", new {id = item.IdBill })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                            <input type="hidden" name="" id="idin" value="@item.IdBill" size="30" />
-                                        </td>
-                                    </tr>
-                                }
+                                
                             </tbody>
                         </table>
                     </div>

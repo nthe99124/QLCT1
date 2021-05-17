@@ -2,29 +2,31 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DashBoard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/Content/Image/logo_vuha.ico">
+</head>
 <div class="container content" id="content-layout">
     <div class="title-header"></div>
     <div class="data-content" style="display: flex; flex-direction: column">
         <div class="card-body">
             <div class="d-flex">
                 <p class="d-flex flex-column">
-                    @*<span class="text-bold text-lg" style="margin-top:-38px;margin-bottom:28px;margin-left:10px">
-
-                            @{ decimal dtn = 0;}
-                            @foreach (var item in @ViewBag.dtn)
-                            {
-                                dtn = dtn + item.Pro_Price;
-                            }
-                            @string.Format("{0:#,##0}", @dtn)đ
-                        </span>*@
                     <span>Thống kê bán hàng</span>
+                    <input id="totalBill" readonly/>
                 </p>
                 <p class="ml-auto d-flex flex-column text-right">
                     <span class="text-success">
-                        <i class="fas fa-arrow-up"></i> 33.1%
+                        Tăng trưởng so với năm trước
+                        <i class="fas fa-arrow-up">
+
+                        </i><input id="percent" readonly/>
                     </span>
-                    <span class="text-muted"><button type="button" id="LastYearBtn">Năm trước</button></span>
+                    
+                    <input class="form-control datetime-full" type="text" id="LastYearBtn" style="width:60px"  readonly>
                     <input type="hidden" id="Year" value="@DateTime.Now.Year" />
                 </p>
             </div>
@@ -35,12 +37,6 @@
 
         </div>
     </div>
-    <div class="input-append date" id="datepicker" data-date="02-2012"
-         data-date-format="mm-yyyy">
-
-        <input type="text" readonly id="date">
-        <span class="add-on"><i class="icon-th"></i></span>
-    </div>
 </div>
 <script>
     $(document).ready(function () {
@@ -48,20 +44,19 @@
 
         
     });
-    $("#date").datepicker({
+    $("#LastYearBtn").datepicker({
         format: "yyyy",
         viewMode: "years",
         minViewMode: "years"
     });
-    $('#LastYearBtn').click(function () {
+    $('#LastYearBtn').change(function () {
         var LastYear = (parseInt($('#Year').val()) - 1).toString();
-        $('#Year').val(LastYear);
+        $('#Year').val(parseInt($('#LastYearBtn').val()));
         CallAjax();
     })
     function renderChart(data1, data2, Year, LastYear) {
         var label1 = "Tổng bill năm " + Year;
         var label2 = "Tổng bill năm " + LastYear;
-        debugger;
         let myChart = $('#sales')[0].getContext('2d');
         // Global Options
         Chart.defaults.global.defaultFontFamily = 'Lato';
@@ -146,6 +141,9 @@
         });
     }
     function CallAjax() {
+        var kt1 = 0;
+        var kt2 = 0;
+        
         var Year = $('#Year').val();
         var LastYear = (parseInt(Year) - 1).toString();
         $.ajax({
@@ -156,6 +154,10 @@
             },
             dataType: 'json',
             success: function (data1) {
+                for (var i = 0; i < data1.length; i++) {
+                    kt1 += data1[i];
+                }
+                $('#totalBill').val(kt1.toString()+" đ")
                 $.ajax({
                     url: $('#UrlChart').val(),
                     type: 'GET',
@@ -165,11 +167,25 @@
                     dataType: 'json',
                     success: function (data2) {
                         renderChart(data1, data2, Year, LastYear);
+                        for (var i = 0; i < data1.length; i++) {
+                            kt2 += data2[i];
+                        }
+                        var percent = 0.0;
+                        if (kt2 != 0 && kt1 != 0) {
+                            percent = kt1 / kt2 * 100;
+                            $('#percent').val((percent).toString()+"%");
+                        }
+                        else if (kt1==0) {
+                            $('#percent').val("Năm " + Year + " không có dữ liệu");
+                        }
+                        else {
+                            percent = 0;
+                            $('#percent').val("Năm " + LastYear + " không có dữ liệu");
+                        }
                     }
                 });
             }
         });
-
     }
 
 

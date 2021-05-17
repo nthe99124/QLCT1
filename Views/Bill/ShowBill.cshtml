@@ -3,6 +3,12 @@
     ViewBag.Title = "ShowBill";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>View hợp đồng</title>
+    <link rel="icon" href="~/Content/Image/logo_vuha.ico">
+</head>
 <div class="container content" id="content-layout">
     <iframe id="iframepdf" src="@String.Format("/Content/FileHD/{0}",ViewBag.UrlBill)" style="width: 100%; height: 550px"></iframe>
 </div>
