@@ -15,35 +15,66 @@ namespace QLCT.Controllers
         // View
         public ActionResult IndexUser()
         {
-            if (Session["user"] == null)
+            var uid = Session["user"];
+            if (uid == null)
             {
                 return RedirectToAction("Index", "Log");
             }
             else
             {
-                if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
+                if (Session["PB"] == null || (Session["PB"] != "PGD" && Session["PB"] == "PNS"))
                 {
-                    
-                    return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
+                    return Content("");
                 }
-                ViewBag.list = from u in db.Users
-                               join d in db.Departments on u.IdDepartment equals d.Id
-                               where u.IsDeleted == false
-                               where u.Id != 0
-                               where d.IsDeleted == false
-                               orderby u.Name descending
-                               select new UserDepart
-                               {
-                                   NameUser = u.Name,
-                                   NameDepart = d.Name,
-                                   UserName = u.UserName,
-                                   Status = u.Status,
-                                   IdUser = u.Id
-                               };
+                else
+                {
+                    ViewBag.list = from u in db.Users
+                                   join d in db.Departments on u.IdDepartment equals d.Id
+                                   where u.IsDeleted == false
+                                   orderby u.Name
+                                   select new UserDepart
+                                   {
+                                       NameUser = u.Name,
+                                       UserName = u.UserName,
+                                       NameDepart = d.Name,
+                                       Status = u.Status,
+                                       IdUser = u.Id
+                                   };
+                    return View();
+                }
             }
-            return View();
-
         }
+        //public ActionResult IndexUser()
+        //{
+        //    if (Session["user"] == null)
+        //    {
+        //        return RedirectToAction("Index", "Log");
+        //    }
+        //    else
+        //    {
+        //        if (Session["PB"] != "PGD" && Session["PB"] != "PNS")
+        //        {
+                    
+        //            return Content("<script language='javascript' type='text/javascript'>alert('Ban khong co quyen truy cap!');</script>");
+        //        }
+        //        ViewBag.list = from u in db.Users
+        //                       join d in db.Departments on u.IdDepartment equals d.Id
+        //                       where u.IsDeleted == false
+        //                       where u.Id != 0
+        //                       where d.IsDeleted == false
+        //                       orderby u.Name descending
+        //                       select new UserDepart
+        //                       {
+        //                           NameUser = u.Name,
+        //                           NameDepart = d.Name,
+        //                           UserName = u.UserName,
+        //                           Status = u.Status,
+        //                           IdUser = u.Id
+        //                       };
+        //    }
+        //    return View();
+
+        //}
         public JsonResult IndexUser1()
         {
             var list = from u in db.Users

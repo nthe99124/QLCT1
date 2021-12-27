@@ -42,7 +42,7 @@ namespace QLCT.Controllers
                            Date = Convert.ToDateTime(b.Date),
                            TypeOfBill = Convert.ToInt32(b.TypeOfBill)
                        };
-            
+
             return View(list);
         }
         public ActionResult IndexSell()
