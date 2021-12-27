@@ -10,38 +10,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Thêm khách hàng</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="icon" href="~/favicon.ico">
-    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
-    <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/icons/ionicons.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
-    <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
-
-
-    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
-
-
-    <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
-    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
-    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
-    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
-    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
-
+    <link rel="icon" href="~/Content/Image/logo_vuha.ico">
 </head>
 <body>
     <div class="container content" id="content-layout">
-
-        <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
-        <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
         <form method="post" action="/Customer/Insert">
             <div class="title-header">
                 <div class="title-grid">
@@ -89,24 +61,24 @@
 
                             <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
 
-                                <div class="form-group col-md-6 padding-top-10" id="T&#234;n viết tắt">
-                                    <label class='col-md-4 control-label'>Tên khách hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Name"></div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class='col-md-4 control-label'>Tên khách hàng</label><div class='col-md-8'><input type="text" class="form-control" name="Name"></div>
                                 </div>
 
-                                <div class="form-group col-md-6 padding-top-10" id="M&#227; bưu ch&#237;nh">
-                                    <label class='col-md-4 control-label'>Số điện thoại</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Phone"></div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class='col-md-4 control-label'>Số điện thoại</label><div class='col-md-8'><input type="text" class="form-control" name="Phone"></div>
                                 </div>
 
-                                <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
-                                    <label class='col-md-4 control-label'>Địa chỉ</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Address"></div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class='col-md-4 control-label'>Địa chỉ</label><div class='col-md-8'><input type="text" class="form-control" name="Address"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="Địa chỉ KH">
-                                    <label class='col-md-4 control-label'>Số nợ</label><div class='col-md-8'><input required="" type="text" class="form-control" name="Debt"></div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class='col-md-4 control-label'>Số nợ</label><div class='col-md-8'><input type="text" class="form-control" name="Debt"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="Số fax">
+                                <div class="form-group col-md-6 padding-top-10">
                                     <label class='col-md-4 control-label'>Ngày bắt đầu nợ</label><div class='col-md-8'><input type="date" class="form-control" name="StartDate"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="Số fax">
+                                <div class="form-group col-md-6 padding-top-10">
                                     <label class='col-md-4 control-label'>Ngày kết thúc nợ</label><div class='col-md-8'><input type="date" class="form-control" name="EndDate"></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10" id="nv">
@@ -122,16 +94,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10">
-                                    <label class='col-md-4 control-label'>Mã số thuế</label><div class='col-md-8'><input required="" type="text" class="form-control" name="TIN"></div>
+                                    <label class='col-md-4 control-label'>Mã số thuế</label><div class='col-md-8'><input type="text" class="form-control" name="TIN"></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10">
-                                    <label class='col-md-4 control-label'>Số tài khoản</label><div class='col-md-8'><input required="" type="text" class="form-control" name="BankNumber"></div>
+                                    <label class='col-md-4 control-label'>Số tài khoản</label><div class='col-md-8'><input type="text" class="form-control" name="BankNumber"></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10">
-                                    <label class='col-md-4 control-label'>Tên ngân hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name="BankName"></div>
+                                    <label class='col-md-4 control-label'>Tên ngân hàng</label><div class='col-md-8'><input type="text" class="form-control" name="BankName"></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10">
-                                    <label class='col-md-4 control-label'>Địa chỉ ngân hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name="BankAddress"></div>
+                                    <label class='col-md-4 control-label'>Địa chỉ ngân hàng</label><div class='col-md-8'><input type="text" class="form-control" name="BankAddress"></div>
                                 </div>
                                 <div class="form-group col-md-6 padding-top-10">
                                     <label class='col-md-4 control-label'>Loại nợ</label>

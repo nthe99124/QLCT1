@@ -13,7 +13,7 @@ namespace QLCT.Models
         public string NameBill { get; set; }
         public int IdProduct { get; set; }
         public string NameProduct { get; set; }
-        public DateTime Date  { get; set; }
+        public DateTime Date { get; set; }
         public int? IdCus { get; set; }
         public string NameCus { get; set; }
         public string FileHD { get; set; }
@@ -24,11 +24,17 @@ namespace QLCT.Models
         public float Gia { get; set; }
         public float GiamGia { get; set; }
         public int? IdStaffGuarantee { get; set; }
-        public float Totalpay { get; set; }
-        public float Deposit { get; set; }
+        public decimal Totalpay { get; set; }
+        public decimal? Deposit { get; set; }
         public int TypeOfDebt { get; set; }
-        public float Debt { get; set; }
+        public decimal? Debt { get; set; }
         public int MonthOfGuarantee { get; set; }
-        
+        public int? Status { get; set; }
+
+        public int? IdCustormer { get; set; }
+        public string AddDelivery { get; set; }
+
+        public Product pro { get; set; }
+
     }
 }

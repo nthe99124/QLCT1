@@ -11,7 +11,7 @@ $('#btnthem').click(function () {
         type: 'POST',
         dataType: "json",
         data: {
-            Name : $("#NameDevi").val(),
+            Name: $("#NameDevi").val(),
             Header: ddlLead
         },
         success: function (data, textStatus) {

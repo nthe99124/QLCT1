@@ -1,10 +1,8 @@
 ﻿
-@{
-    ViewBag.Title = "IndexDevision";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewBag.Title = "IndexDevision";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 
-
+@model QLCT.Models.UserDepart
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,13 +90,12 @@
                                                                 Tên phòng ban: <input type="text" name="tenpb" id="NameDevi" />
                                                             </div>
                                                             <div class="modal-body">
-                                                                Chọn trưởng phòng: 
+                                                                Chọn trưởng phòng:
                                                                 <select id="ddlLead">
                                                                     <option>Chọn nhân viên</option>
                                                                     @foreach (var item in @ViewBag.listLead)
                                                                     {
-                                                                        <option value="@item.Id">@item.Name</option>
-                                                                    }
+                                                        <option value="@item.Id">@item.Name</option>}
                                                                 </select>
                                                             </div>
                                                             <div class="modal-footer">
@@ -129,75 +126,67 @@
                                         </thead>
 
                                         <tbody id="ahihi">
-                                            @{ int dem = 0; string IdHeader = null;  }
-                                                @foreach (var item in @ViewBag.list)
-                                                {
-                                                    <tr>
-                                                        <td class="col-stt">
-                                                            @(dem += 1)
-                                                        </td>
-                                                        <td>
-                                                            @item.NameDepart
-                                                        </td>
-                                                        <td>
-                                                            @item.NumberStaff
-                                                        </td>
-                                                        <td>
-                                                            <span id="admin_13" ct-type="admin" ct-user="13" class="set-role-user input-group-addon unlock-status">
-                                                                @if (@item.IdHeader == 0)
-                                                                {
-                                                                    IdHeader = "Chưa chọn trưởng phòng";
-                                                                }
-                                                                else
-                                                                {
-                                                                    IdHeader = String.Format("{0} ({1})", @item.NameUser, @item.IdHeader);
-                                                                }
-                                                                @IdHeader
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="page-toolbar">
-                                                                <div class="btn-group pull-right  ">
-                                                                    <button type="button" class="margin-right-10" data-toggle="modal" data-target="#suapb">
-                                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal fade" id="suapb" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog" role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h4 class="modal-title" id="exampleModalLabel"><b>Sửa phòng ban</b></h4>
-                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                    <span aria-hidden="true">&times;</span>
-                                                                                </button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                Tên phòng ban: <input type="text" name="NameDiviEdit" value="@item.Id" />
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                Chọn trưởng phòng:
-                                                                                <select id="ddlLead" value="@item.IdHeader">
-                                                                                    <option>Chọn nhân viên</option>
-                                                                                    @foreach (var item1 in @ViewBag.listLeadUpdate)
-                                                                                    {
-                                                                                        <option value="@item1.IdHeader">@item1.NameUser</option>
-                                                                                    }
-
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                                                                                <button type="button" class="btn btn-primary buttonSua">Sửa</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                                            <input type="hidden" name="" id="idin" value="@item.IdUser" size="30" />
-                                                        </td>
-                                                    </tr>
-                                                }
+                                            @{ int dem = 0; string IdHeader = null; }
+                                            @foreach (var item in @ViewBag.list)
+                                            {
+                                <tr>
+                                    <td class="col-stt">
+                                        @(dem += 1)
+                                    </td>
+                                    <td>
+                                        @item.NameDepart
+                                    </td>
+                                    <td>
+                                        @item.NumberStaff
+                                    </td>
+                                    <td>
+                                        <span id="admin_13" ct-type="admin" ct-user="13" class="set-role-user input-group-addon unlock-status">
+                                            @if (@item.IdHeader == 0)
+                                            {
+                                                IdHeader = "Chưa chọn trưởng phòng";
+                                            }
+                                            else
+                                            {
+                                                IdHeader = String.Format("{0} ({1})", @item.NameUser, @item.IdHeader);
+                                            }
+                                            @IdHeader
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="page-toolbar">
+                                            <div class="btn-group pull-right  ">
+                                                <button type="button" class="margin-right-10" data-toggle="modal" data-target="#suapb">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal fade" id="suapb" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="exampleModalLabel"><b>Sửa phòng ban</b></h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Tên phòng ban: <input type="text" name="NameDiviEdit" value="@item.NameDepart" />
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Chọn trưởng phòng:
+                                                            @Html.DropDownListFor(model => model.IdHeader, new SelectList(@ViewBag.listLeadUpdate, "IdUser", "NameUser"))
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                                            <button type="button" class="btn btn-primary buttonSua">Sửa</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        <input type="hidden" name="" id="idin" value="@item.IdUser" size="30" />
+                                    </td>
+                                </tr>}
                                         </tbody>
                                     </table>
                                 </div>
@@ -221,7 +210,7 @@
     </div>
 </body>
 </html>
-<input type="hidden" id="hiddenUrlInsert" value="@Url.Action("InsertDivision","User")"/>
+<input type="hidden" id="hiddenUrlInsert" value="@Url.Action("InsertDivision","User")" />
 <script type="text/javascript">
 
     function isDelete() {

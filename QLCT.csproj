@@ -215,6 +215,7 @@
     <Content Include="Content\CustomCSS\openSans.css" />
     <Content Include="Content\CustomCSS\tag_module.css" />
     <Content Include="Content\CustomJS\backToTop.js" />
+    <Content Include="Content\CustomJS\Bill\Index.js" />
     <Content Include="Content\CustomJS\Bill\Insert.js" />
     <Content Include="Content\CustomJS\CommonModule.js" />
     <Content Include="Content\CustomJS\CommonUpload.js" />
@@ -323,6 +324,7 @@
     <Content Include="Content\theme\dist\js\demo.js" />
     <Content Include="Content\theme\dist\js\pages\dashboard.js" />
     <Content Include="Content\theme\dist\js\pages\dashboard2.js" />
+    <Content Include="Content\theme\fonts\all.min.css" />
     <Content Include="Content\theme\fonts\document.js" />
     <Content Include="Content\theme\fonts\font-awesome.min.css" />
     <Content Include="Content\theme\fonts\fontawesome-webfont.svg" />
@@ -1209,6 +1211,7 @@
     <Content Include="Content\theme\plugins\jQueryUI\jquery-ui.min.js" />
     <Content Include="Content\theme\plugins\jQuery\jquery-1.4.2.min.js" />
     <Content Include="Content\theme\plugins\jQuery\jquery-2.2.3.min.js" />
+    <Content Include="Content\theme\plugins\jQuery\jquery-3.4.1.min.js" />
     <Content Include="Content\theme\plugins\jQuery\jquery-3.5.1.js" />
     <Content Include="Content\theme\plugins\jQuery\jquery.min.js" />
     <Content Include="Content\theme\plugins\jQuery\jquery.unobtrusive-ajax.min.js" />

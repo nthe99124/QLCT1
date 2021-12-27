@@ -113,6 +113,17 @@
       <Association Name="Product_DetailsBill" Member="DetailsBills" ThisKey="Id" OtherKey="IdProduct" Type="DetailsBill" />
     </Type>
   </Table>
+  <Table Name="dbo.DetailsBill" Member="DetailsBills">
+    <Type Name="DetailsBill">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdBill" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdProduct" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="DetailsBill_Guarantee" Member="Guarantees" ThisKey="Id" OtherKey="IdDetailsBill" Type="Guarantee" />
+      <Association Name="Product_DetailsBill" Member="Product" ThisKey="IdProduct" OtherKey="Id" Type="Product" IsForeignKey="true" />
+      <Association Name="Bill_DetailsBill" Member="Bill" ThisKey="IdBill" OtherKey="Id" Type="Bill" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Bill" Member="Bills">
     <Type Name="Bill">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -133,17 +144,6 @@
       <Association Name="Bill_DetailsBill" Member="DetailsBills" ThisKey="Id" OtherKey="IdBill" Type="DetailsBill" />
       <Association Name="Customer_Bill" Member="Customer" ThisKey="IdCustormer" OtherKey="Id" Type="Customer" IsForeignKey="true" />
       <Association Name="User_Bill" Member="User" ThisKey="IdUser" OtherKey="Id" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.DetailsBill" Member="DetailsBills">
-    <Type Name="DetailsBill">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IdBill" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IdProduct" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Number" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Association Name="DetailsBill_Guarantee" Member="Guarantees" ThisKey="Id" OtherKey="IdDetailsBill" Type="Guarantee" />
-      <Association Name="Bill_DetailsBill" Member="Bill" ThisKey="IdBill" OtherKey="Id" Type="Bill" IsForeignKey="true" />
-      <Association Name="Product_DetailsBill" Member="Product" ThisKey="IdProduct" OtherKey="Id" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

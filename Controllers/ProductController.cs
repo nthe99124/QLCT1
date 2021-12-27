@@ -64,16 +64,25 @@ namespace QLCT.Controllers
             }
             Product checkpro = db.Products.Where(p => p.Name == Request["Name"]).FirstOrDefault();
             var index = Convert.ToInt32(Request["hiddenIndex"]);
+            var remove = Request["remove"];
             for (int i = 0; i < index; i++)
             {
-                pro.Name = Request["NamePro"];
-                pro.NumberRemain = Convert.ToInt32(Request["NumberRemain"]);
-                pro.Description = Request["Description"];
-                pro.Price = Convert.ToInt32(Request["Price"]);
-                pro.Discount = Convert.ToInt32(Request["Discount"]);
-                pro.Unit = Request["Unit"];
-                pro.MonthOfGuarantee = Convert.ToInt32(Request["MonthOfGuarantee"]);
-                db.Products.InsertOnSubmit(pro);
+                var remove1 = " " + i.ToString() + " ";
+                if (remove1.Contains(remove))
+                {
+                    continue;
+                }
+                else
+                {
+                    pro.Name = Request["NamePro"];
+                    pro.NumberRemain = Convert.ToInt32(Request["NumberRemain"]);
+                    pro.Description = Request["Description"];
+                    pro.Price = Convert.ToInt32(Request["Price"]);
+                    pro.Discount = Convert.ToInt32(Request["Discount"]);
+                    pro.Unit = Request["Unit"];
+                    pro.MonthOfGuarantee = Convert.ToInt32(Request["MonthOfGuarantee"]);
+                    db.Products.InsertOnSubmit(pro);
+                }
             }
             db.SubmitChanges();
             return this.Insert();

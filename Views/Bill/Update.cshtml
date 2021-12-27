@@ -1,48 +1,18 @@
-﻿
-@{
-    ViewBag.Title = "Update";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
+﻿@using QLCT.Models
+@{ ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+@model User_DetailsBill_Cus_Bill_Product
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sửa hợp đồng</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="icon" href="~/favicon.ico">
-    <link href="~/Content/theme/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/theme/dist/css/AdminLTE.css" rel="stylesheet" />
-    <link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/fonts/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/icons/ionicons.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link href="~/Content/theme/plugins/select2-4.0.3/css/select2.css" rel="stylesheet" />
-    <link href="~/Content/CustomCSS/Custom_Layout_Backend.css" rel="stylesheet" />
-
-
-    <script src="~/Content/theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
-
-
-    <script type="text/javascript" src="~/Content/theme/plugins/notify.js"></script>
-    <script src="~/Content/CustomJS/Comment/CommentBackend.js"></script>
-    <script src="~/Content/CustomJS/FileUpload/FileUploadBackend.js"></script>
-    <link href="~/Content/CustomCSS/Common/CommonModule.css" rel="stylesheet" />
-    <link href="~/Content/CustomCSS/FileUpload/FileUploadBackend.css" rel="stylesheet" />
-
+    <title>Thêm Hợp đồng</title>
+    <link rel="icon" href="~/Content/Image/logo_vuha.ico">
 </head>
 <body>
     <div class="container content" id="content-layout">
-
-        <link href="~/Content/CustomCSS/Accounts/Edit.css" rel="stylesheet" />
-        <link href="~/Content/theme/plugins/DataTables/datatables.css" rel="stylesheet" />
-        <form method="post" action="/Product/Insert">
+        <form id="postAction" method="post" action="/Bill/Update">
             <div class="title-header">
                 <div class="title-grid">
                     <div class="title-flexi-truncate">
@@ -68,7 +38,7 @@
                                     <div class="title-header__title">
                                         <div class="title-name">
                                             <div>
-                                                <span>Sửa hợp đồng</span>
+                                                <span>Lập hợp đồng bán hàng</span>
                                             </div>
 
                                         </div>
@@ -80,68 +50,187 @@
                 </div>
             </div>
             <div class="data-content row">
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <div class="col-md-12">
                         <div class="general-infor margin-top-15">
                             <div class="col-md-12 infor-title">
                                 Th&#244;ng tin cơ bản
                             </div>
-
                             <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
-
-                                <div class="form-group col-md-6 padding-top-10" id="mabh">
-                                    <label class='col-md-4 control-label'>Mã hợp đồng</label><div class='col-md-8'><input required="" type="text" class="form-control" id='Id'></div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class="col-md-4 control-label">Mã hợp đồng</label><div class="col-md-8"><input type="text" class="form-control" value="@Model.IdBill" name="NameBill"></div>
                                 </div>
-
-                                <div class="form-group col-md-6 padding-top-10" id="tenbh">
-                                    <label class='col-md-4 control-label'>Tên hợp đồng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='name'></div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class="col-md-4 control-label">Tên hợp đồng</label><div class="col-md-8"><input type="text" class="form-control" value="@Model.NameBill" name="NameBill"></div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="tenkh">
-                                    <label class='col-md-4 control-label'>Tên khách hàng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='nameCustormer'></div>
-                                </div>
-                                <div class="form-group col-md-6 padding-top-10" id="nv">
-                                    <label class='col-md-4 control-label'>Nhân viên phụ trách</label>
-                                    <div class='col-md-8'>
-                                        @*@Html.DropDownListFor(model => model.IdStaff, new SelectList(@ViewBag.lstStaff, "Id", "Name"))*@
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class="col-md-4 control-label">Tên khách hàng</label>
+                                    <div class="col-md-8">
+                                        @Html.DropDownListFor(model => model.IdCustormer, new SelectList(@ViewBag.lstCus, "Id", "Name"))
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6 padding-top-10" id="filebh">
-                                    <label class='col-md-4 control-label'>File hợp đồng</label><div class='col-md-8'><input required="" type="text" class="form-control" name='file'></div>
-                                </div>
-                                <div class="form-group col-md-6 padding-top-10" id="nv">
-                                    <label class='col-md-4 control-label'>Loại hợp đồng</label>
-                                    <div class='col-md-8'>
-                                        @*@Html.DropDownListFor(model => model.IdStaff, new SelectList(@ViewBag.lstStaff, "Id", "Name"))*@
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class="col-md-4 control-label">Nhân viên phụ trách</label>
+                                    <div class="col-md-8">
+                                        @Html.DropDownListFor(model => model.IdUser, new SelectList(@ViewBag.lstUser, "Id", "Name"))
                                     </div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class="col-md-4 control-label">Loại hợp đồng</label>
+                                    <div class="col-md-8">
+                                        <select name="TypeOfBill" value="@Model.TypeOfBill">
+                                            <option>Chọn Loại hợp đồng</option>
+                                            <option value="0">Hợp đồng mua</option>
+                                            <option value="1">Hợp đồng bán</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class="col-md-4 control-label">Số tiền cọc</label><div class="col-md-8"><input type="text" class="form-control" value="@Model.Deposit" name="Deposit"></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class="col-md-4 control-label">Số tiền nợ</label><div class="col-md-8"><input type="text" class="form-control" value="@Model.Debt" name="Debt"></div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class="col-md-4 control-label">Loại hợp đồng</label>
+                                    <div class="col-md-8">
+                                        <select name="TypeOfDebt" value="@Model.TypeOfDebt">
+                                            <option>Chọn Kiểu nợ</option>
+                                            <option value="1">Nợ ngắn hạn</option>
+                                            <option value="2">Nợ dài hạn</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 padding-top-10">
+                                    <label class="col-md-4 control-label">Nơi nhận hàng</label><div class="col-md-8"><input type="text" class="form-control" value="@Model.AddDelivery" name="AddDelivery"></div>
                                 </div>
                             </div>
+                            
+                            @*<div class="col-md-12 infor-title">
+                                Các sản phẩm trong hợp đồng
+                            </div>
+                            <div class="col-md-12 infor-body" style="padding-top: 25px; padding-left: 100px">
+                                <div class="form-group col-md-6 padding-top-10" id="nv1">
+                                    <label class="col-md-4 control-label">Tên sản phẩm</label>
+                                    <div class="col-md-8">
+                                        <select name="IdProduct" id="selectedPro">
+                                            <option>Chọn sản phẩm</option>
+                                            @foreach (var item in @ViewBag.lstPro)
+                                            {
+                                                <option value="@item.Id" data-name="@item.Name" data-price="@item.Price" data-discount="@item.Discount">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4 padding-top-10">
+                                    <label class="col-md-6 control-label">Số lượng</label><div class="col-md-6"><input type="text" class="form-control" name="Number" id="sl"></div>
+                                </div>
+                                <div class="form-group col-md-2 padding-top-10">
+                                    <button type="button" onclick="getValue()" name="" id="btnThemsp" value="1">Thêm SP</button>
+                                </div>
+                                <input type="hidden" id="hiddenIndex" name="hiddenIndex" />
+                                <script type="text/javascript">
+
+                                    function getValue() {
+                                        var i = $('#btnThemsp').val();
+                                        let html = '<tr align="center">';
+                                        html += '<td>';
+                                        html += $('#selectedPro').val();
+                                        html += '</td>';
+                                        html += '<td>';
+                                        html += $('#selectedPro').find(":selected").data('name');
+                                        html += '</td>';
+                                        html += '<td name="Number' + i + '">';
+                                        html += $('#sl').val();
+                                        html += '</td>';
+                                        html += '<td>';
+                                        html += $('#selectedPro').find(":selected").data('price');
+                                        html += '</td>';
+                                        html += '<td>';
+                                        html += $('#selectedPro').find(":selected").data('discount');
+                                        html += '</td>';
+                                        html += '<td>';
+                                        html += (1 - $('#selectedPro').find(":selected").data('discount') / 100) * $('#sl').val() * $('#selectedPro').find(":selected").data('price');
+                                        html += '</td>';
+                                        html += '<td>';
+                                        html += '<button onclick="isDelete()" style="margin-left: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
+                                        html += '</td>';
+                                        html += '</tr>';
+                                        $("#tbody").append(html);
+                                        $('#hiddenIndex').val(i);
+                                        let html1 = '<input type="hidden" name="IdPro' + i + '" value="' + $('#selectedPro').val() + '" />';
+                                        html1 += '<input type="hidden" name="NamePro' + i + '" value="' + $('#selectedPro').find(":selected").data('name') + '" />';
+                                        html1 += '<input type="hidden" name="Number' + i + '" value="' + $('#sl').val() + '" />';
+                                        $("#tbody").append(html1);
+                                        $('#btnThemsp').val(++i);
+                                    }
+                                </script>
+                            </div>
+                            <div style="padding-top: 10px; margin-left: 100px">
+                                <table id="myTable" class="table table-bordered" style="background-color: white;">
+                                    <thead>
+                                        <tr align="center">
+                                            <th class="sort_col_table" scope="col"> Mã sản phẩm <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                            <th class="sort_col_table" scope="col"> Tên sản phẩm <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                            <th class="sort_col_table" scope="col"> Số lượng <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                            <th class="sort_col_table" scope="col"> Giá <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                            <th class="sort_col_table" scope="col"> Giảm giá <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                            <th class="sort_col_table" scope="col"> Thành tiền <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                            <th class="sort_col_table" scope="col"> Xoá <i class="fa fa-exchange" aria-hidden="true"></i></th>
+                                        </tr>
+                                        <tr align="center">
+                                            <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
+                                                <input type="text" name="" id="search1" onkeyup="search1()" style="width: 150px">
+                                                <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                            </th>
+                                            <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
+                                                <input type="text" name="" id="search1" onkeyup="search2()" style="width: 150px">
+                                                <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                            </th>
+                                            <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
+                                                <input type="text" name="" id="search1" onkeyup="search3()" style="width: 100px">
+                                                <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                            </th>
+                                            <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
+                                                <input type="text" name="" id="search1" onkeyup="search4()" style="width: 150px">
+                                                <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                            </th>
+                                            <th style="border-color: black; padding-bottom: 20px" class="sort_col_table" scope="col">
+                                                <input type="text" name="" id="search1" onkeyup="search5()" style="width: 100px">
+                                                <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding-top: 5px; padding-left: 5px; font-size: 15px"></i>
+                                            </th>
+                                            <th>
+                                                <label style="width: 100px"></label>
+                                            </th>
+                                            <th>
+                                                <label style="width: 50px"></label>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody">
+                                    </tbody>
+                                </table>
+                            </div>*@
                         </div>
                     </div>
-                    <div class="col-md-12 " style="padding-left: 200px">
-                        <div class="margin-top-30">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <button type="submit" class="btn btn-success">
-                                    Cập nhật
-                                </button>
-                                <a href="~/Product/Index" class="btn grey-salt gray" type="button">
-                                    <i></i> Hủy
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                            </div>
+                    <div class="col-md-12 " style="padding-left: 200px; padding-bottom: 10px">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <button type="submit" class="btn btn-success" id="insertBill">
+                                Lập hợp đồng
+                            </button>
+                            <a href="~/Product/Index" class="btn grey-salt gray" type="button">
+                                <i></i> Hủy
+                            </a>
+                        </div>
+                        <div class="col-md-3">
                         </div>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-    <footer class="main-footer no-margin">
-        <div class="text-center">  Công ty TNHH thương mại và dịch vụ Vũ Hà.</div>
-    </footer>
+    <input type="hidden" id="Ahihi" value="@Url.Action("ListPro","Bill")" />
 </body>
 </html>
-<script src="~/Content/theme/plugins/DataTables/datatables.js"></script>
-<script src="~/Content/CustomJS/Account/Edit.js"></script>
-
