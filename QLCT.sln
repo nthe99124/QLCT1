@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLCT", "QLCT.csproj", "{C6871F11-D38A-4A79-927D-4FAF8C187B4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLCT.Model", "..\QLCT.Model\QLCT.Model.csproj", "{B83FD3B9-3204-4BF3-910C-923C9C4D2A91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLCT.API", "..\QLCT.API\QLCT.API.csproj", "{D645AE53-D325-45AF-B763-0435C77E53CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C6871F11-D38A-4A79-927D-4FAF8C187B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6871F11-D38A-4A79-927D-4FAF8C187B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6871F11-D38A-4A79-927D-4FAF8C187B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B83FD3B9-3204-4BF3-910C-923C9C4D2A91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B83FD3B9-3204-4BF3-910C-923C9C4D2A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B83FD3B9-3204-4BF3-910C-923C9C4D2A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B83FD3B9-3204-4BF3-910C-923C9C4D2A91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D645AE53-D325-45AF-B763-0435C77E53CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D645AE53-D325-45AF-B763-0435C77E53CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D645AE53-D325-45AF-B763-0435C77E53CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D645AE53-D325-45AF-B763-0435C77E53CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
